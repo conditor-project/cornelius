@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: './src/app.js',
@@ -47,6 +48,9 @@ const config = {
       chunkFilename: '[id].css'
     })
   ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
+  },
   devServer: {
     contentBase: path.resolve(__dirname, './public'),
     historyApiFallback: true,
