@@ -1,3 +1,20 @@
+.uib-position-measure {
+  display: block !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important; }
+
+.uib-position-scrollbar-measure {
+  position: absolute !important;
+  top: -9999px !important;
+  width: 50px !important;
+  height: 50px !important;
+  overflow: scroll !important; }
+
+.uib-position-body-scrollbar-measure {
+  overflow: scroll !important; }
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -6426,6 +6443,5 @@ button.close {
     display: none !important; } }
 
 body {
-  background-color: #cccccc;
-  color: #333333; }
+  margin-top: 60px; }
 
