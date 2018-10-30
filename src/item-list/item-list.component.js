@@ -1,5 +1,10 @@
 import './item-list.scss';
 import template from './item-list.template.html';
-import { controller } from './item-list.controller.js';
+import records from './records.json';
 
-export const itemList = { controller, template };
+export const itemList = {
+  controller: function () {
+    this.items = records;
+  },
+  template
+};
