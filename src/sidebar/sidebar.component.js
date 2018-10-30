@@ -7,11 +7,16 @@ export const sidebar = {
       console.log(this.$ctrl);
     };
     this.$onInit = function () {
-      this.hal = true;
-      this.prodinra = true;
-      this.pubmed = true;
-      this.sudoc = true;
+      this.source = {
+        hal: true,
+        prodinra: true,
+        pubmed: true,
+        sudoc: true
+      };
     };
+  },
+  bindings: {
+    source: '<'
   },
   template
 };
