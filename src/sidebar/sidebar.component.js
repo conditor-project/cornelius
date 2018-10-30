@@ -7,6 +7,7 @@ export const sidebar = {
       console.log(this.$ctrl);
     };
     this.$onInit = function () {
+      this.score = 90;
       this.source = {
         hal: true,
         prodinra: true,
