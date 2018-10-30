@@ -4,7 +4,9 @@ import records from './records.json';
 
 export const itemList = {
   controller: function () {
-    this.items = records;
+    this.$onInit = function () {
+      this.items = records;
+    };
   },
   template
 };
