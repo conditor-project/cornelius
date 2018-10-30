@@ -1,10 +1,12 @@
 import angular from 'angular';
-import angularAnimate from 'angular-animate';
-import angularTouch from 'angular-touch';
-import angularSanitize from 'angular-sanitize';
+import 'angular-animate';
+import 'angular-touch';
+import 'angular-sanitize';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
-import bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import style from './app.scss';
+
+// Styles
+import 'bootstrap/dist/css/bootstrap.css';
+import './app.scss';
 
 // Components
 import { navbar } from './navbar/navbar.component';
