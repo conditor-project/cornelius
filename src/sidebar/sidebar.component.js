@@ -1,3 +1,4 @@
+import './sidebar.scss';
 import template from './sidebar.template.html';
 import { controller } from './sidebar.controller.js';
 
