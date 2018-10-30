@@ -1,0 +1,1251 @@
+[
+  {
+    "hasDoi": true,
+    "authorInit": "Schröder M Roca R Picon L",
+    "titreSourceJ": "Atmospheric Chemistry and Physics",
+    "authorFull": "Schröder M. Roca Rémy Picon Laurence Kniffka A. Brogniez Hélène",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Climatology of free-tropospheric humidity: extension into the SEVIRI era, evaluation and exemplary analysis",
+    "idHal": "hal-00976070",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-00976070.xml",
+    "isni": [],
+    "titleen": "Climatology of free-tropospheric humidity: extension into the SEVIRI era, evaluation and exemplary analysis",
+    "idChain": "!hal:L3HktkJhe1Efew4tzKkeAXPUP!wos:KdlLXqTWzex20tsXzIPfo7Wsy!",
+    "halAuthorId": [
+      "60436",
+      "158241",
+      "193169",
+      "319798",
+      "673818"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": true,
+    "publicationDate": "2014",
+    "author": "Schröder M. Roca Rémy Picon Laurence",
+    "typeConditor": "Article",
+    "eissn": [
+      "1680-7324"
+    ],
+    "abstract": "A new free tropospheric humidity (FTH) data record is presented. It is based on observations of Meteosat-2-5 and Meteosat-7 Meteosat Visible and Infrared Imager (MVIRI) and Meteosat-8 and -9 Spinning Enhanced Visible and Infrared Imager (SEVIRI) at the water absorption band at 6.3 μm. With the extension to SEVIRI observations the data record now covers the period 1983-2009 with a spatial and temporal resolution of 0.625° and 3 h, respectively. The data record is referenced under digital object identifier (doi): 10.5676/EUM_SAF_CM/FTH_METEOSAT/V001 and is freely available from http://www.cmsaf.eu/wui . The relation between the observed brightness temperature (BT) and FTH is well established: the observed BT is proportional to the logarithm of the mean relative humidity (RH). Under the given assumptions, constant lapse rate and random strong line theory, it means that the observed BT is mainly a function of RH alone and not of temperature and specific humidity separately. Here, existing retrievals have been refined mainly through the consideration of relative humidity Jacobians in the training process of the statistical retrieval. The temporal coverage has been extended into the SEVIRI era, the homogenisation of the BT record has been improved and the full archive has been reprocessed using updated regression coefficients. The FTH product is compared against FTH computed on the basis of the Analysed RadioSoundings Archive (ARSA) observations. An average relative bias and root mean square difference (RMSD) of −3.2 and 16.8%, respectively, are observed. The RMSD confirms the expectation from an analysis of the total uncertainty of the FTH product. The decadal stability is 0.5 ± 0.45% per decade. As exemplary applications the inter-annual standard deviation, differences on decadal scales and the linear trend in the FTH data record and the frequency of occurrence of FTH <10% (FTHp10) are analysed per season. Maxima in inter-annual standard deviations as well as maxima in absolute differences occur in gradient areas between dry and wet regions and areas with minima in FTH and maxima in FTHp10. An analysis of the linear trends and associated uncertainty estimates has been attempted to identify possible problems with the data record. Positive trends in FTHp10 coincide with gradient areas and regions of minimum FTH, maximum FTHp10 as well as with negative differences between decadal FTHp10 averages of the 1990s and 2000s. However, they are accompanied by maximum standard deviation and are therefore hardly significant which is also valid for FTH trend estimates. These activities plus inter-comparisons to other humidity data records are part of the Global Energy and Water Exchanges Project (GEWEX) water vapor assessment (G-VAP) and will be extended to other FTH data records in the near future.",
+    "isDeduplicable": true,
+    "duplicate": [
+      {
+        "rules": [
+          "Article : 2Collation:TiC+xissn+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+          "Article : 1ID:doi+TiC_ENG",
+          "Article : 1ID:doi+TiC",
+          "Article : 2Collation:TiC_ENG+xissn+volume+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+page+annee"
+        ],
+        "source": "wos",
+        "ingestId": "WOS_2018-10-11",
+        "idConditor": "KdlLXqTWzex20tsXzIPfo7Wsy"
+      }
+    ],
+    "duplicateRules": [
+      "Article : 1ID:doi+TiC",
+      "Article : 1ID:doi+TiC_ENG",
+      "Article : 2Collation:TiC+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC+xissn+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+volume+page+annee"
+    ],
+    "creationDate": "2018-10-10 10:29:11",
+    "hadTransDuplicate": false,
+    "viaf": [],
+    "idConditor": "L3HktkJhe1Efew4tzKkeAXPUP",
+    "volume": "14",
+    "xissn": [
+      "1680-7316",
+      "1680-7324"
+    ],
+    "issn": [
+      "1680-7316"
+    ],
+    "authorRef": [
+      {
+        "forename": "M.",
+        "isni": [],
+        "surname": "Schröder",
+        "researcherId": "",
+        "halAuthorId": "60436",
+        "affiliations": [
+          {
+            "ref": "#struct-251402",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Rémy",
+        "isni": [],
+        "surname": "Roca",
+        "researcherId": "",
+        "halAuthorId": "158241",
+        "affiliations": [
+          {
+            "ref": "#struct-94456",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Laurence",
+        "isni": [],
+        "surname": "Picon",
+        "researcherId": "",
+        "halAuthorId": "193169",
+        "affiliations": [
+          {
+            "ref": "#struct-143",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "A.",
+        "isni": [],
+        "surname": "Kniffka",
+        "researcherId": "",
+        "halAuthorId": "319798",
+        "affiliations": [
+          {
+            "ref": "#struct-251402",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Hélène",
+        "isni": [],
+        "surname": "Brogniez",
+        "researcherId": "",
+        "halAuthorId": "673818",
+        "affiliations": [
+          {
+            "ref": "#struct-407095",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "11129-11148",
+    "doi": "10.5194/acp-14-11129-2014",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Cenk M Hasan A Negre C",
+    "titreSourceJ": "IEEE Transactions on Computers",
+    "authorFull": "Cenk Murat Hasan Anwar Negre Christophe",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Efficient Subquadratic Space Complexity Binary Polynomial Multipliers Based On Block Recombination",
+    "idHal": "hal-00712090",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-00712090.xml",
+    "isni": [],
+    "titleen": "Efficient Subquadratic Space Complexity Binary Polynomial Multipliers Based On Block Recombination",
+    "idChain": "!hal:M7TFeTmjbh7NOuHUMAy0M4SvU!wos:Hd9BqXdUG7AIq8lL47u0e4ZKy!",
+    "halAuthorId": [
+      "738619",
+      "738620",
+      "840529"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": true,
+    "publicationDate": "2014-09-15",
+    "issue": "9",
+    "author": "Cenk Murat Hasan Anwar Negre Christophe",
+    "typeConditor": "Article",
+    "eissn": [],
+    "abstract": "Certaines applications cryptographiques nécessitent un grand nombre de multiplications de polynome binaire. Dans ce papier, nous considérons des méthodes d'implantation matérielles de multiplieur parallèle de polynome binaire. Nous proposons des formules recursive opitimisés basé sur des découpages en trois ou quatre des polynomes qui réduisent la complexité en espace et en temps des meilleures méthodes connues. Nous présentons aussi une méthode de recombinaise des multiplieurs qui permettent de réduire davantage la complexité en espace des multiplieurs considérés.",
+    "isDeduplicable": true,
+    "duplicate": [
+      {
+        "rules": [
+          "Article : 2Collation:TiC_ENG+xissn+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+xissn+volume+issue+page+annee",
+          "Article : 2Collation:TiC+xissn+volume+issue+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+          "Article : 2Collation:TiC+xissn+issue+page+annee",
+          "Article : 2Collation:TiC+xissn+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee",
+          "Article : 1ID:doi+TiC_ENG",
+          "Article : 1ID:doi+TiC",
+          "Article : 2Collation:TiC_ENG+xissn+volume+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+page+annee"
+        ],
+        "source": "wos",
+        "ingestId": "WOS_2018-10-11",
+        "idConditor": "Hd9BqXdUG7AIq8lL47u0e4ZKy"
+      }
+    ],
+    "duplicateRules": [
+      "Article : 1ID:doi+TiC",
+      "Article : 1ID:doi+TiC_ENG",
+      "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC+xissn+issue+page+annee",
+      "Article : 2Collation:TiC+xissn+volume+issue+page+annee",
+      "Article : 2Collation:TiC+xissn+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+volume+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+volume+page+annee"
+    ],
+    "creationDate": "2018-10-10 10:39:57",
+    "hadTransDuplicate": false,
+    "viaf": [],
+    "idConditor": "M7TFeTmjbh7NOuHUMAy0M4SvU",
+    "volume": "63",
+    "xissn": [
+      "0018-9340"
+    ],
+    "issn": [
+      "0018-9340"
+    ],
+    "authorRef": [
+      {
+        "forename": "Murat",
+        "isni": [],
+        "surname": "Cenk",
+        "researcherId": "",
+        "halAuthorId": "738619",
+        "affiliations": [
+          {
+            "ref": "#struct-194599",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Anwar",
+        "isni": [],
+        "surname": "Hasan",
+        "researcherId": "",
+        "halAuthorId": "738620",
+        "affiliations": [
+          {
+            "ref": "#struct-194599",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Christophe",
+        "isni": [],
+        "surname": "Negre",
+        "researcherId": "",
+        "halAuthorId": "840529",
+        "affiliations": [
+          {
+            "ref": "#struct-101475",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-393062",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "2273-2287",
+    "doi": "10.1109/TC.2013.105",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Hao S Liu Q",
+    "titreSourceJ": "Journal of Mathematical Analysis and applications",
+    "authorFull": "Hao Shunli Liu Quansheng",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Convergence rates in the law of large numbers for arrays of martingale differences.",
+    "idHal": "hal-01095079",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01095079.xml",
+    "isni": [],
+    "titleen": "Convergence rates in the law of large numbers for arrays of martingale differences.",
+    "idChain": "!hal:li8NsUC31xvGU8ngFcHMV1RzS!wos:ZlyjSgmhz6fL4A6H1T961a8hu!",
+    "halAuthorId": [
+      "951819",
+      "372621"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": true,
+    "publicationDate": "2014-03-25",
+    "issue": "2",
+    "author": "Hao Shunli Liu Quansheng",
+    "typeConditor": "Article",
+    "eissn": [],
+    "abstract": "We study the convergence rates in the law of large numbers for arrays of martingale differences. For $n\\geq 1$, let $X_{n1}$, $X_{n2}$ $\\cdots$, be a sequence of real valued martingale differences with respect to a filtration $\\{\\emptyset, \\Omega\\}=\\cal F_{n0}\\subset\\cal F_{n1}\\subset\\cal F_{n2} \\subset\\cdots $, and set $S_{nn}=X_{n1}+\\cdots+X_{nn}$. Under a simple moment condition on $\\sum_{j=1}^n E[|X_{nj}|^\\gamma|\\cal F_{n,j-1}]$ for some $\\gamma\\in(1,2]$, we show necessary and sufficient conditions for the convergence of the series $\\sum_{n=1}^{\\infty}\\phi(n)P\\{|S_{nn}|>\\varepsilon n^\\alpha\\}$,where $\\alpha$, $\\varepsilon>0$ and $\\phi$ is a positive function; we also give a criterion for $\\phi(n)P\\{|S_{nn}|>\\varepsilon n^\\alpha\\} \\rightarrow 0$.The most interesting case where $\\phi$ is a regularly varying function is considered with attention.%$\\phi(n)=n^{b-1}l(n)$ with $b\\geq 0$ and $l(\\cdot)>0$ slowly varying at $\\infty$.In the special case where $(X_{nj})_{j\\geq 1}$ are the same sequence $(X_{j})_{j\\geq 1}$ of independent and identically distributed random variables, our result on the series $\\sum_{n=1}^{\\infty}\\phi(n)P\\{|S_{nn}|>\\varepsilon n^\\alpha\\}$ corresponds to the theorems of Hsu-Robbins-Erd\\\"{o}s (1947, 1949) if $\\alpha=1$ and $\\phi(n)=1$, of Spitzer(1956) if $\\alpha=1$ and $\\phi(n)=1/n $, and of Baum and Katz (1965) if $\\alpha>1/2$ and $\\phi(n)=n^{b-1}$ with $b\\geq 0$. In the single martingale case (where $X_{nj}=X_j$ for all $n$ and $j$), it generalizes the results of Alsmeyer (1990). The consideration of martingale arrays (rather than a single martingale) makes the results very adapted in the study of weighted sums of identically distributed random variables, for which we prove new theorems about the rates of convergence in the law of large numbers. The results are established in a more general setting for sums of infinitely many martingale differences, say $S_{n, \\infty}=\\sum_{j=1}^\\infty X_{nj}$ instead of $S_{nn}$. The obtained results improve and extend those of Ghosal and Chandra (1998). The one-sided cases and the supermartingale case are also considered.",
+    "isDeduplicable": true,
+    "duplicate": [
+      {
+        "rules": [
+          "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee",
+          "Article : 1ID:doi+TiC_ENG",
+          "Article : 1ID:doi+TiC",
+          "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+page+annee"
+        ],
+        "source": "wos",
+        "ingestId": "WOS_2018-10-11",
+        "idConditor": "ZlyjSgmhz6fL4A6H1T961a8hu"
+      }
+    ],
+    "duplicateRules": [
+      "Article : 1ID:doi+TiC",
+      "Article : 1ID:doi+TiC_ENG",
+      "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee"
+    ],
+    "creationDate": "2018-10-10 10:36:55",
+    "hadTransDuplicate": false,
+    "viaf": [],
+    "idConditor": "li8NsUC31xvGU8ngFcHMV1RzS",
+    "volume": "417",
+    "xissn": [],
+    "issn": [],
+    "authorRef": [
+      {
+        "forename": "Shunli",
+        "isni": [],
+        "surname": "Hao",
+        "researcherId": "",
+        "halAuthorId": "951819",
+        "affiliations": [
+          {
+            "ref": "#struct-409040",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Quansheng",
+        "isni": [],
+        "surname": "Liu",
+        "researcherId": "",
+        "halAuthorId": "372621",
+        "affiliations": [
+          {
+            "ref": "#struct-389253",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "733-773",
+    "doi": "10.1016/j.jmaa.2014.03.049 ",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": false,
+    "authorInit": "Legrave N Delmail D Tomasi S",
+    "titreSourceJ": "Planta Medica",
+    "authorFull": "Legrave Nathalie Delmail David Tomasi Sophie",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Studies of culture conditions on the production of metabolites by lichen-associated bacteria",
+    "idHal": "hal-01285162",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01285162.xml",
+    "isni": [],
+    "titleen": "Studies of culture conditions on the production of metabolites by lichen-associated bacteria",
+    "idChain": "!hal:s4VRwNLkYZDjVsZndI6WUKoGf!wos:J3EosqaTQds4Vxoyv6ml11kax!",
+    "halAuthorId": [
+      "1010301",
+      "899466",
+      "869317"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": true,
+    "publicationDate": "2014",
+    "issue": "16",
+    "author": "Legrave Nathalie Delmail David Tomasi Sophie",
+    "typeConditor": "Article",
+    "eissn": [
+      "1439-0221"
+    ],
+    "abstract": "Lichens are commonly described as a mutualistic symbiosis between fungi and alga. However, recent studies revealed the diversity in bacteria inhabiting lichens, suggesting that they host assemblages from several bacteria phyla such as Actinobaceria, Proteobacteria, and Firmicutes. These microorganisms are promising sources of structurally diverse and potent bioactive compounds. As part of our search for novel sources of bioactive natural products, the bacterial community of the lice Peltigera hymeniana from Brittany (France) was studied. Different microorganisms were isolated; among them, three bacteria of the genus Bacillus were retaned for their promising production of cytotoxic and/or antibacterial compounds: Lysinibacillus fusiformis, Bacillus mycoides, and Bacillus weihenstephanensis. Bacillus species are known for their synthesis of secondary metabolites including bioactive isocoumarns, lipopetides, macrolactones and polypeptides.To improve the production yields and the diversity of metabolites of therapeutic interest, our strategy was based on optimization of bacterial growth conditions. First, we studied the influence of nutrients and culture length on the metabolite production. Different media were used as various nutrients carriers. In addition, influence of incubation periods was estimated by comparing cultures stopped after 1, 4, and 7 days past reaching stationary phase. Extractions of both culture media and cell pellet were carried out leading to complex extracts. Our studies combined (i) LC-MS analyses and data processing methods for visualizing sample profile and diversity, (ii) antibacterial and cytotoxic tests as bio-guided assays, and (iii) semi-preparative HPLC, NMR data and exact mass analyses for the elucidation of chemical composition of bacterial extracts. This approach allowed to assess the diversity and redundancy of the compounds depending on culture conditions and led to the production of potential therapeutic agents.",
+    "isDeduplicable": true,
+    "duplicate": [
+      {
+        "rules": [
+          "Article : 2Collation:TiC+xissn+volume+issue+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+xissn+volume+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+          "Article : 2Collation:TiC+Ti_Source+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+xissn+issue+page+annee",
+          "Article : 2Collation:TiC_ENG+xissn+volume+issue+page+annee",
+          "Article : 2Collation:TiC+xissn+issue+page+annee",
+          "Article : 2Collation:TiC+xissn+volume+page+annee",
+          "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee"
+        ],
+        "source": "wos",
+        "ingestId": "WOS_2018-10-11",
+        "idConditor": "J3EosqaTQds4Vxoyv6ml11kax"
+      }
+    ],
+    "duplicateRules": [
+      "Article : 2Collation:TiC+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC+xissn+issue+page+annee",
+      "Article : 2Collation:TiC+xissn+volume+issue+page+annee",
+      "Article : 2Collation:TiC+xissn+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+Ti_Source+volume+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+volume+issue+page+annee",
+      "Article : 2Collation:TiC_ENG+xissn+volume+page+annee"
+    ],
+    "creationDate": "2018-10-10 10:34:25",
+    "hadTransDuplicate": false,
+    "viaf": [],
+    "idConditor": "s4VRwNLkYZDjVsZndI6WUKoGf",
+    "volume": "80",
+    "xissn": [
+      "0032-0943",
+      "1439-0221"
+    ],
+    "issn": [
+      "0032-0943"
+    ],
+    "authorRef": [
+      {
+        "forename": "Nathalie",
+        "isni": [],
+        "surname": "Legrave",
+        "researcherId": "",
+        "halAuthorId": "1010301",
+        "affiliations": [],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "David",
+        "isni": [],
+        "surname": "Delmail",
+        "researcherId": "",
+        "halAuthorId": "899466",
+        "affiliations": [
+          {
+            "ref": "#struct-194938",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Sophie",
+        "isni": [],
+        "surname": "Tomasi",
+        "researcherId": "",
+        "halAuthorId": "869317",
+        "affiliations": [
+          {
+            "ref": "#struct-194938",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "1535-1536",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Gachet J-M Delattre G Bouchard P-O",
+    "titreSourceJ": "Engineering Fracture Mechanics",
+    "authorFull": "Gachet Jean-Marie Delattre Guillaume Bouchard Pierre-Olivier",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [
+      "0000-0002-1400-5799"
+    ],
+    "source": "hal",
+    "title": "Fracture mechanisms under monotonic and non-monotonic low Lode angle loading",
+    "idHal": "hal-01023769",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01023769.xml",
+    "isni": [],
+    "titleen": "Fracture mechanisms under monotonic and non-monotonic low Lode angle loading",
+    "idChain": "hal:H9JnmHxheWBV7Yz3N91M2ysPu!",
+    "halAuthorId": [
+      "604864",
+      "607459",
+      "780456"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": false,
+    "publicationDate": "2014-07",
+    "author": "Gachet Jean-Marie Delattre Guillaume Bouchard Pierre-Olivier",
+    "typeConditor": "Article",
+    "eissn": [],
+    "abstract": "Ductility of high-strength low-alloy steel S420MC was investigated by means of experiments and finite element analyses. Monotonic and non-monotonic low Lode angle experiments were carried out using double curvature specimens and punching tests. Punching tests allow investigating material behavior under zero Lode angle and from low to high stress triaxiality ratios. Investigated material exhibits significant increase of ductility with stress triaxiality decrease. Under low enough stress triaxiality, loss of load carrying capacity and fracture were not observed. Even if fracture is not observed under these conditions, pre-strains under very low stress triaxiality induce relative loss of ductility when the material is loaded again at higher stress triaxiality.",
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:54",
+    "viaf": [],
+    "idConditor": "H9JnmHxheWBV7Yz3N91M2ysPu",
+    "volume": "124-125",
+    "xissn": [
+      "0013-7944"
+    ],
+    "issn": [
+      "0013-7944"
+    ],
+    "authorRef": [
+      {
+        "forename": "Jean-Marie",
+        "isni": [],
+        "surname": "Gachet",
+        "researcherId": "",
+        "halAuthorId": "604864",
+        "affiliations": [
+          {
+            "ref": "#struct-1158",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Guillaume",
+        "isni": [],
+        "surname": "Delattre",
+        "researcherId": "",
+        "halAuthorId": "607459",
+        "affiliations": [
+          {
+            "ref": "#struct-167026",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Pierre-Olivier",
+        "isni": [],
+        "surname": "Bouchard",
+        "researcherId": "",
+        "halAuthorId": "780456",
+        "affiliations": [
+          {
+            "ref": "#struct-1158",
+            "adresse": ""
+          }
+        ],
+        "orcid": [
+          "0000-0002-1400-5799"
+        ],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "121-141",
+    "doi": "10.1016/j.engfracmech.2014.04.009",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Nguyen VH",
+    "authorFull": "Nguyen Viet Hung",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Approximating the Minimum Tour Cover with a Compact Linear Program",
+    "idHal": "hal-01212750",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01212750.xml",
+    "isni": [],
+    "titleen": "Approximating the Minimum Tour Cover with a Compact Linear Program",
+    "idChain": "hal:T1HdEZVs95hJyGtW_WTPZOvuG!",
+    "halAuthorId": [
+      "984631"
+    ],
+    "typeDocument": [
+      "COMM"
+    ],
+    "isDuplicate": false,
+    "author": "Nguyen Viet Hung",
+    "typeConditor": "Conférence",
+    "meetingTitle": "The 2nd International Conference on Computer Science, Applied Mathematics and Applications (ICCSAMA 2014)",
+    "eissn": [],
+    "abstract": "A tour cover of an edge-weighted graph is a set of edges which forms a closed walk and covers every other edge in the graph. The minimum tour cover problem is to find a minimum weight tour cover.This problem is introduced by Arkin, Halldórsson and Hassin (Information Processing Letters 47:275-282, 1993) where the author prove the NP-hardness of the problem and give a combinatorial 5.5-approximation algorithm. Later Könemann, Konjevod, Parekh, and Sinha [7] improve the approximation factor to 3 by using a linear program of exponential size. The solution of this program involves the ellipsoid method with a separation oracle. In this paper, we present a new approximation algorithm achieving a slightly weaker approximation factor of 3.5 but only dealing with a compact linear program.",
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:54",
+    "viaf": [],
+    "idConditor": "T1HdEZVs95hJyGtW_WTPZOvuG",
+    "volume": "282",
+    "xissn": [],
+    "issn": [],
+    "titreSourceM": "Proceedings of the 2nd International Conference on Computer Science, Applied Mathematics and Applications (ICCSAMA 2014)",
+    "authorRef": [
+      {
+        "forename": "Viet Hung",
+        "isni": [],
+        "surname": "Nguyen",
+        "researcherId": "",
+        "halAuthorId": "984631",
+        "affiliations": [
+          {
+            "ref": "#struct-394573",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "99-104",
+    "doi": "10.1007/978-3-319-06569-4_7",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Kiss A Bordes C Buisson C",
+    "titreSourceJ": "Analytical and Bioanalytical Chemistry",
+    "authorFull": "Kiss Agnèta Bordes Claire Buisson Corinne Lasne Françoise Lanteri Pierre Cren-Olivé Cécile",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Data-handling strategies for metabonomic studies: example of the UHPLC-ESI/ToF urinary signature of tetrahydrocannabinol in humans",
+    "pmId": "23900670",
+    "idHal": "hal-00850196",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-00850196.xml",
+    "isni": [],
+    "titleen": "Data-handling strategies for metabonomic studies: example of the UHPLC-ESI/ToF urinary signature of tetrahydrocannabinol in humans",
+    "idChain": "hal:FDflIgPps7f_oSV4GtPvNo2nR!",
+    "halAuthorId": [
+      "517285",
+      "729463",
+      "876333",
+      "479562",
+      "146031",
+      "516525"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": false,
+    "publicationDate": "2014-02",
+    "issue": "4",
+    "author": "Kiss Agnèta Bordes Claire Buisson Corinne",
+    "typeConditor": "Article",
+    "eissn": [
+      "1618-2650"
+    ],
+    "abstract": "Metabonomics has become a very valuable tool and many research fields rely on results coming out from this combination of analytical techniques, chemometric strategies, and biological interpretation. Moreover, the matrices are more and more complex and the implications of the results are often of major importance. In this context, the need for pertinent validation strategies comes naturally. The choice of the appropriate chemometric method remains nevertheless a difficult task due to particularities such as: the number of measured variables, the complexity of the matrix and the purposes of the study. Consequently, this paper presents a detailed metabonomic study on human urine with a special emphasis on the importance of assessing the data's quality. It also describes, step by step, the statistical tools currently used and offers a critical view on some of their limits. In this work, 29 urine samples among which 15 samples obtained from tetrahydrocannabinol (delta-9-tetrahydrocannabinol)-consuming athletes, 5 samples provided by volunteers, and 9 samples obtained from athletes were submitted to untargeted analysis by means of ultra high-pressure liquid chromatography-electrospray ionization-time-of-flight mass spectrometry. Next, the quality of the obtained data was assessed and the results were compared to those found in databases. Then, unsupervised (principal component analysis (PCA)) and supervised (ANOVA/PCA, partial least-square-discriminant analysis (PLS-DA), orthogonal PLS-DA) univariate and multivariate statistical methods were applied.",
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:54",
+    "viaf": [],
+    "idConditor": "FDflIgPps7f_oSV4GtPvNo2nR",
+    "volume": "406",
+    "xissn": [
+      "1618-2642",
+      "1618-2650"
+    ],
+    "issn": [
+      "1618-2642"
+    ],
+    "authorRef": [
+      {
+        "forename": "Agnèta",
+        "isni": [],
+        "surname": "Kiss",
+        "researcherId": "",
+        "halAuthorId": "517285",
+        "affiliations": [
+          {
+            "ref": "#struct-389689",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Claire",
+        "isni": [],
+        "surname": "Bordes",
+        "researcherId": "",
+        "halAuthorId": "729463",
+        "affiliations": [
+          {
+            "ref": "#struct-390982",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Corinne",
+        "isni": [],
+        "surname": "Buisson",
+        "researcherId": "",
+        "halAuthorId": "876333",
+        "affiliations": [
+          {
+            "ref": "#struct-401357",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Françoise",
+        "isni": [],
+        "surname": "Lasne",
+        "researcherId": "",
+        "halAuthorId": "479562",
+        "affiliations": [
+          {
+            "ref": "#struct-401357",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Pierre",
+        "isni": [],
+        "surname": "Lanteri",
+        "researcherId": "",
+        "halAuthorId": "146031",
+        "affiliations": [
+          {
+            "ref": "#struct-390982",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Cécile",
+        "isni": [],
+        "surname": "Cren-Olivé",
+        "researcherId": "",
+        "halAuthorId": "516525",
+        "affiliations": [
+          {
+            "ref": "#struct-389689",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "1209-1219",
+    "doi": "10.1007/s00216-013-7199-0",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Demnati I Grossin D Combes C",
+    "titreSourceJ": "Journal of Medical and Biological Engineering",
+    "authorFull": "Demnati Imane Grossin David Combes Christèle Rey Christian",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Plasma-Sprayed Apatite Coatings: Review of Physical-Chemical Characteristics and Their Biological Consequences",
+    "idHal": "hal-01105362",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01105362.xml",
+    "isni": [],
+    "titleen": "Plasma-Sprayed Apatite Coatings: Review of Physical-Chemical Characteristics and Their Biological Consequences",
+    "idChain": "hal:uvKBR2g5URPtR0Iist_pqgwB1!",
+    "halAuthorId": [
+      "1086906",
+      "181737",
+      "427392",
+      "75569"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": false,
+    "publicationDate": "2014",
+    "issue": "n°1",
+    "author": "Demnati Imane Grossin David Combes Christèle",
+    "typeConditor": "Article",
+    "eissn": [],
+    "abstract": "Hydroxyapatite (HA) is widely used as a coating on orthopedic medical implants to improve anchoring to bone tissue and facilitate bone repair. The use of plasma-sprayed HA coatings on metal implants has raised as much controversy as interest over the last decade. Although faster and stronger fixation and enhanced bone growth have been reported, the long-term performance of HA-coated implants has been questionned This ambivalent behaviour is related to the thermal decomposition of HA during the plasma spraying of HA powder, which has several observable consequences for the physical-chemical and biological properties of the coatings. This review presents the current knowledge on the characteristics of plasma-sprayed HA coatings and their biological consequences. Various schemes of chemical reactions and physical-chemical processes that can occur during HA-particle plasma spraying, HA-coating formation, or after implantation of HA coatings are presented. Standard and emerging methods developed for the characterization of HA coatings are reviewed, with a focus on Raman spectroscopy, which allows high-quality imaging. Finally, several promising trends that have been explored in recent years to improve the mechanical resistance of coatings and their adhesion on the substrate, to improve the coating microstructure and crystallinity, or to confer a therapeutic activity (e.g., antibacterial activity) on plasma-sprayed HA coatings are reviewed.",
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:55",
+    "viaf": [],
+    "idConditor": "uvKBR2g5URPtR0Iist_pqgwB1",
+    "volume": "vol. 34",
+    "xissn": [
+      "1609-0985"
+    ],
+    "issn": [
+      "1609-0985"
+    ],
+    "authorRef": [
+      {
+        "forename": "Imane",
+        "isni": [],
+        "surname": "Demnati",
+        "researcherId": "",
+        "halAuthorId": "1086906",
+        "affiliations": [
+          {
+            "ref": "#struct-580",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "David",
+        "isni": [],
+        "surname": "Grossin",
+        "researcherId": "",
+        "halAuthorId": "181737",
+        "affiliations": [
+          {
+            "ref": "#struct-580",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Christèle",
+        "isni": [],
+        "surname": "Combes",
+        "researcherId": "",
+        "halAuthorId": "427392",
+        "affiliations": [
+          {
+            "ref": "#struct-580",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Christian",
+        "isni": [],
+        "surname": "Rey",
+        "researcherId": "",
+        "halAuthorId": "75569",
+        "affiliations": [
+          {
+            "ref": "#struct-580",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "pp. 1-7",
+    "doi": "10.5405/jmbe.1459",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Work TM Aeby GS Lasne G",
+    "titreSourceJ": "Journal of Invertebrate Pathology",
+    "authorFull": "Work Thierry M. Aeby Greta S. Lasne Gregory Tribollet Aline",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Gross and microscopic pathology of hard and soft corals in New Caledonia",
+    "idHal": "hal-01141599",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-01141599.xml",
+    "isni": [],
+    "titleen": "Gross and microscopic pathology of hard and soft corals in New Caledonia",
+    "idChain": "hal:xRTjdHfzGmFRv8NJCAK38dx36!",
+    "halAuthorId": [
+      "1156565",
+      "1156566",
+      "1156567",
+      "899186"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": false,
+    "publicationDate": "2014-07",
+    "author": "Work Thierry M. Aeby Greta S. Lasne Gregory",
+    "typeConditor": "Article",
+    "eissn": [
+      "1096-0805"
+    ],
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:55",
+    "viaf": [],
+    "idConditor": "xRTjdHfzGmFRv8NJCAK38dx36",
+    "volume": "120",
+    "xissn": [
+      "0022-2011",
+      "1096-0805"
+    ],
+    "issn": [
+      "0022-2011"
+    ],
+    "authorRef": [
+      {
+        "forename": "Thierry M.",
+        "isni": [],
+        "surname": "Work",
+        "researcherId": "",
+        "halAuthorId": "1156565",
+        "affiliations": [],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Greta S.",
+        "isni": [],
+        "surname": "Aeby",
+        "researcherId": "",
+        "halAuthorId": "1156566",
+        "affiliations": [],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Gregory",
+        "isni": [],
+        "surname": "Lasne",
+        "researcherId": "",
+        "halAuthorId": "1156567",
+        "affiliations": [],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Aline",
+        "isni": [],
+        "surname": "Tribollet",
+        "researcherId": "",
+        "halAuthorId": "899186",
+        "affiliations": [
+          {
+            "ref": "#struct-397680",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "50–58",
+    "doi": "10.1016/j.jip.2014.05.007",
+    "score": 1.0251505
+  },
+  {
+    "hasDoi": true,
+    "authorInit": "Bière L Donal E Kervio G",
+    "titreSourceJ": "PLoS ONE",
+    "authorFull": "Bière Loïc Donal Erwan Kervio Gaëlle Willoteaux Serge Furber Alain Prunier Fabrice",
+    "researcherId": [],
+    "isbn": [],
+    "orcId": [],
+    "source": "hal",
+    "title": "Longitudinal Strain Is a Marker of Microvascular Obstruction and Infarct Size in Patients with Acute STSegment Elevation Myocardial Infarction",
+    "pmId": "24489816",
+    "idHal": "hal-00957360",
+    "ingestId": "HAL_2018-10-10",
+    "path": "/applis/conditor/home/input/hal/HAL_2018-10-10/5000-tei-hal/hal-00957360.xml",
+    "isni": [],
+    "titleen": "Longitudinal Strain Is a Marker of Microvascular Obstruction and Infarct Size in Patients with Acute STSegment Elevation Myocardial Infarction",
+    "idChain": "hal:SXOD_PHzQ2xtOnUz0GSMSj1vg!",
+    "halAuthorId": [
+      "838193",
+      "163650",
+      "315008",
+      "792833",
+      "750168",
+      "949178"
+    ],
+    "typeDocument": [
+      "ART"
+    ],
+    "isDuplicate": false,
+    "publicationDate": "2014-01-28",
+    "issue": "1",
+    "author": "Bière Loïc Donal Erwan Kervio Gaëlle",
+    "typeConditor": "Article",
+    "eissn": [],
+    "abstract": "Objectives: We assessed the value of speckle tracking imaging performed early after a first ST-segment elevation myocardial infarction (STEMI) in order to predict infarct size and functional recovery at 3-month follow-up. Methods: 44 patients with STEMI who underwent revascularization within 12 h of symptom onset were prospectively enrolled. Echocardiography was performed 3.961.2 days after myocardial reperfusion, assessing circumferential (CGS), radial (RGS), and longitudinal global (GLS) strains. Late gadolinium-enhanced cardiac magnetic imaging (CMR), for assessing cardiac function, infarct size, and microvascular obstruction (MVO), was conducted 5.662.5 days and 99.464.6 days after myocardial reperfusion. Results: GLS was evaluable in 97% of the patients, while CGS and RGS could be assessed in 85%. Infarct size significantly correlated with GLS (R = 0.601, p,0.001), RGS (R =20.405, p = 0.010), CGS (R = 0.526, p = 0.001), ejection fraction (R =20.699, p,0.001), wall motion score index (WMSI) (R = 0.539, p = 0.001), and left atrial volume (R = 0.510, p,0.001). Baseline ejection fraction and GLS were independent predictors of 3-month infarct size. MVO mass significantly correlated with GLS (R = 0.376, p = 0.010), WMSI (R = 0.387, p = 0.011), and ejection fraction (R =20.389, p = 0.011). In multivariate analysis, GLS was the only independent predictor of MVO mass (p = 0.015). Longitudinal strain .26.0% within the infarcted area exhibited 96% specificity and 61% sensitivity for predicting the persistence of akinesia ($3 segments) at 3-month follow-up. Conclusions: Speckle-tracking strain imaging performed early after a STEMI is easy-to-use as a marker for persistent akinetic territories at 3 months. In addition, GLS correlated significantly with MVO and final infarct size, both parameters being relevant post-MI prognostic factors, usually obtained via CMR.",
+    "isDeduplicable": true,
+    "duplicate": [],
+    "creationDate": "2018-10-10 10:27:56",
+    "viaf": [],
+    "idConditor": "SXOD_PHzQ2xtOnUz0GSMSj1vg",
+    "volume": "9",
+    "xissn": [
+      "1932-6203"
+    ],
+    "issn": [
+      "1932-6203"
+    ],
+    "authorRef": [
+      {
+        "forename": "Loïc",
+        "isni": [],
+        "surname": "Bière",
+        "researcherId": "",
+        "halAuthorId": "838193",
+        "affiliations": [
+          {
+            "ref": "#struct-199747",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-153204",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-246675",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Erwan",
+        "isni": [],
+        "surname": "Donal",
+        "researcherId": "",
+        "halAuthorId": "163650",
+        "affiliations": [
+          {
+            "ref": "#struct-29417",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-130794",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-182223",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Gaëlle",
+        "isni": [],
+        "surname": "Kervio",
+        "researcherId": "",
+        "halAuthorId": "315008",
+        "affiliations": [
+          {
+            "ref": "#struct-29417",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-130794",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-182223",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Serge",
+        "isni": [],
+        "surname": "Willoteaux",
+        "researcherId": "",
+        "halAuthorId": "792833",
+        "affiliations": [
+          {
+            "ref": "#struct-153204",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-246675",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-246676",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Alain",
+        "isni": [],
+        "surname": "Furber",
+        "researcherId": "",
+        "halAuthorId": "750168",
+        "affiliations": [
+          {
+            "ref": "#struct-199747",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-153204",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-246675",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      },
+      {
+        "forename": "Fabrice",
+        "isni": [],
+        "surname": "Prunier",
+        "researcherId": "",
+        "halAuthorId": "949178",
+        "affiliations": [
+          {
+            "ref": "#struct-199747",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-153204",
+            "adresse": ""
+          },
+          {
+            "ref": "#struct-246675",
+            "adresse": ""
+          }
+        ],
+        "orcid": [],
+        "idRef": [],
+        "viaf": []
+      }
+    ],
+    "page": "e86959",
+    "doi": "10.1371/journal.pone.0086959",
+    "score": 1.0251505
+  }
+]
