@@ -9,7 +9,8 @@ export const itemList = {
     };
 
     this.$onChanges = function () {
-      console.log('itemList: ', this.filterOptions);
+      const sources = Object.keys(this.filterOptions.source).filter(source => this.filterOptions.source[source]);
+      if (sources.length > 0) this.items = records.filter(item => sources.includes(item.source));
     };
   },
   bindings: {
