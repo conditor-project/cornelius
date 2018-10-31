@@ -4,10 +4,12 @@ export const cornelius = {
   controller: function () {
     this.$onInit = function () {
       this.filterOptions = {
-        hal: true,
-        prodinra: true,
-        pubmed: true,
-        sudoc: true,
+        source: {
+          hal: true,
+          prodinra: true,
+          pubmed: true,
+          sudoc: true
+        },
         score: 95
       };
     };
