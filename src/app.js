@@ -9,12 +9,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './app.scss';
 
 // Components
-import { navbar } from './navbar/navbar.component';
-import { sidebar } from './sidebar/sidebar.component';
-import { itemList } from './item-list/item-list.component';
+import { cornelius } from './cornelius/cornelius.component';
+import { navbar } from './cornelius/navbar/navbar.component';
+import { sidebar } from './cornelius/sidebar/sidebar.component';
+import { itemList } from './cornelius/item-list/item-list.component';
 
 angular
   .module('app', [dropdown])
+  .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('sidebar', sidebar)
   .component('itemList', itemList);
