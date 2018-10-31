@@ -22,7 +22,7 @@
         </fieldset>
         <fieldset>
           <legend>Similarity score</legend>
-          <strong>{{ $ctrl.filterOptions.score }}</strong>
+          <strong>&ge; {{ $ctrl.filterOptions.score }}</strong>
           <input type="range" min="80" max="100" ng-model="$ctrl.filterOptions.score" class="slider">
         </fieldset>
         <button type="submit" ng-click="$ctrl.apply()" class="btn btn-default">Apply</button>

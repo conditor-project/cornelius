@@ -10,7 +10,7 @@ export const cornelius = {
           pubmed: true,
           sudoc: true
         },
-        score: 95
+        score: 90
       };
     };
   },
