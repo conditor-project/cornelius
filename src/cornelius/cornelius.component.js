@@ -1,3 +1,16 @@
 import template from './cornelius.template.html';
 
-export const cornelius = { template };
+export const cornelius = {
+  controller: function () {
+    this.$onInit = function () {
+      this.filterOptions = {
+        hal: true,
+        prodinra: true,
+        pubmed: true,
+        sudoc: true,
+        score: 95
+      };
+    };
+  },
+  template
+};

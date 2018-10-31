@@ -163,7 +163,7 @@
     "researcherId": [],
     "isbn": [],
     "orcId": [],
-    "source": "hal",
+    "source": "pubmed",
     "title": "Efficient Subquadratic Space Complexity Binary Polynomial Multipliers Based On Block Recombination",
     "idHal": "hal-00712090",
     "ingestId": "HAL_2018-10-10",
@@ -537,7 +537,7 @@
     "orcId": [
       "0000-0002-1400-5799"
     ],
-    "source": "hal",
+    "source": "pubmed",
     "title": "Fracture mechanisms under monotonic and non-monotonic low Lode angle loading",
     "idHal": "hal-01023769",
     "ingestId": "HAL_2018-10-10",

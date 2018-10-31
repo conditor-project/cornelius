@@ -2,10 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
-      <sidebar></sidebar>
+      <sidebar filter-options="$ctrl.filterOptions" on-filter-options-change="$ctrl.filterOptions = newFilterOptions"></sidebar>
     </div>
     <div class="col-sm-9">
-      <item-list></item-list>
+      <item-list filter-options="$ctrl.filterOptions"></item-list>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="item-list">
-  <div ng-repeat="item in $ctrl.items" class="panel panel-default">
+  <div ng-repeat="item in $ctrl.items | filter:{source: 'pubmed'}" class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">{{ item.title }} <span class="source label label-primary">{{ item.source }}</span></h3>
     </div>

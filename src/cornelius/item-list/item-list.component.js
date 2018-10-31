@@ -7,6 +7,13 @@ export const itemList = {
     this.$onInit = function () {
       this.items = records;
     };
+
+    this.$onChanges = function () {
+      console.log('itemList: ', this.filterOptions);
+    };
+  },
+  bindings: {
+    filterOptions: '<'
   },
   template
 };

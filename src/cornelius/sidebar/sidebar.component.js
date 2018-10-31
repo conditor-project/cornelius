@@ -1,23 +1,21 @@
 import './sidebar.scss';
 import template from './sidebar.template.html';
+import angular from 'angular';
 
 export const sidebar = {
   controller: function () {
-    this.apply = function () {
-      console.log(this.source, this.score);
+    this.$onChanges = function () {
+      console.log('sidebar: ', this.filterOptions);
     };
-    this.$onInit = function () {
-      this.score = 90;
-      this.source = {
-        hal: true,
-        prodinra: true,
-        pubmed: true,
-        sudoc: true
-      };
+
+    this.apply = function () {
+      const newFilterOptions = angular.copy(this.filterOptions);
+      this.onFilterOptionsChange({ newFilterOptions });
     };
   },
   bindings: {
-    source: '<'
+    filterOptions: '<',
+    onFilterOptionsChange: '&'
   },
   template
 };

@@ -8,22 +8,22 @@
         <fieldset class="checkbox-group">
           <legend>Source</legend>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.source.hal" value="hal">hal</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.hal" value="hal">hal</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.source.pubmed" value="pubmed">pubmed</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.pubmed" value="pubmed">pubmed</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.source.prodinra" value="prodinra">prodinra</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.prodinra" value="prodinra">prodinra</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.source.sudoc" value="sudoc">sudoc</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.sudoc" value="sudoc">sudoc</label>
           </div>
         </fieldset>
         <fieldset>
           <legend>Similarity score</legend>
-          <strong>{{ $ctrl.score }}</strong>
-          <input type="range" min="80" max="100" ng-model="$ctrl.score" ng-model="$ctrl.score" class="slider">
+          <strong>{{ $ctrl.filterOptions.score }}</strong>
+          <input type="range" min="80" max="100" ng-model="$ctrl.filterOptions.score" class="slider">
         </fieldset>
         <button type="submit" ng-click="$ctrl.apply()" class="btn btn-default">Apply</button>
       </form>
