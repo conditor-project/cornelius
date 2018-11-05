@@ -6,10 +6,10 @@ export const navbar = {
       this.items = ['item1', 'item2', 'item3'];
     };
 
-    this.open = function (size) {
+    this.open = function () {
       $uibModal.open({
         component: 'jwtModal',
-        size: size,
+        backdrop: 'static',
         resolve: {
           items: () => this.items
         }
