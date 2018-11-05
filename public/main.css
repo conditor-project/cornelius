@@ -6445,3 +6445,33 @@ button.close {
 body {
   margin-top: 60px; }
 
+fieldset {
+  border: 1px solid #ddd;
+  padding: 0 1.4em 1.4em 1.4em;
+  margin: 0 0 1.5em 0; }
+
+fieldset legend {
+  font-size: 14px;
+  margin-bottom: 0;
+  border-bottom: none;
+  width: auto; }
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin-top: 10px;
+  cursor: pointer; }
+
+.author {
+  font-size: 12px;
+  margin-top: 5px; }
+
+.details {
+  margin-bottom: 5px;
+  font-size: 12px; }
+
+.source {
+  float: right; }
+
