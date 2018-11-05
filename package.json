@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --hot --watch",
-    "watch": "webpack --mode=development --watch"
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",
