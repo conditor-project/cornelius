@@ -1,6 +1,5 @@
 import angular from 'angular';
 import 'angular-animate';
-import 'angular-touch';
 import 'angular-sanitize';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 
