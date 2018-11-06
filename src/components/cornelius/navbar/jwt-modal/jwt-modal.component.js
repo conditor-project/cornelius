@@ -1,7 +1,11 @@
 import template from './jwt-modal.template.html';
 
 export const jwtModal = {
-  controller: function (jwtService) {
+  controller: function ($window, jwtService) {
+    this.$onInit = function () {
+      this.tokenJwt = $window.localStorage.getItem('conditor');
+    };
+
     this.ok = function () {
       jwtService.addToken(this.tokenJwt);
       this.modalInstance.close(this.tokenJwt);
