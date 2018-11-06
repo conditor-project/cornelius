@@ -1,16 +1,10 @@
 import template from './jwt-modal.template.html';
 
 export const jwtModal = {
-  controller: function () {
-    this.$onInit = function () {
-      this.items = ['item1', 'item2', 'item3'];
-      this.selected = {
-        item: this.items[0]
-      };
-    };
-
+  controller: function (jwtService) {
     this.ok = function () {
-      this.modalInstance.close(this.selected.item);
+      jwtService.addToken(this.tokenJwt);
+      this.modalInstance.close(this.tokenJwt);
     };
 
     this.cancel = function () {
