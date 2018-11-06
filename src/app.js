@@ -13,7 +13,7 @@ import { cornelius } from './components/cornelius/cornelius.component';
 import { navbar } from './components/cornelius/navbar/navbar.component';
 import { sidebar } from './components/cornelius/sidebar/sidebar.component';
 import { itemList } from './components/cornelius/item-list/item-list.component';
-import { jwtModal } from './components/cornelius/navbar/jwt-modal/jwt-modal.component';
+import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
 
 // Services
 import { jwtService } from './services/jwt.service';
