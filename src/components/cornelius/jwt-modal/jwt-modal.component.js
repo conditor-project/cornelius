@@ -12,7 +12,7 @@ export const jwtModal = {
     this.ok = function () {
       this.loading = true;
       $http.defaults.headers.common.Authorization = 'Bearer ' + this.tokenJwt;
-      $http.get(API_CONDITOR_CONFIG.url)
+      $http.get(API_CONDITOR_CONFIG.baseUrl)
         .then(() => {
           this.loading = false;
           jwtService.saveTokenJwt(this.tokenJwt);
@@ -20,6 +20,7 @@ export const jwtModal = {
         })
         .catch(response => {
           this.loading = false;
+          $http.defaults.headers.common.Authorization = '';
           if (String(response.status)[0] === '5') {
             this.msgErrors = {
               level: 'danger',
