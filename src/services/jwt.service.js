@@ -1,11 +1,8 @@
-export function jwtService ($http, $window) {
+export function jwtService ($window) {
+  const key = 'api-conditor';
   const jwtService = {
-    saveTokenJwt: function (token) {
-      $window.localStorage.setItem('api-conditor', token);
-    },
-    getTokenJwt: function () {
-      return $window.localStorage.getItem('api-conditor');
-    }
+    saveTokenJwt: (token) => $window.localStorage.setItem(key, token),
+    getTokenJwt: () => $window.localStorage.getItem(key)
   };
   return jwtService;
 }

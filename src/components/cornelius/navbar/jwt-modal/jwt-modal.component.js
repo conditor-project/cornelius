@@ -2,7 +2,7 @@ import './jwt-modal.scss';
 import template from './jwt-modal.template.html';
 
 export const jwtModal = {
-  controller: function ($window, $http, jwtService) {
+  controller: function ($http, jwtService, API_CONDITOR_CONFIG) {
     this.$onInit = function () {
       this.loading = false;
       this.tokenJwt = jwtService.getTokenJwt();
@@ -11,7 +11,7 @@ export const jwtModal = {
     this.ok = function () {
       this.loading = true;
       $http.defaults.headers.common.Authorization = 'Bearer ' + this.tokenJwt;
-      $http.get('https://api-dev.conditor.fr/v1/records')
+      $http.get(API_CONDITOR_CONFIG.url)
         .then(() => {
           this.loading = false;
           jwtService.saveTokenJwt(this.tokenJwt);

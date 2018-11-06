@@ -20,6 +20,9 @@ import { jwtService } from './services/jwt.service';
 
 angular
   .module('app', [dropdown, modal])
+  .constant('API_CONDITOR_CONFIG', {
+    url: 'https://api-dev.conditor.fr/v1/records'
+  })
   .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('sidebar', sidebar)
