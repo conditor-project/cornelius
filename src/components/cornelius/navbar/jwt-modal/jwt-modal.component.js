@@ -3,7 +3,7 @@ import template from './jwt-modal.template.html';
 export const jwtModal = {
   controller: function () {
     this.$onInit = function () {
-      this.items = this.resolve.items;
+      this.items = ['item1', 'item2', 'item3'];
       this.selected = {
         item: this.items[0]
       };
@@ -18,8 +18,7 @@ export const jwtModal = {
     };
   },
   bindings: {
-    modalInstance: '<',
-    resolve: '<'
+    modalInstance: '<'
   },
   template
 };

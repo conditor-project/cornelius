@@ -9,11 +9,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './app.scss';
 
 // Components
-import { cornelius } from './cornelius/cornelius.component';
-import { navbar } from './cornelius/navbar/navbar.component';
-import { sidebar } from './cornelius/sidebar/sidebar.component';
-import { itemList } from './cornelius/item-list/item-list.component';
-import { jwtModal } from './cornelius/navbar/jwt-modal/jwt-modal.component';
+import { cornelius } from './components/cornelius/cornelius.component';
+import { navbar } from './components/cornelius/navbar/navbar.component';
+import { sidebar } from './components/cornelius/sidebar/sidebar.component';
+import { itemList } from './components/cornelius/item-list/item-list.component';
+import { jwtModal } from './components/cornelius/navbar/jwt-modal/jwt-modal.component';
 
 angular
   .module('app', [dropdown, modal])
