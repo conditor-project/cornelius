@@ -5,6 +5,7 @@ export const jwtModal = {
   controller: function ($http, jwtService, API_CONDITOR_CONFIG) {
     this.$onInit = function () {
       this.loading = false;
+      this.options = this.resolve.options || false;
       this.tokenJwt = jwtService.getTokenJwt();
     };
 
@@ -39,7 +40,8 @@ export const jwtModal = {
     };
   },
   bindings: {
-    modalInstance: '<'
+    modalInstance: '<',
+    resolve: '<'
   },
   template
 };

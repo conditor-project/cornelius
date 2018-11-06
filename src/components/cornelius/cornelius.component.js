@@ -1,7 +1,7 @@
 import template from './cornelius.template.html';
 
 export const cornelius = {
-  controller: function () {
+  controller: function ($uibModal, jwtService) {
     this.$onInit = function () {
       this.filterOptions = {
         source: {
@@ -12,6 +12,17 @@ export const cornelius = {
         },
         score: 90
       };
+      if (!jwtService.getTokenJwt()) this.openJwtModal({ force: true });
+    };
+
+    this.openJwtModal = function (options) {
+      $uibModal.open({
+        component: 'jwtModal',
+        backdrop: 'static',
+        resolve: {
+          options: () => options
+        }
+      });
     };
   },
   template

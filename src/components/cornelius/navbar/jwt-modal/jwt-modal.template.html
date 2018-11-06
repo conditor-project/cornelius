@@ -15,7 +15,7 @@
   >{{ $ctrl.msgErrors.text }}</div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="$ctrl.cancel()">Cancel</button>
+  <button class="btn btn-warning" ng-if="!$ctrl.options.force" ng-click="$ctrl.cancel()">Cancel</button>
   <button class="btn btn-success" ng-click="$ctrl.ok()">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="$ctrl.loading"></span>Save
   </button>
