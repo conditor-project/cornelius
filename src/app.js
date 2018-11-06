@@ -15,6 +15,9 @@ import { sidebar } from './components/cornelius/sidebar/sidebar.component';
 import { itemList } from './components/cornelius/item-list/item-list.component';
 import { jwtModal } from './components/cornelius/navbar/jwt-modal/jwt-modal.component';
 
+// Services
+import { jwtService } from './services/jwt.service';
+
 angular
   .module('app', [dropdown, modal])
   .component('cornelius', cornelius)
@@ -22,4 +25,5 @@ angular
   .component('sidebar', sidebar)
   .component('itemList', itemList)
   .component('jwtModal', jwtModal)
+  .factory('jwtService', jwtService)
 ;
