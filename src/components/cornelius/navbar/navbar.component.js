@@ -6,10 +6,6 @@ export const navbar = {
       $uibModal.open({
         component: 'jwtModal',
         backdrop: 'static'
-      }).result.then(function (data) {
-        console.info('i was closed with :', data);
-      }, function () {
-        console.info('Modal dismissed at :', new Date());
       });
     };
   },
