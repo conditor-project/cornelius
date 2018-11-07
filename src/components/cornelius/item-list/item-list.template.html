@@ -12,8 +12,8 @@
         <span class="label label-default">{{ item.typeConditor }}</span>
         <span class="label label-default">{{ item.publicationDate }}</span>
       </div>
-      {{ item.abstract | limitTo:320 }} ...
-      <div class="author">Author: {{ item.author }}</div>
+      <div class="abstract">{{ item.abstract | limitTo:320 }} ...</div>
+      <div class="author">{{ item.author }}</div>
     </div>
   </div>
 </div>
