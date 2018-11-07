@@ -26,10 +26,9 @@ export const itemList = {
       let requestUrl = API_CONDITOR_CONFIG.baseUrl + `/?q=source:(${sources})`;
       if (this.filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${this.filterOptions.typeConditor}`;
       requestUrl += '&exclude=teiBlob';
-      $http.get(requestUrl)
-        .then((response) => {
-          this.items = response.data;
-        });
+      $http.get(requestUrl).then((response) => {
+        this.items = response.data;
+      });
     };
   },
   bindings: {

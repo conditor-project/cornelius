@@ -1,4 +1,7 @@
 <div class="item-list">
+  <div class="no-results" ng-if="!$ctrl.items.length">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
+  </div>
   <div ng-repeat="item in $ctrl.items" class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">{{ item.title }}</h3>
