@@ -2,17 +2,26 @@ import './item-list.scss';
 import template from './item-list.template.html';
 
 export const itemList = {
-  controller: function ($http, jwtService, API_CONDITOR_CONFIG) {
-    $http.defaults.headers.common.Authorization = 'Bearer ' + jwtService.getTokenJwt();
-    this.$onInit = function () {
+  controller: function ($http, $uibModal, jwtService, API_CONDITOR_CONFIG) {
+    this.$onChanges = function () {
+      if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       this.getRecords();
     };
 
-    this.$onChanges = function () {
-      this.getRecords();
+    this.openJwtModal = function (options) {
+      $uibModal.open({
+        component: 'jwtModal',
+        backdrop: 'static',
+        resolve: {
+          options: () => options
+        }
+      }).result.then(() => {
+        this.getRecords();
+      });
     };
 
     this.getRecords = function () {
+      $http.defaults.headers.common.Authorization = 'Bearer ' + jwtService.getTokenJwt();
       const sources = Object.keys(this.filterOptions.source).filter(source => this.filterOptions.source[source]).join(' OR ');
       const requestUrl = API_CONDITOR_CONFIG.baseUrl + `/?q=source:(${sources})&exclude=teiBlob`;
       $http.get(requestUrl)
