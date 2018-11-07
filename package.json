@@ -21,7 +21,7 @@
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.24.0",
+    "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },
@@ -30,6 +30,7 @@
     "angular-animate": "^1.7.5",
     "angular-sanitize": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "co-config": "git+https://github.com/conditor-project/co-config.git#v1.3.0"
   }
 }
