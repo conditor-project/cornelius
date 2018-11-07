@@ -23,7 +23,9 @@ export const itemList = {
     this.getRecords = function () {
       $http.defaults.headers.common.Authorization = 'Bearer ' + jwtService.getTokenJwt();
       const sources = Object.keys(this.filterOptions.source).filter(source => this.filterOptions.source[source]).join(' OR ');
-      const requestUrl = API_CONDITOR_CONFIG.baseUrl + `/?q=source:(${sources})&exclude=teiBlob`;
+      let requestUrl = API_CONDITOR_CONFIG.baseUrl + `/?q=source:(${sources})`;
+      if (this.filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${this.filterOptions.typeConditor}`;
+      requestUrl += '&exclude=teiBlob';
       $http.get(requestUrl)
         .then((response) => {
           this.items = response.data;

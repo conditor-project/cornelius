@@ -20,6 +20,12 @@
             <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.sudoc" value="sudoc">sudoc</label>
           </div>
         </fieldset>
+        <fieldset>
+          <legend>Type</legend>
+          <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor">
+            <option ng-repeat="type in $ctrl.typeConditor">{{ type }}</option>
+          </select>
+        </fieldset>
         <!-- <fieldset>
           <legend>Similarity score</legend>
           <strong>&ge; {{ $ctrl.filterOptions.score }}</strong>
