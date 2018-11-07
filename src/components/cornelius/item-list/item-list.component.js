@@ -28,6 +28,10 @@ export const itemList = {
       requestUrl += '&exclude=teiBlob';
       $http.get(requestUrl).then((response) => {
         this.items = response.data;
+      }).catch(response => {
+        this.items = [];
+        if (String(response.status)[0] === '4') this.openJwtModal({ force: true });
+        // TODO: Manage code error 500
       });
     };
   },
