@@ -9,10 +9,10 @@ export const jwtModal = {
       this.tokenJwt = jwtService.getTokenJwt();
     };
 
-    this.ok = function () {
+    this.save = function () {
       this.loading = true;
       $http.defaults.headers.common.Authorization = 'Bearer ' + this.tokenJwt;
-      $http.get(API_CONDITOR_CONFIG.url)
+      $http.get(API_CONDITOR_CONFIG.baseUrl)
         .then(() => {
           this.loading = false;
           jwtService.saveTokenJwt(this.tokenJwt);
@@ -20,6 +20,7 @@ export const jwtModal = {
         })
         .catch(response => {
           this.loading = false;
+          $http.defaults.headers.common.Authorization = '';
           if (String(response.status)[0] === '5') {
             this.msgErrors = {
               level: 'danger',
@@ -29,7 +30,7 @@ export const jwtModal = {
           if (String(response.status)[0] === '4') {
             this.msgErrors = {
               level: 'warning',
-              text: 'Token JWT invalid'
+              text: 'Invalid or expired token JWT'
             };
           }
         });

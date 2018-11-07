@@ -21,11 +21,17 @@
           </div>
         </fieldset>
         <fieldset>
+          <legend>Type</legend>
+          <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor">
+            <option ng-repeat="type in $ctrl.typeConditor">{{ type }}</option>
+          </select>
+        </fieldset>
+        <!-- <fieldset>
           <legend>Similarity score</legend>
           <strong>&ge; {{ $ctrl.filterOptions.score }}</strong>
           <input type="range" min="80" max="100" ng-model="$ctrl.filterOptions.score" class="slider">
-        </fieldset>
-        <button type="submit" ng-click="$ctrl.apply()" class="btn btn-default">Apply</button>
+        </fieldset> -->
+        <button type="submit" ng-click="$ctrl.apply()" class="btn btn-primary pull-right">Apply</button>
       </form>
     </div>
   </div>
