@@ -6,9 +6,9 @@ export const cornelius = {
       this.filterOptions = {
         source: {
           hal: true,
-          prodinra: true,
           pubmed: true,
-          sudoc: true
+          sudoc: true,
+          wos: true
         },
         score: 90,
         typeConditor: 'All'
