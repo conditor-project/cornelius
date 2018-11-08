@@ -14,6 +14,7 @@ import { navbar } from './components/cornelius/navbar/navbar.component';
 import { sidebar } from './components/cornelius/sidebar/sidebar.component';
 import { recordList } from './components/cornelius/record-list/record-list.component';
 import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
+import { recordModal } from './components/cornelius/record-list/record-modal/record-modal.component';
 
 // Services
 import { jwtService } from './services/jwt.service';
@@ -28,5 +29,6 @@ angular
   .component('sidebar', sidebar)
   .component('recordList', recordList)
   .component('jwtModal', jwtModal)
+  .component('recordModal', recordModal)
   .factory('jwtService', jwtService)
 ;

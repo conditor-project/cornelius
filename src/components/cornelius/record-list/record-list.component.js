@@ -2,7 +2,7 @@ import './record-list.scss';
 import template from './record-list.template.html';
 
 export const recordList = {
-  controller: function ($http, $uibModal, jwtService, API_CONDITOR_CONFIG) {
+  controller: function ($q, $http, $uibModal, jwtService, API_CONDITOR_CONFIG) {
     this.$onChanges = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       this.getRecords();
@@ -20,6 +20,17 @@ export const recordList = {
       });
     };
 
+    this.openRecordModal = function (record) {
+      $uibModal.open({
+        component: 'recordModal',
+        backdrop: 'static',
+        size: 'lg',
+        resolve: {
+          record: () => record
+        }
+      });
+    };
+
     this.getRecords = function () {
       $http.defaults.headers.common.Authorization = 'Bearer ' + jwtService.getTokenJwt();
       const sources = Object.keys(this.filterOptions.source).filter(source => this.filterOptions.source[source]).join(' OR ');
@@ -27,9 +38,9 @@ export const recordList = {
       if (this.filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${this.filterOptions.typeConditor}`;
       requestUrl += '&exclude=teiBlob';
       $http.get(requestUrl).then((response) => {
-        this.items = response.data;
+        this.records = response.data;
       }).catch(response => {
-        this.items = [];
+        this.records = [];
         if (String(response.status)[0] === '4') this.openJwtModal({ force: true });
         // TODO: Manage code error 500
       });

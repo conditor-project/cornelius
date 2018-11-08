@@ -1,24 +1,25 @@
 <div class="record-list">
-  <div class="no-results" ng-if="!$ctrl.items.length">
+  <div class="no-results" ng-if="!$ctrl.records.length">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
   </div>
-  <div ng-repeat="item in $ctrl.items" class="panel"
+  <div ng-repeat="record in $ctrl.records" class="panel"
     ng-class="{'panel-primary': hover, 'panel-default': !hover}"
     ng-init="hover = false"
     ng-mouseenter="hover = true"
     ng-mouseleave="hover = false"
+    ng-click="$ctrl.openRecordModal(record)"
   >
     <div class="panel-heading">
-      <h3 class="panel-title">{{ item.title }}</h3>
+      <h3 class="panel-title">{{ record.title }}</h3>
     </div>
     <div class="panel-body">
       <div class="details">
-        <span class="label label-default">{{ item.source }}</span>
-        <span class="label label-default">{{ item.typeConditor }}</span>
-        <span class="label label-default">{{ item.publicationDate }}</span>
+        <span class="label label-default">{{ record.source }}</span>
+        <span class="label label-default">{{ record.typeConditor }}</span>
+        <span class="label label-default">{{ record.publicationDate }}</span>
       </div>
-      <div class="abstract">{{ item.abstract | limitTo:320 }} ...</div>
-      <div class="author">{{ item.author }}</div>
+      <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
+      <div class="author">{{ record.author }}</div>
     </div>
   </div>
 </div>
