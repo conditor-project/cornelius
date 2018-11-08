@@ -1,8 +1,42 @@
 <div class="modal-header">
-  <h3 class="modal-title">{{ $ctrl.record.title }}</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
+        </div>
+        <div class="panel-body">
+          <div class="details">
+            <span class="label label-default">{{ $ctrl.record.source }}</span>
+            <span class="label label-default">{{ $ctrl.record.typeConditor }}</span>
+            <span class="label label-default">{{ $ctrl.record.publicationDate }}</span>
+          </div>
+          <div class="author">{{ $ctrl.record.author }}</div>
+          <div class="idConditor pull-right">{{ $ctrl.record.idConditor }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h5 class="panel-title">{{ $ctrl.nearDuplicateRecords[0].title }}</h5>
+        </div>
+        <div class="panel-body">
+          <div class="details">
+            <span class="label label-default">{{ $ctrl.nearDuplicateRecords[0].source }}</span>
+            <span class="label label-default">{{ $ctrl.nearDuplicateRecords[0].typeConditor }}</span>
+            <span class="label label-default">{{ $ctrl.nearDuplicateRecords[0].publicationDate }}</span>
+          </div>
+          <div class="author">{{ $ctrl.nearDuplicateRecords[0].author }}</div>
+          <div class="idConditor pull-right">{{ $ctrl.nearDuplicateRecords[0].idConditor }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <h3 class="modal-title">{{ $ctrl.record.title }}</h3> -->
 </div>
 <div class="modal-body">
-  {{ $ctrl.record.abstract }}
+  Lorem dolor sit amet.
 </div>
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="$ctrl.ok()">OK</button>

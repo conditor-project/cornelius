@@ -6,7 +6,7 @@ export const recordModal = {
     this.$onInit = function () {
       this.record = this.resolve.record;
       console.log(this.record);
-      this.getNearDuplicate().then(console.log);
+      this.getNearDuplicate();
     };
 
     this.ok = function () {
@@ -19,7 +19,9 @@ export const recordModal = {
         const requestUrl = API_CONDITOR_CONFIG.baseUrl + '/' + String(nearDuplicateRecord.idConditor);
         return $http.get(requestUrl);
       });
-      return $q.all(nearDuplicateRecords);
+      $q.all(nearDuplicateRecords).then(responses => {
+        this.nearDuplicateRecords = responses.map(response => response.data);
+      });
     };
   },
   bindings: {
