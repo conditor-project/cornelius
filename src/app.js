@@ -12,7 +12,7 @@ import './app.scss';
 import { cornelius } from './components/cornelius/cornelius.component';
 import { navbar } from './components/cornelius/navbar/navbar.component';
 import { sidebar } from './components/cornelius/sidebar/sidebar.component';
-import { itemList } from './components/cornelius/item-list/item-list.component';
+import { recordList } from './components/cornelius/record-list/record-list.component';
 import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
 
 // Services
@@ -26,7 +26,7 @@ angular
   .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('sidebar', sidebar)
-  .component('itemList', itemList)
+  .component('recordList', recordList)
   .component('jwtModal', jwtModal)
   .factory('jwtService', jwtService)
 ;

@@ -1,7 +1,7 @@
-import './item-list.scss';
-import template from './item-list.template.html';
+import './record-list.scss';
+import template from './record-list.template.html';
 
-export const itemList = {
+export const recordList = {
   controller: function ($http, $uibModal, jwtService, API_CONDITOR_CONFIG) {
     this.$onChanges = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
