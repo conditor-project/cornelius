@@ -31,6 +31,7 @@
     "angular-sanitize": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap": "^3.3.7",
-    "co-config": "git+https://github.com/conditor-project/co-config.git#v1.3.1"
+    "co-config": "git+https://github.com/conditor-project/co-config.git#v1.3.1",
+    "diff": "^3.5.0"
   }
 }
