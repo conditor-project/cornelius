@@ -24,7 +24,7 @@ export const recordList = {
       $uibModal.open({
         component: 'recordModal',
         backdrop: 'static',
-        size: 'lg',
+        size: 'xl',
         resolve: {
           record: () => record
         }
