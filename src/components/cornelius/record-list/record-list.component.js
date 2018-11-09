@@ -23,12 +23,11 @@ export const recordList = {
     this.openRecordModal = function (record) {
       $uibModal.open({
         component: 'recordModal',
-        backdrop: 'static',
         size: 'xl',
         resolve: {
           record: () => record
         }
-      });
+      }).result.catch(() => console.info('Record modal dismissed '));
     };
 
     this.getRecords = function () {
