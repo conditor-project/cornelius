@@ -15,7 +15,6 @@ export const recordModal = {
         Object.keys(this.record).map(key => {
           this.recordsComparison[key] = [this.record[key], this.nearDuplicateRecordSelected[key]];
         });
-        console.log(this.recordsComparison);
       });
     };
 
