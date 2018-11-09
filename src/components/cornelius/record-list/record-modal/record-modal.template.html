@@ -39,7 +39,10 @@
     <table class="table table-striped">
       <tr ng-repeat="(key, infos) in $ctrl.recordsComparison">
         <td style="width:10%">{{ key }}</td>
-        <td style="width:45%" ng-repeat="value in infos track by $index">{{ value }}</td>
+        <td style="width:45%">{{ infos[0] }}</td>
+        <td style="width:45%">
+          <span ng-repeat="info in infos[1]" ng-class="{added: info.added, removed: info.removed}" >{{ info.value }}</span> 
+        </td>
       </tr>
     </table>
   </div>

@@ -1,6 +1,7 @@
 import './record-modal.scss';
 import template from './record-modal.template.html';
-import angular from 'angular';
+import { diffWords } from 'diff';
+// import angular from 'angular';
 
 export const recordModal = {
   controller: function ($q, $http, jwtService, API_CONDITOR_CONFIG) {
@@ -13,7 +14,10 @@ export const recordModal = {
         this.sizeColumnHeader = (this.nearDuplicateRecords.length >= 6) ? 2 : sizeColumnHeaderCalculated;
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
         Object.keys(this.record).map(key => {
-          this.recordsComparison[key] = [this.record[key], this.nearDuplicateRecordSelected[key]];
+          if (typeof this.record[key] === 'string' && typeof this.nearDuplicateRecordSelected[key] === 'string') {
+            const comparison = diffWords(this.record[key], this.nearDuplicateRecordSelected[key]);
+            this.recordsComparison[key] = [this.record[key], comparison];
+          }
         });
       });
     };
@@ -30,7 +34,7 @@ export const recordModal = {
       });
       return $q.all(nearDuplicateRecords).then(responses => {
         this.nearDuplicateRecords = responses.map(response => response.data);
-        this.nearDuplicateRecords.push(angular.copy(this.nearDuplicateRecords[0]));
+        // this.nearDuplicateRecords.push(angular.copy(this.nearDuplicateRecords[0]));
       });
     };
   },
