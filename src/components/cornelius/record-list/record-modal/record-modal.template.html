@@ -37,11 +37,13 @@
 <div class="modal-body">
   <div class="panel panel-default">
     <table class="table table-striped">
-      <tr ng-repeat="(key, infos) in $ctrl.recordsComparison">
+      <tr ng-repeat="(key, infos) in $ctrl.recordsComparison" ng-class="{warning: infos[0].isEqual}">
         <td style="width:10%">{{ key }}</td>
-        <td style="width:45%">{{ infos[0] }}</td>
         <td style="width:45%">
           <span ng-repeat="info in infos[1]" ng-class="{added: info.added, removed: info.removed}" >{{ info.value }}</span> 
+        </td>
+        <td style="width:45%">
+          <span ng-repeat="info in infos[2]" ng-class="{added: info.added, removed: info.removed}" >{{ info.value }}</span> 
         </td>
       </tr>
     </table>

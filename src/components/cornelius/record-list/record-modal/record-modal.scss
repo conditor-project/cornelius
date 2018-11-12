@@ -9,9 +9,9 @@
 }
 
 .removed {
-  color: red;
+  background-color: rgba($color: red, $alpha: 0.3);
 }
 
 .added {
-  color: green;
+  background-color: rgba($color: green, $alpha: 0.3);
 }

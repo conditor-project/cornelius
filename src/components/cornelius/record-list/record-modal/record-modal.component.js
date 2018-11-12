@@ -15,8 +15,11 @@ export const recordModal = {
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
         Object.keys(this.record).map(key => {
           if (typeof this.record[key] === 'string' && typeof this.nearDuplicateRecordSelected[key] === 'string') {
+            const isEqual = (this.record[key] === this.nearDuplicateRecordSelected[key]);
             const comparison = diffWords(this.record[key], this.nearDuplicateRecordSelected[key]);
-            this.recordsComparison[key] = [this.record[key], comparison];
+            const origin = comparison.filter(chunk => (!chunk.added));
+            const target = comparison.filter(chunk => (!chunk.removed));
+            this.recordsComparison[key] = [isEqual, origin, target];
           }
         });
       });
