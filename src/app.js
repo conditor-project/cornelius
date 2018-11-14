@@ -18,6 +18,7 @@ import { recordModal } from './components/cornelius/record-list/record-modal/rec
 
 // Services
 import { jwtService } from './services/jwt.service';
+import { conditorApiService } from './services/conditor-api.service';
 
 angular
   .module('app', [dropdown, modal])
@@ -31,4 +32,5 @@ angular
   .component('jwtModal', jwtModal)
   .component('recordModal', recordModal)
   .factory('jwtService', jwtService)
+  .factory('conditorApiService', conditorApiService)
 ;

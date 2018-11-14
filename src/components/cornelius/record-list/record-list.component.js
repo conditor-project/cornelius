@@ -2,9 +2,8 @@ import './record-list.scss';
 import template from './record-list.template.html';
 
 export const recordList = {
-  controller: function ($q, $http, $uibModal, jwtService, API_CONDITOR_CONFIG) {
+  controller: function ($uibModal, jwtService, conditorApiService) {
     this.$onChanges = function () {
-      if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       this.getRecords();
     };
 
@@ -31,12 +30,8 @@ export const recordList = {
     };
 
     this.getRecords = function () {
-      $http.defaults.headers.common.Authorization = 'Bearer ' + jwtService.getTokenJwt();
-      const sources = Object.keys(this.filterOptions.source).filter(source => this.filterOptions.source[source]).join(' OR ');
-      let requestUrl = API_CONDITOR_CONFIG.baseUrl + `/?q=isDuplicate:false AND isNearDuplicate:true AND source:(${sources})`;
-      if (this.filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${this.filterOptions.typeConditor}`;
-      requestUrl += '&exclude=teiBlob';
-      $http.get(requestUrl).then((response) => {
+      if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
+      conditorApiService.getRecords(this.filterOptions).then((response) => {
         this.records = response.data;
       }).catch(response => {
         this.records = [];
