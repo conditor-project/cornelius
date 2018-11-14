@@ -17,7 +17,7 @@ export const recordModal = {
           if (typeof this.record[key] === 'string' && typeof this.nearDuplicateRecordSelected[key] === 'string') {
             const isEqual = (this.record[key] === this.nearDuplicateRecordSelected[key]);
             const averageNumberCharacters = (this.record[key].length + this.nearDuplicateRecordSelected[key].length) / 2;
-            if (averageNumberCharacters < 5000) {
+            if (averageNumberCharacters < 3000) {
               const comparison = diffWords(this.record[key], this.nearDuplicateRecordSelected[key]);
               const origin = comparison.filter(chunk => (!chunk.added));
               const target = comparison.filter(chunk => (!chunk.removed));
