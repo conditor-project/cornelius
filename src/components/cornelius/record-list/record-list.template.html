@@ -1,14 +1,9 @@
 <div class="record-list">
   <div class="no-results" ng-if="!$ctrl.records.length">
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
   </div>
-  <div ng-repeat="record in $ctrl.records" class="panel"
-    ng-class="{'panel-primary': hover, 'panel-default': !hover}"
-    ng-init="hover = false"
-    ng-mouseenter="hover = true"
-    ng-mouseleave="hover = false"
-    ng-click="$ctrl.openRecordModal(record)"
-  >
+  <div ng-repeat="record in $ctrl.records" class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}"
+    ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-click="$ctrl.openRecordModal(record)">
     <div class="panel-heading">
       <h3 class="panel-title">{{ record.title }}</h3>
     </div>
@@ -20,7 +15,12 @@
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
       <div class="author">{{ record.author }}</div>
-      <div class="idConditor pull-right">{{ record.idConditor }}</div>
+    </div>
+    <div class="panel-footer">
+      <div class="idConditor">identifiant conditor: {{ record.idConditor }}</div>
+      <div class="near-duplicates">
+        near duplicate: {{ record.nearDuplicate.length }} (<span ng-repeat="nearDuplicate in record.nearDuplicate"><span ng-if="$odd">, </span>{{ nearDuplicate.idConditor }}</span>)
+      </div>
     </div>
   </div>
 </div>
