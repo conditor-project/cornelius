@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
-      <sidebar filter-options="$ctrl.filterOptions" on-filter-options-change="$ctrl.filterOptions = newFilterOptions"></sidebar>
+      <sidebar on-filter-options-change="$ctrl.filterOptions = newFilterOptions"></sidebar>
     </div>
     <div class="col-sm-9">
       <record-list filter-options="$ctrl.filterOptions"></record-list>

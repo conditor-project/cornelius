@@ -6,6 +6,16 @@ import metadataMapping from 'co-config/metadata-mappings.json';
 export const sidebar = {
   controller: function () {
     this.$onInit = function () {
+      this.filterOptions = {
+        source: {
+          hal: true,
+          pubmed: true,
+          sudoc: true,
+          wos: true
+        },
+        score: 90,
+        typeConditor: 'All'
+      };
       const typeConditor = metadataMapping
         .map(source => Object.keys(source.mapping).map(key => source.mapping[key]))
         .reduce((accumulator, current) => accumulator.concat(current))
@@ -21,7 +31,6 @@ export const sidebar = {
     };
   },
   bindings: {
-    filterOptions: '<',
     onFilterOptionsChange: '&'
   },
   template
