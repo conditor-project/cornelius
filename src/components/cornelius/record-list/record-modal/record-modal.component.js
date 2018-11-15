@@ -1,7 +1,7 @@
 import './record-modal.scss';
 import template from './record-modal.template.html';
 import { diffWords } from 'diff';
-// import angular from 'angular';
+import { mappings } from 'co-config/mapping.json';
 
 export const recordModal = {
   controller: function ($q, $http, jwtService, API_CONDITOR_CONFIG) {
@@ -14,19 +14,33 @@ export const recordModal = {
         this.sizeColumnHeader = (this.nearDuplicateRecords.length >= 6) ? 2 : sizeColumnHeaderCalculated;
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
         Object.keys(this.record).map(key => {
-          if (typeof this.record[key] === 'string' && typeof this.nearDuplicateRecordSelected[key] === 'string') {
-            const isEqual = (this.record[key] === this.nearDuplicateRecordSelected[key]);
-            const averageNumberCharacters = (this.record[key].length + this.nearDuplicateRecordSelected[key].length) / 2;
-            if (averageNumberCharacters < 3000) {
-              const comparison = diffWords(this.record[key], this.nearDuplicateRecordSelected[key]);
-              const origin = comparison.filter(chunk => (!chunk.added));
-              const target = comparison.filter(chunk => (!chunk.removed));
-              this.recordsComparison[key] = [isEqual, origin, target];
-            } else {
-              const origin = [{ value: this.record[key] }];
-              const target = [{ value: this.nearDuplicateRecordSelected[key] }];
-              this.recordsComparison[key] = [isEqual, origin, target];
-            }
+          const fieldsToIgnore = Object.keys(mappings.record.properties)
+            .map(key => {
+              mappings.record.properties[key].name = key;
+              return mappings.record.properties[key];
+            })
+            .filter(property => (property.type === 'nested') || property.type === 'boolean')
+            .filter(property => property.name !== 'nearDuplicate')
+            .map(property => property.name)
+            ;
+          fieldsToIgnore.push('path', 'nearDuplicate', 'ingestId', 'creationDate', 'score', 'idChain');
+          if (fieldsToIgnore.includes(key)) return;
+          let record = this.record[key];
+          let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected[key];
+          record = (typeof record === 'string') ? record : String(record);
+          nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
+          if ((record.length + nearDuplicateRecordSelected.length) === 0) return;
+          const isEqual = (record === nearDuplicateRecordSelected);
+          const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
+          if (averageNumberCharacters < 3000) {
+            const comparison = diffWords(record, nearDuplicateRecordSelected);
+            const origin = comparison.filter(chunk => (!chunk.added));
+            const target = comparison.filter(chunk => (!chunk.removed));
+            this.recordsComparison[key] = [isEqual, origin, target];
+          } else {
+            const origin = [{ value: record }];
+            const target = [{ value: nearDuplicateRecordSelected }];
+            this.recordsComparison[key] = [isEqual, origin, target];
           }
         });
       });
@@ -44,7 +58,6 @@ export const recordModal = {
       });
       return $q.all(nearDuplicateRecords).then(responses => {
         this.nearDuplicateRecords = responses.map(response => response.data);
-        // this.nearDuplicateRecords.push(angular.copy(this.nearDuplicateRecords[0]));
       });
     };
   },
