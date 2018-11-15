@@ -35,7 +35,7 @@ export const recordList = {
         this.records = response.data;
       }).catch(response => {
         this.records = [];
-        if (String(response.status)[0] === '4') this.openJwtModal({ force: true });
+        if (response.status === 401) this.openJwtModal({ force: true });
         // TODO: Manage code error 500
       });
     };
