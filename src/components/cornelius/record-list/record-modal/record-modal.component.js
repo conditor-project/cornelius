@@ -23,7 +23,7 @@ export const recordModal = {
             .filter(property => property.name !== 'nearDuplicate')
             .map(property => property.name)
             ;
-          fieldsToIgnore.push('path', 'nearDuplicate', 'ingestId', 'creationDate', 'score', 'idChain');
+          fieldsToIgnore.push('path', 'nearDuplicate', 'ingestId', 'creationDate', 'score', 'idChain', 'idConditor');
           if (fieldsToIgnore.includes(key)) return;
           let record = this.record[key];
           let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected[key];
