@@ -33,7 +33,7 @@ export const recordModal = {
           const isEqual = (record === nearDuplicateRecordSelected);
           const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
           if (averageNumberCharacters < 3000) {
-            const comparison = diffWords(record, nearDuplicateRecordSelected);
+            const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
             const origin = comparison.filter(chunk => (!chunk.added));
             const target = comparison.filter(chunk => (!chunk.removed));
             this.recordsComparison[key] = [isEqual, origin, target];
