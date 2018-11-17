@@ -20,6 +20,9 @@ import { recordModal } from './components/cornelius/record-list/record-modal/rec
 import { jwtService } from './services/jwt.service';
 import { conditorApiService } from './services/conditor-api.service';
 
+// Directives
+import { myEnterKeypress } from './directives/my-enter-keypress.directive';
+
 angular
   .module('app', [dropdown, modal])
   .constant('API_CONDITOR_CONFIG', {
@@ -33,4 +36,5 @@ angular
   .component('recordModal', recordModal)
   .factory('jwtService', jwtService)
   .factory('conditorApiService', conditorApiService)
+  .directive('myEnterKeypress', myEnterKeypress)
 ;
