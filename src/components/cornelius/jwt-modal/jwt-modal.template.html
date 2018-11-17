@@ -5,7 +5,7 @@
   <form name="jwt">
     <div class="form-group">
       <label for="tokenJwt">Token JWT</label>
-      <textarea class="form-control" rows="6" id="tokenJwt" ng-model="$ctrl.tokenJwt" placeholder="Put your token JWT here"></textarea>
+      <textarea my-enter-keypress="$ctrl.save()" class="form-control" rows="6" id="tokenJwt" ng-model="$ctrl.tokenJwt" placeholder="Put your token JWT here"></textarea>
     </div>
   </form>
   <div class="alert" 
