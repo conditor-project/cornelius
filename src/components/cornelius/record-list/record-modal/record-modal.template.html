@@ -37,15 +37,24 @@
 <div class="modal-body">
   <div class="panel panel-default">
     <table class="table table-striped">
-      <tr ng-repeat="(key, infos) in $ctrl.recordsComparison" ng-class="{warning: !infos[0]}">
-        <td style="width:10%">{{ key }}</td>
-        <td style="width:45%">
-          <span ng-repeat="info in infos[1]" ng-class="{added: info.added, removed: info.removed}" >{{ info.value }}</span> 
-        </td>
-        <td style="width:45%">
-          <span ng-repeat="info in infos[2]" ng-class="{added: info.added, removed: info.removed}" >{{ info.value }}</span> 
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th style="width:10%"></th>
+          <th style="width:45%">{{ $ctrl.record.idConditor }}</th>
+          <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key, infos) in $ctrl.recordsComparison" ng-class="{warning: !infos[0]}">
+          <td>{{ key }}</td>
+          <td>
+            <span ng-repeat="info in infos[1]" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+          </td>
+          <td>
+            <span ng-repeat="info in infos[2]" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
