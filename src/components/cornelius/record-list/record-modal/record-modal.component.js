@@ -40,7 +40,7 @@ export const recordModal = {
         record = (typeof record === 'string') ? record : String(record);
         nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
         if ((record.length + nearDuplicateRecordSelected.length) === 0) return;
-        const isEqual = (record === nearDuplicateRecordSelected);
+        const isEqual = (record.toLowerCase() === nearDuplicateRecordSelected.toLowerCase());
         const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
         if (averageNumberCharacters < 3000) {
           const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
