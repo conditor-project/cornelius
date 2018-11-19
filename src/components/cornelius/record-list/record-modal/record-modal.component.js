@@ -13,36 +13,45 @@ export const recordModal = {
         const sizeColumnHeaderCalculated = Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeader = (this.nearDuplicateRecords.length >= 6) ? 2 : sizeColumnHeaderCalculated;
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
-        Object.keys(this.record).map(key => {
-          const fieldsToIgnore = Object.keys(mappings.record.properties)
-            .map(key => {
-              mappings.record.properties[key].name = key;
-              return mappings.record.properties[key];
-            })
-            .filter(property => (property.type === 'nested') || property.type === 'boolean')
-            .filter(property => property.name !== 'nearDuplicate')
-            .map(property => property.name)
-            ;
-          fieldsToIgnore.push('path', 'nearDuplicate', 'ingestId', 'creationDate', 'score', 'idChain', 'idConditor');
-          if (fieldsToIgnore.includes(key)) return;
-          let record = this.record[key];
-          let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected[key];
-          record = (typeof record === 'string') ? record : String(record);
-          nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
-          if ((record.length + nearDuplicateRecordSelected.length) === 0) return;
-          const isEqual = (record === nearDuplicateRecordSelected);
-          const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
-          if (averageNumberCharacters < 3000) {
-            const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
-            const origin = comparison.filter(chunk => (!chunk.added));
-            const target = comparison.filter(chunk => (!chunk.removed));
-            this.recordsComparison[key] = [isEqual, origin, target];
-          } else {
-            const origin = [{ value: record }];
-            const target = [{ value: nearDuplicateRecordSelected }];
-            this.recordsComparison[key] = [isEqual, origin, target];
-          }
-        });
+        this.getComparisonInfos();
+      });
+    };
+
+    this.selectNearDuplicateRecord = function (nearDuplicateRecord) {
+      this.nearDuplicateRecordSelected = nearDuplicateRecord;
+      this.getComparisonInfos();
+    };
+
+    this.getComparisonInfos = function () {
+      Object.keys(this.record).map(key => {
+        const fieldsToIgnore = Object.keys(mappings.record.properties)
+          .map(key => {
+            mappings.record.properties[key].name = key;
+            return mappings.record.properties[key];
+          })
+          .filter(property => (property.type === 'nested') || property.type === 'boolean')
+          .filter(property => property.name !== 'nearDuplicate')
+          .map(property => property.name)
+          ;
+        fieldsToIgnore.push('path', 'nearDuplicate', 'ingestId', 'creationDate', 'score', 'idChain', 'idConditor');
+        if (fieldsToIgnore.includes(key)) return;
+        let record = this.record[key];
+        let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected[key];
+        record = (typeof record === 'string') ? record : String(record);
+        nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
+        if ((record.length + nearDuplicateRecordSelected.length) === 0) return;
+        const isEqual = (record === nearDuplicateRecordSelected);
+        const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
+        if (averageNumberCharacters < 3000) {
+          const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
+          const origin = comparison.filter(chunk => (!chunk.added));
+          const target = comparison.filter(chunk => (!chunk.removed));
+          this.recordsComparison[key] = [isEqual, origin, target];
+        } else {
+          const origin = [{ value: record }];
+          const target = [{ value: nearDuplicateRecordSelected }];
+          this.recordsComparison[key] = [isEqual, origin, target];
+        }
       });
     };
 

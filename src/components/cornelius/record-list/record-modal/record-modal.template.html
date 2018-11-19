@@ -1,4 +1,4 @@
-<div class="record-modal modal-header">
+<div class="modal-header">
   <div class="row">
     <div class="col-md-{{ $ctrl.sizeColumnHeader }}">
       <div class="panel panel-primary">
@@ -17,7 +17,10 @@
       </div>
     </div>
     <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords | limitTo: 6" class="col-md-{{ $ctrl.sizeColumnHeader }}">
-      <div class="panel panel-info">
+      <div class="panel" 
+        ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord)" 
+        ng-class="{'panel-primary': (nearDuplicateRecord === $ctrl.nearDuplicateRecordSelected), 'panel-default': (nearDuplicateRecord !== $ctrl.nearDuplicateRecordSelected)}"
+      >
         <div class="panel-heading">
           <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
         </div>
