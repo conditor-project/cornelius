@@ -13,11 +13,14 @@ export const recordModal = {
         const sizeColumnHeaderCalculated = Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeader = (this.nearDuplicateRecords.length > 2) ? 3 : sizeColumnHeaderCalculated;
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
+        this.nearDuplicateRecordSelected.isSelected = true;
         this.getComparisonInfos();
       });
     };
 
     this.selectNearDuplicateRecord = function (nearDuplicateRecord) {
+      this.nearDuplicateRecordSelected.isSelected = false;
+      nearDuplicateRecord.isSelected = true;
       this.nearDuplicateRecordSelected = nearDuplicateRecord;
       this.getComparisonInfos();
     };
@@ -66,7 +69,11 @@ export const recordModal = {
         return $http.get(requestUrl);
       });
       return $q.all(nearDuplicateRecords).then(responses => {
-        this.nearDuplicateRecords = responses.map(response => response.data);
+        this.nearDuplicateRecords = responses
+          .map(response => {
+            response.data.isSelected = false;
+            return response.data;
+          });
       });
     };
   },
