@@ -11,7 +11,7 @@ export const recordModal = {
       this.sizeColumnHeader = 6;
       this.getNearDuplicate().then(() => {
         const sizeColumnHeaderCalculated = Math.floor(12 / (this.nearDuplicateRecords.length + 1));
-        this.sizeColumnHeader = (this.nearDuplicateRecords.length >= 6) ? 2 : sizeColumnHeaderCalculated;
+        this.sizeColumnHeader = (this.nearDuplicateRecords.length > 2) ? 3 : sizeColumnHeaderCalculated;
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
         this.getComparisonInfos();
       });

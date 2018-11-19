@@ -1,5 +1,17 @@
+record-modal .modal-header > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+record-modal .modal-header > .row > .col-md-3 {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
 record-modal .modal-header .panel {
   cursor: pointer;
+  white-space: normal;
 }
 
 record-modal .panel-title {
