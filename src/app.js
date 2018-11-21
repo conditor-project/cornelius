@@ -19,6 +19,7 @@ import { recordModal } from './components/cornelius/record-list/record-modal/rec
 // Services
 import { jwtService } from './services/jwt.service';
 import { conditorApiService } from './services/conditor-api.service';
+import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.service';
 
 // Directives
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
@@ -26,7 +27,7 @@ import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 angular
   .module('app', [dropdown, modal])
   .constant('API_CONDITOR_CONFIG', {
-    baseUrl: 'https://api-dev.conditor.fr/v1/records'
+    baseUrl: 'https://api-integ.conditor.fr/v1/records'
   })
   .component('cornelius', cornelius)
   .component('navbar', navbar)
@@ -36,5 +37,6 @@ angular
   .component('recordModal', recordModal)
   .factory('jwtService', jwtService)
   .factory('conditorApiService', conditorApiService)
+  .factory('jwtModalService', jwtModalService)
   .directive('myEnterKeypress', myEnterKeypress)
 ;

@@ -2,21 +2,13 @@ import './record-list.scss';
 import template from './record-list.template.html';
 
 export const recordList = {
-  controller: function ($uibModal, jwtService, conditorApiService) {
+  controller: function ($uibModal, jwtModalService, jwtService, conditorApiService) {
     this.$onChanges = function () {
       this.getRecords();
     };
 
-    this.openJwtModal = function (options) {
-      $uibModal.open({
-        component: 'jwtModal',
-        backdrop: 'static',
-        resolve: {
-          options: () => options
-        }
-      }).result.then(() => {
-        this.getRecords();
-      });
+    this.openJwtModal = function (options = { force: false }) {
+      jwtModalService.open(options).then(() => this.getRecords());
     };
 
     this.openRecordModal = function (record) {

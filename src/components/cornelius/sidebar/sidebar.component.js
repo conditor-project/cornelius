@@ -4,7 +4,7 @@ import angular from 'angular';
 import metadataMapping from 'co-config/metadata-mappings.json';
 
 export const sidebar = {
-  controller: function () {
+  controller: function (jwtModalService, jwtService) {
     this.$onInit = function () {
       this.filterOptions = {
         source: {
@@ -24,7 +24,12 @@ export const sidebar = {
       this.typeConditor = uniqTypeConditor;
     };
 
+    this.openJwtModal = function (options = { force: false }) {
+      jwtModalService.open(options).then(() => this.apply());
+    };
+
     this.apply = function () {
+      if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       const newFilterOptions = angular.copy(this.filterOptions);
       this.onFilterOptionsChange({ newFilterOptions });
     };
