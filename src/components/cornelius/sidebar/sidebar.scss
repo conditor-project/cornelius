@@ -1,21 +1,43 @@
-fieldset {
-  border: 1px solid #ddd;
-  padding: 0 1.4rem 1.4rem 1.4rem;
-  margin: 0 0 1.5rem 0;
-}
+$small: 768px;
+$medium: 992px;
+$large: 1200px;
 
-fieldset legend {
-  font-size: 1.5rem;
-  margin: 10px 0;
-  border-bottom: none;
-  width: auto;
-}
+sidebar {
+  @media (min-width: $small) {
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: fixed;
+    width: 187.5px;
+  }
 
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 20px;
-  margin-top: 10px;
-  cursor: pointer;
+  @media (min-width: $medium) {
+    width: 242.5px;
+  }
+
+  @media (min-width: $large) {
+    width: 292.5px;
+  }
+  
+  fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4rem 1.4rem 1.4rem;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  fieldset legend {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    border-bottom: none;
+    width: auto;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
 }
