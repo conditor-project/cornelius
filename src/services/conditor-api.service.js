@@ -1,5 +1,5 @@
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
-  const fieldsToExclude = ['teiBlob'];
+  const fieldsToExclude = ['teiBlob', 'hasDoi', 'ingestId', 'path', 'duplicate', 'idChain', 'isDuplicate', 'isDeduplicable', 'isNearDuplicate', 'creationDate', 'authorRef'];
   return {
     getRecords: function (filterOptions = {
       source: {
@@ -18,6 +18,12 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       if (sources.length > 0) requestUrl += ` AND source:(${sources})`;
       if (filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
       requestUrl += `&exclude=${fieldsToExclude.join(',')}`;
+      return $http.get(requestUrl);
+    },
+    getRecordById: function (idConditor) {
+      const tokenJwt = jwtService.getTokenJwt();
+      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getAggregationsSource: function () {
