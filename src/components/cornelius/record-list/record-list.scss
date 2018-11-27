@@ -1,28 +1,43 @@
-record-list .panel {
-  cursor: pointer;
-}
+record-list {
+  .panel {
+    cursor: pointer;
+  }
+  
+  .author {
+    font-style: italic;
+    font-size: 1.3rem;
+    margin-top: 5px;
+  }
+  
+  .details {
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+  }
+  
+  .idConditor {
+    font-size: 1.2rem;
+  }
+  
+  .near-duplicates {
+    font-size: 1.2rem;
+  }
+  
+  .no-results {
+    padding: 20px;
+    text-align: center;
+    font-size: 4rem;
+  }
+  
+  .pagination {
+    margin: 5px 0;
+  }
 
-.author {
-  font-style: italic;
-  font-size: 1.3rem;
-  margin-top: 5px;
-}
+  .pagination .disabled {
+    pointer-events: none;
+  }
 
-.details {
-  margin-bottom: 5px;
-  font-size: 1.4rem;
-}
-
-.idConditor {
-  font-size: 1.2rem;
-}
-
-.near-duplicates {
-  font-size: 1.2rem;
-}
-
-.no-results {
-  padding: 20px;
-  text-align: center;
-  font-size: 4rem;
+  .total-records {
+    margin: 10px;
+    display: inline-block;
+  }
 }
