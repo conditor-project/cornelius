@@ -1,3 +1,10 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div class="well well-sm">
+      <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Total records <span class="badge">{{ $ctrl.totalRecords }}</span>
+    </div>
+  </div>
+</div>
 <div class="record-list">
   <div class="no-results" ng-if="!$ctrl.records.length">
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
@@ -19,7 +26,10 @@
     <div class="panel-footer">
       <div class="idConditor">id conditor: {{ record.idConditor }}</div>
       <div class="near-duplicates">
-        near duplicate: {{ record.nearDuplicate.length }} (<span ng-repeat="nearDuplicate in record.nearDuplicate"><span ng-if="$odd">, </span>{{ nearDuplicate.idConditor }}</span>)
+        near duplicate: {{ record.nearDuplicate.length }}
+        (<span ng-repeat="nearDuplicate in record.nearDuplicate">
+          <span ng-if="$odd">, </span>{{ nearDuplicate.idConditor }}
+        </span>)
       </div>
     </div>
   </div>

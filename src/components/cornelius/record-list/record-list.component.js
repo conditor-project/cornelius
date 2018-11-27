@@ -24,6 +24,7 @@ export const recordList = {
     this.getRecords = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       conditorApiService.getRecords(this.filterOptions).then((response) => {
+        this.totalRecords = response.headers('X-Total-Count');
         this.records = response.data;
       }).catch(response => {
         this.records = [];
