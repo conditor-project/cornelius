@@ -25,10 +25,13 @@ export const recordModal = {
     };
 
     this.getComparisonInfos = function () {
-      Object.keys(this.record).map(key => {
-        const notDisplay = ['_score', 'idConditor', 'nearDuplicate'].includes(key);
+      const recordKeys = Object.keys(this.record);
+      const nearDuplicateRecordSelectedKeys = Object.keys(this.nearDuplicateRecordSelected);
+      const keys = [...new Set(recordKeys.concat(nearDuplicateRecordSelectedKeys))];
+      keys.map(key => {
+        const notDisplay = ['_score', 'idConditor', 'nearDuplicate', 'isSelected'].includes(key);
         if (notDisplay) return;
-        let record = this.record[key];
+        let record = this.record.hasOwnProperty(key) ? this.record[key] : '';
         let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected.hasOwnProperty(key) ? this.nearDuplicateRecordSelected[key] : '';
         record = (typeof record === 'string') ? record : String(record);
         nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
