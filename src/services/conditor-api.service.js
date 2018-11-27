@@ -18,6 +18,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       if (sources.length > 0) requestUrl += ` AND source:(${sources})`;
       if (filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
       requestUrl += `&exclude=${fieldsToExclude.join(',')}`;
+      requestUrl += '&page_size=5';
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
