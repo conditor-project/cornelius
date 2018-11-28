@@ -14,7 +14,8 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
       const sources = Object.keys(filterOptions.source).filter(source => filterOptions.source[source]).join(' OR ');
-      let requestUrl = API_CONDITOR_CONFIG.baseUrl + '/v1/records/?q=isDuplicate:false AND isNearDuplicate:true';
+      let requestUrl = API_CONDITOR_CONFIG.baseUrl + API_CONDITOR_CONFIG.routes.record;
+      requestUrl += '/?q=isDuplicate:false AND isNearDuplicate:true';
       if (sources.length > 0) requestUrl += ` AND source:(${sources})`;
       if (filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
       requestUrl += `&exclude=${fieldsToExclude.join(',')}`;
@@ -24,7 +25,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     getRecordById: function (idConditor) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/v1/records/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getRecordsFromUrl: function (url) {
@@ -35,7 +36,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     getAggregationsSource: function () {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const requestUrl = API_CONDITOR_CONFIG.baseUrl + `/v1/records/?aggs=terms:source&size=0`;
+      const requestUrl = API_CONDITOR_CONFIG.baseUrl + API_CONDITOR_CONFIG.routes.record + `/v1/records/?aggs=terms:source&size=0`;
       return $http.get(requestUrl);
     }
   };
