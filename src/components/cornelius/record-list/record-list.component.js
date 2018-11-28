@@ -20,7 +20,7 @@ export const recordList = {
         resolve: {
           record: () => record
         }
-      }).result.catch(() => console.info('Record modal dismissed '));
+      }).result.catch(() => console.info('Record modal dismissed'));
     };
 
     this.getRecords = function () {
