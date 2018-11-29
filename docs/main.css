@@ -6487,25 +6487,29 @@ sidebar .slider {
 record-list .panel {
   cursor: pointer; }
 
-.author {
+record-list .author {
   font-style: italic;
   font-size: 1.3rem;
   margin-top: 5px; }
 
-.details {
+record-list .details {
   margin-bottom: 5px;
   font-size: 1.4rem; }
 
-.idConditor {
+record-list .idConditor {
   font-size: 1.2rem; }
 
-.near-duplicates {
+record-list .near-duplicates {
   font-size: 1.2rem; }
 
-.no-results {
+record-list .no-results {
   padding: 20px;
   text-align: center;
   font-size: 4rem; }
+
+record-list .total-records {
+  margin: 10px;
+  display: inline-block; }
 
 #tokenJwt {
   resize: none; }
@@ -6551,4 +6555,10 @@ record-modal .panel-title {
 
 .added {
   background-color: rgba(0, 128, 0, 0.2); }
+
+pagination .pagination {
+  margin: 5px 0; }
+
+pagination .pagination .disabled {
+  pointer-events: none; }
 
