@@ -2,35 +2,12 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="total-records">
-        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Total records <span class="badge">{{ $ctrl.totalRecords }}</span>
+        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Total records <span class="badge">{{
+          $ctrl.totalRecords }}</span>
       </div>
     </div>
     <div class="col-sm-4 text-center">
-      <nav class="text-center">
-        <ul class="pagination">
-          <li class="first" ng-class="{disabled: !$ctrl.links.first}">
-            <a ng-click="$ctrl.paginateRecords('first')">
-              <span class="glyphicon glyphicon glyphicon-backward" aria-hidden="true"></span>
-            </a>
-          </li>
-          <li class="previous" ng-class="{disabled: !$ctrl.links.prev}">
-            <a ng-click="$ctrl.paginateRecords('prev')">
-              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
-            </a>
-          </li>
-          <li class="active"><a ng-disabled="true" href="#">{{ $ctrl.currentPage }}</a></li>
-          <li class="next" ng-class="{disabled: !$ctrl.links.next}">
-            <a ng-click="$ctrl.paginateRecords('next')">
-              <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-            </a>
-          </li>
-          <li class="last" ng-class="{disabled: !$ctrl.links.last}">
-            <a ng-click="$ctrl.paginateRecords('last')">
-              <span class="glyphicon glyphicon glyphicon-forward" aria-hidden="true"></span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" current-page="$ctrl.currentPage"></pagination>
     </div>
   </div>
 </div>
@@ -60,6 +37,13 @@
           <span ng-if="$odd">, </span>{{ nearDuplicate.idConditor }}
         </span>)
       </div>
+    </div>
+  </div>
+</div>
+<div class="record-header">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 text-center">
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" current-page="$ctrl.currentPage"></pagination>
     </div>
   </div>
 </div>

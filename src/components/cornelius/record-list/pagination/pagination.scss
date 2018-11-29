@@ -1,0 +1,9 @@
+pagination {
+  .pagination {
+    margin: 5px 0;
+  }
+  
+  .pagination .disabled {
+    pointer-events: none;
+  }
+}

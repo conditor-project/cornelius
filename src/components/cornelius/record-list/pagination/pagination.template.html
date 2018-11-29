@@ -1,0 +1,25 @@
+<nav class="text-center">
+  <ul class="pagination">
+    <li class="first" ng-class="{disabled: !$ctrl.links.first}">
+      <a ng-click="$ctrl.onPaginate({action: 'first'})">
+        <span class="glyphicon glyphicon glyphicon-backward" aria-hidden="true"></span>
+      </a>
+    </li>
+    <li class="previous" ng-class="{disabled: !$ctrl.links.prev}">
+      <a ng-click="$ctrl.onPaginate({action: 'prev'})">
+        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+      </a>
+    </li>
+    <li class="active"><a ng-disabled="true" href="#">{{ $ctrl.currentPage }}</a></li>
+    <li class="next" ng-class="{disabled: !$ctrl.links.next}">
+      <a ng-click="$ctrl.onPaginate({action: 'next'})">
+        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+      </a>
+    </li>
+    <li class="last" ng-class="{disabled: !$ctrl.links.last}">
+      <a ng-click="$ctrl.onPaginate({action: 'last'})">
+        <span class="glyphicon glyphicon glyphicon-forward" aria-hidden="true"></span>
+      </a>
+    </li>
+  </ul>
+</nav>

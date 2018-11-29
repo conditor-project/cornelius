@@ -3,7 +3,6 @@ import 'angular-animate';
 import 'angular-sanitize';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
-import pagination from 'angular-ui-bootstrap/src/pagination';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -16,6 +15,7 @@ import { sidebar } from './components/cornelius/sidebar/sidebar.component';
 import { recordList } from './components/cornelius/record-list/record-list.component';
 import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
 import { recordModal } from './components/cornelius/record-list/record-modal/record-modal.component';
+import { pagination } from './components/cornelius/record-list/pagination/pagination.component';
 
 // Services
 import { jwtService } from './services/jwt.service';
@@ -26,7 +26,7 @@ import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.serv
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [dropdown, modal, pagination])
+  .module('app', [dropdown, modal])
   .constant('API_CONDITOR_CONFIG', {
     baseUrl: 'http://api-dev.conditor.fr/v1',
     routes: {
@@ -39,6 +39,7 @@ angular
   .component('recordList', recordList)
   .component('jwtModal', jwtModal)
   .component('recordModal', recordModal)
+  .component('pagination', pagination)
   .factory('jwtService', jwtService)
   .factory('conditorApiService', conditorApiService)
   .factory('jwtModalService', jwtModalService)
