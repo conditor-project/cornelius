@@ -28,7 +28,7 @@ import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 angular
   .module('app', [dropdown, modal])
   .constant('API_CONDITOR_CONFIG', {
-    baseUrl: 'http://api-dev.conditor.fr/v1',
+    baseUrl: 'https://api-dev.conditor.fr/v1',
     routes: {
       record: '/records'
     }
