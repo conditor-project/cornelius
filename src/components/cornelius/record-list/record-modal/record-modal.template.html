@@ -17,13 +17,8 @@
       </div>
     </div>
     <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords | limitTo: 6" class="col-md-{{ $ctrl.sizeColumnHeader }}">
-      <div class="panel"
-        ng-init="hover = false"
-        ng-mouseenter="hover = !nearDuplicateRecord.isSelected"
-        ng-mouseleave="hover = false" 
-        ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" 
-        ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}"
-      >
+      <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
+        ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
         <div class="panel-heading">
           <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
         </div>
@@ -34,6 +29,10 @@
             <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
           </div>
           <div class="author">{{ nearDuplicateRecord.author }}</div>
+          <span 
+            class="label label-default"
+            ng-class="{'label-danger': (nearDuplicateRecord.info === 'Duplicate'), 'label-success': (nearDuplicateRecord.info === 'NotDuplicate')}"
+          >{{ nearDuplicateRecord.info }}</span>
           <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
         </div>
       </div>
@@ -63,7 +62,12 @@
       </tbody>
     </table>
   </div>
-
+  <div class="validation-action">
+    <div class="btn-group">
+      <label class="btn btn-danger" ng-model="$ctrl.nearDuplicateRecordSelected.info" uib-btn-radio="'Duplicate'" uncheckable="false">Duplicate</label>
+      <label class="btn btn-success" ng-model="$ctrl.nearDuplicateRecordSelected.info" uib-btn-radio="'NotDuplicate'" uncheckable="false">NOT Duplicate</label>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="$ctrl.ok()">OK</button>

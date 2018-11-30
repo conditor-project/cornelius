@@ -3,6 +3,7 @@ import 'angular-animate';
 import 'angular-sanitize';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
+import buttons from 'angular-ui-bootstrap/src/buttons';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -26,7 +27,7 @@ import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.serv
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [dropdown, modal])
+  .module('app', [dropdown, modal, buttons])
   .constant('API_CONDITOR_CONFIG', {
     baseUrl: 'https://api-integ.conditor.fr/v1',
     routes: {

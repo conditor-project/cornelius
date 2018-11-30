@@ -31,6 +31,11 @@ record-modal {
   .added {
     background-color: rgba($color: green, $alpha: 0.2);
   }
+
+  .validation-action {
+    text-align: right;
+  }
+
 }
 
 @media (min-width: 992px) {
