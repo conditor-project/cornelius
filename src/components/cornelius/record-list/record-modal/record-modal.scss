@@ -1,33 +1,40 @@
-record-modal .modal-header > .row {
-  overflow-x: auto;
-  white-space: nowrap;
-}
+record-modal {
+  .modal-header > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .modal-header > .row > .col-md-3 {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+  
+  .modal-header .panel {
+    cursor: pointer;
+    white-space: normal;
+  }
+  
+  .panel-title {
+    font-size: 1.3rem;
+  }
+  
+  .modal-body > .panel {
+    max-height: 500px;
+    overflow-y: auto;
+  }
 
-record-modal .modal-header > .row > .col-md-3 {
-  display: inline-block;
-  float: none;
-  vertical-align: top;
-}
-
-record-modal .modal-header .panel {
-  cursor: pointer;
-  white-space: normal;
-}
-
-record-modal .panel-title {
-  font-size: 1.3rem;
+  .removed {
+    background-color: rgba($color: red, $alpha: 0.2);
+  }
+  
+  .added {
+    background-color: rgba($color: green, $alpha: 0.2);
+  }
 }
 
 @media (min-width: 992px) {
   .modal-xl {
     width: 90%; 
   } 
-}
-
-.removed {
-  background-color: rgba($color: red, $alpha: 0.2);
-}
-
-.added {
-  background-color: rgba($color: green, $alpha: 0.2);
 }
