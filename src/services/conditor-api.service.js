@@ -1,5 +1,19 @@
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
-  const fieldsToExclude = ['teiBlob', 'hasDoi', 'ingestId', 'path', 'duplicate', 'idChain', 'isDuplicate', 'isDeduplicable', 'isNearDuplicate', 'creationDate', 'authorRef'];
+  const fieldsToExclude = [
+    'authorRef',
+    'creationDate',
+    'duplicate',
+    'duplicateRules',
+    'hadTransDuplicate',
+    'hasDoi',
+    'idChain',
+    'isDeduplicable',
+    'isDuplicate',
+    'isNearDuplicate',
+    'ingestId',
+    'path',
+    'teiBlob'
+  ];
   return {
     getRecords: function (filterOptions = {
       source: {
