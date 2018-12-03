@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords | limitTo: 6" class="col-md-{{ $ctrl.sizeColumnHeader }}">
+    <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords" class="col-md-{{ $ctrl.sizeColumnHeader }}">
       <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
         ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
         <div class="panel-heading">
