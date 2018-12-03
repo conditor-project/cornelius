@@ -1,14 +1,14 @@
 record-modal {
-  .modal-header > .row {
+  .modal-header .row .row {
     overflow-x: auto;
     white-space: nowrap;
     cursor: grab;
   }
   
-  .modal-header > .row > .col-md-3 {
-    display: inline-block;
-    float: none;
+  .near-duplicate-record {
     vertical-align: top;
+    display: inline-block;
+    float: none; 
   }
   
   .modal-header .panel {

@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <div drag-scroll="true" axis="x" class="row">
-    <div class="col-md-{{ $ctrl.sizeColumnHeader }}">
+  <div class="row">
+    <div class="col-md-{{ $ctrl.sizeColumnHeaderLevelOne }}">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
@@ -16,24 +16,28 @@
         </div>
       </div>
     </div>
-    <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords" class="col-md-{{ $ctrl.sizeColumnHeader }}">
-      <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
-        ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
-        <div class="panel-heading">
-          <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
-        </div>
-        <div class="panel-body">
-          <div class="details">
-            <span class="label label-default">{{ nearDuplicateRecord.source }}</span>
-            <span class="label label-default">{{ nearDuplicateRecord.typeConditor }}</span>
-            <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
+    <div class="col-md-{{ $ctrl.sizeColumnHeaderNested }}">
+      <div drag-scroll="true" axis="x" class="row">
+        <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords" class="near-duplicate-record col-md-{{ $ctrl.sizeColumnHeaderLevelTwo }}">
+          <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
+            ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
+            <div class="panel-heading">
+              <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
+            </div>
+            <div class="panel-body">
+              <div class="details">
+                <span class="label label-default">{{ nearDuplicateRecord.source }}</span>
+                <span class="label label-default">{{ nearDuplicateRecord.typeConditor }}</span>
+                <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
+              </div>
+              <div class="author">{{ nearDuplicateRecord.author }}</div>
+              <span 
+                class="label label-default"
+                ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
+              >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'duplicate' : null }}{{ nearDuplicateRecord.isDuplicateByUser === false ? 'not duplicate' : null }}</span>
+              <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
+            </div>
           </div>
-          <div class="author">{{ nearDuplicateRecord.author }}</div>
-          <span 
-            class="label label-default"
-            ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
-          >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'duplicate' : null }}{{ nearDuplicateRecord.isDuplicateByUser === false ? 'not duplicate' : null }}</span>
-          <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
         </div>
       </div>
     </div>
