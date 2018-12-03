@@ -36,6 +36,18 @@ record-modal {
     text-align: right;
   }
 
+  .validation-action > .btn-group {
+    width: 41%;
+    margin: 0 2%;
+  }
+
+  .validation-action > .btn-group > label {
+    width: 50%;
+  }
+
+  .modal-header, .modal-footer {
+    background-color: #f5f5f5;
+  }
 }
 
 @media (min-width: 992px) {
