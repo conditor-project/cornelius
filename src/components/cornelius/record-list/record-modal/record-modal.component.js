@@ -3,11 +3,10 @@ import template from './record-modal.template.html';
 import { diffWords } from 'diff';
 
 export const recordModal = {
-  controller: function ($q, conditorApiService) {
+  controller: function ($q, $uibModal, conditorApiService) {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.recordsComparison = {};
-      this.sizeColumnHeader = 6;
       this.getNearDuplicate().then(() => {
         const sizeColumnHeaderCalculated = Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeader = (this.nearDuplicateRecords.length > 2) ? 3 : sizeColumnHeaderCalculated;
@@ -54,7 +53,11 @@ export const recordModal = {
     };
 
     this.save = function () {
-      this.modalInstance.close();
+      $uibModal.open({
+        component: 'confirmModal'
+      }).result.then(() => {
+        this.modalInstance.close();
+      }).catch(() => console.info('Confirm modal dismissed'));
     };
 
     this.cancel = function () {
