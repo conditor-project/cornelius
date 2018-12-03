@@ -29,7 +29,7 @@ export const recordModal = {
       const nearDuplicateRecordSelectedKeys = Object.keys(this.nearDuplicateRecordSelected);
       const keys = [...new Set(recordKeys.concat(nearDuplicateRecordSelectedKeys))];
       keys.map(key => {
-        const notDisplay = ['_score', 'idConditor', 'nearDuplicate', 'isSelected'].includes(key);
+        const notDisplay = ['_score', 'idConditor', 'nearDuplicate', 'isSelected', 'isDuplicateByUser'].includes(key);
         if (notDisplay) return;
         let record = this.record.hasOwnProperty(key) ? this.record[key] : '';
         let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected.hasOwnProperty(key) ? this.nearDuplicateRecordSelected[key] : '';
