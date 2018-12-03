@@ -1,6 +1,7 @@
 import angular from 'angular';
 import 'angular-animate';
 import 'angular-sanitize';
+import config from './config.json';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
 import buttons from 'angular-ui-bootstrap/src/buttons';
@@ -28,12 +29,7 @@ import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
   .module('app', [dropdown, modal, buttons])
-  .constant('API_CONDITOR_CONFIG', {
-    baseUrl: 'https://api-integ.conditor.fr/v1',
-    routes: {
-      record: '/records'
-    }
-  })
+  .constant('API_CONDITOR_CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('sidebar', sidebar)
