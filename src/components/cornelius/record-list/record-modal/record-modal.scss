@@ -37,8 +37,9 @@ record-modal {
   }
 
   .validation-action > .btn-group {
-    width: 39%;
-    margin: 0 3%;
+    $margin-btn: 5%;
+    margin: 0 $margin-btn;
+    width: 45% - ($margin-btn * 2);
   }
 
   .validation-action > .btn-group > label {
