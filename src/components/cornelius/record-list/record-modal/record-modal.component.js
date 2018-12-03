@@ -7,6 +7,7 @@ export const recordModal = {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.recordsComparison = {};
+      this.sizeColumnHeader = 6;
       this.getNearDuplicate().then(() => {
         const sizeColumnHeaderCalculated = Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeader = (this.nearDuplicateRecords.length > 2) ? 3 : sizeColumnHeaderCalculated;
