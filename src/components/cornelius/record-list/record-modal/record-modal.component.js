@@ -9,9 +9,9 @@ export const recordModal = {
       this.recordsComparison = {};
       this.sizeColumnHeaderLevelOne = 6;
       this.getNearDuplicate().then(() => {
-        this.sizeColumnHeaderLevelOne = (this.nearDuplicateRecords.length > 2) ? 3 : Math.floor(12 / (this.nearDuplicateRecords.length + 1));
-        this.sizeColumnHeaderNested = (this.nearDuplicateRecords.length > 2) ? 9 : this.sizeColumnHeaderLevelOne * this.nearDuplicateRecords.length;
-        this.sizeColumnHeaderLevelTwo = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
+        this.sizeColumnHeaderRecord = (this.nearDuplicateRecords.length > 2) ? 3 : Math.floor(12 / (this.nearDuplicateRecords.length + 1));
+        this.sizeColumnHeaderNested = (this.nearDuplicateRecords.length > 2) ? 9 : this.sizeColumnHeaderRecord * this.nearDuplicateRecords.length;
+        this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
         this.nearDuplicateRecordSelected.isSelected = true;
         this.getComparisonInfos();
