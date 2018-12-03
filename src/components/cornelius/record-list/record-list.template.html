@@ -34,7 +34,7 @@
       <div class="near-duplicates">
         near duplicate: {{ record.nearDuplicate.length }}
         (<span ng-repeat="nearDuplicate in record.nearDuplicate">
-          <span ng-if="$odd">, </span>{{ nearDuplicate.idConditor }}
+          <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }}
         </span>)
       </div>
     </div>
