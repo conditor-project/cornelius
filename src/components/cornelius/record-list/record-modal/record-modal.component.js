@@ -53,7 +53,11 @@ export const recordModal = {
       });
     };
 
-    this.ok = function () {
+    this.save = function () {
+      this.modalInstance.close();
+    };
+
+    this.cancel = function () {
       this.modalInstance.close();
     };
 
