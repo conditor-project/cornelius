@@ -28,6 +28,7 @@
   "dependencies": {
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
+    "angular-drag-scroll": "^0.2.2",
     "angular-sanitize": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap": "^3.3.7",

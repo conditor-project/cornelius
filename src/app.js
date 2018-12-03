@@ -5,6 +5,7 @@ import config from './config.json';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
 import buttons from 'angular-ui-bootstrap/src/buttons';
+import 'angular-drag-scroll';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -29,7 +30,7 @@ import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.serv
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [dropdown, modal, buttons])
+  .module('app', [dropdown, modal, buttons, 'ng-drag-scroll'])
   .constant('API_CONDITOR_CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
