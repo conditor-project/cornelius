@@ -38,12 +38,10 @@ export const sidebar = {
     };
 
     this.onChangeSourceForm = function () {
-      console.log(angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source));
       this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
     };
 
     this.onChangeTypeConditorForm = function () {
-      console.log(angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor));
       this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
     };
   },
