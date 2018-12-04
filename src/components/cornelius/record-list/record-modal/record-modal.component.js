@@ -28,12 +28,48 @@ export const recordModal = {
     };
 
     this.getComparisonInfos = function () {
-      const recordKeys = Object.keys(this.record);
-      const nearDuplicateRecordSelectedKeys = Object.keys(this.nearDuplicateRecordSelected);
-      const keys = [...new Set(recordKeys.concat(nearDuplicateRecordSelectedKeys))];
-      keys.map(key => {
-        const notDisplay = ['_score', 'idConditor', 'nearDuplicate', 'isSelected', 'isDuplicateByUser'].includes(key);
-        if (notDisplay) return;
+      const recordsComparison = {};
+      const sortedField = new Set([
+        'source',
+        'title',
+        'titleen',
+        'titlefr',
+        'arxiv',
+        'doi',
+        'nnt',
+        'reportNumber',
+        'authorFull',
+        'halAuthorId',
+        'isni',
+        'orcId',
+        'researcherId',
+        'viaf',
+        'publicationDate',
+        'titreSourceJ',
+        'titreSourceM',
+        'meetingTitle',
+        'volume',
+        'xissn',
+        'issn',
+        'eissn',
+        'isbn',
+        'eisbn',
+        'issue',
+        'specialIssue',
+        'page',
+        'articleNo',
+        'meetAbstrNo',
+        'part',
+        'abstract',
+        'idHal',
+        'pmId',
+        'ppn',
+        'ut',
+        'typeDocument',
+        'typeConditor',
+        'idConditor'
+      ]);
+      sortedField.forEach(key => {
         let record = this.record.hasOwnProperty(key) ? this.record[key] : '';
         let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected.hasOwnProperty(key) ? this.nearDuplicateRecordSelected[key] : '';
         record = (typeof record === 'string') ? record : String(record);
@@ -42,17 +78,18 @@ export const recordModal = {
         const isEqual = (record.toLowerCase() === nearDuplicateRecordSelected.toLowerCase());
         const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
         const maxSizeAbstract = 3000;
-        const toCompare = !['source'].includes(key);
-        if (averageNumberCharacters < maxSizeAbstract && toCompare) {
+        const toBeCompared = !['source'].includes(key);
+        if (averageNumberCharacters < maxSizeAbstract && toBeCompared) {
           const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
           const origin = comparison.filter(chunk => (!chunk.added));
           const target = comparison.filter(chunk => (!chunk.removed));
-          this.recordsComparison[key] = [isEqual, origin, target];
+          recordsComparison[key] = [isEqual, origin, target];
         } else {
           const origin = [{ value: record }];
           const target = [{ value: nearDuplicateRecordSelected }];
-          this.recordsComparison[key] = [isEqual, origin, target];
+          recordsComparison[key] = [isEqual, origin, target];
         }
+        this.recordsComparison = recordsComparison;
       });
     };
 
