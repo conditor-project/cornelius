@@ -7,7 +7,8 @@ export const recordModal = {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.recordsComparison = {};
-      this.sizeColumnHeaderLevelOne = 6;
+      this.sizeColumnHeaderRecord = 6;
+      this.sizeColumnHeaderNested = 6;
       this.getNearDuplicate().then(() => {
         this.sizeColumnHeaderRecord = (this.nearDuplicateRecords.length > 2) ? 3 : Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeaderNested = (this.nearDuplicateRecords.length > 2) ? 9 : this.sizeColumnHeaderRecord * this.nearDuplicateRecords.length;
@@ -56,7 +57,11 @@ export const recordModal = {
 
     this.save = function () {
       $uibModal.open({
-        component: 'confirmModal'
+        component: 'confirmModal',
+        resolve: {
+          record: () => this.record,
+          nearDuplicateRecords: () => this.nearDuplicateRecords
+        }
       }).result.then(() => {
         this.modalInstance.close();
       }).catch(() => console.info('Confirm modal dismissed'));
