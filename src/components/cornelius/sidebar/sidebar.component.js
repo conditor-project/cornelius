@@ -4,7 +4,7 @@ import angular from 'angular';
 import metadataMapping from 'co-config/metadata-mappings.json';
 
 export const sidebar = {
-  controller: function ($scope, jwtModalService, jwtService) {
+  controller: function (jwtModalService, jwtService) {
     this.$onInit = function () {
       this.filterOptionsOrigin = {
         source: {
