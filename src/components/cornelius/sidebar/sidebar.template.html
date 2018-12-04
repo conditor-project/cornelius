@@ -5,24 +5,24 @@
     </div>
     <div class="panel-body">
       <form name="filterForm">
-        <fieldset class="checkbox-group">
+        <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend>Source</legend>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.hal" value="hal">hal</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.hal" ng-change="$ctrl.onChangeSourceForm()" value="hal">hal</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.pubmed" value="pubmed">pubmed</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.pubmed" ng-change="$ctrl.onChangeSourceForm()" value="pubmed">pubmed</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.sudoc" value="sudoc">sudoc</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.sudoc" ng-change="$ctrl.onChangeSourceForm()" value="sudoc">sudoc</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.wos" value="wos">wos</label>
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.wos" ng-change="$ctrl.onChangeSourceForm()" value="wos">wos</label>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
           <legend>Type</legend>
-          <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor">
+          <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">
             <option ng-repeat="type in $ctrl.typeConditor">{{ type }}</option>
           </select>
         </fieldset>

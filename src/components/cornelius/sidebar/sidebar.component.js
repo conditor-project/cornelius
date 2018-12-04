@@ -4,9 +4,9 @@ import angular from 'angular';
 import metadataMapping from 'co-config/metadata-mappings.json';
 
 export const sidebar = {
-  controller: function (jwtModalService, jwtService) {
+  controller: function ($scope, jwtModalService, jwtService) {
     this.$onInit = function () {
-      this.filterOptions = {
+      this.filterOptionsOrigin = {
         source: {
           hal: false,
           pubmed: false,
@@ -16,6 +16,9 @@ export const sidebar = {
         score: 90,
         typeConditor: 'Any'
       };
+      this.filterOptions = angular.copy(this.filterOptionsOrigin);
+      this.isSourceFormActive = false;
+      this.isTypeConditorFormActive = false;
       const typeConditor = metadataMapping
         .map(source => Object.keys(source.mapping).map(key => source.mapping[key]))
         .reduce((accumulator, current) => accumulator.concat(current))
@@ -32,6 +35,16 @@ export const sidebar = {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       const newFilterOptions = angular.copy(this.filterOptions);
       this.onFilterOptionsChange({ newFilterOptions });
+    };
+
+    this.onChangeSourceForm = function () {
+      console.log(angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source));
+      this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
+    };
+
+    this.onChangeTypeConditorForm = function () {
+      console.log(angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor));
+      this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
     };
   },
   bindings: {
