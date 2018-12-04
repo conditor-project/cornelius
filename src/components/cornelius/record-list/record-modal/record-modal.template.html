@@ -68,11 +68,23 @@
   </div>
   <div class="validation-action">
     <div class="btn-group">
-      <label class="btn btn-danger" ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser" uib-btn-radio="true" uncheckable="false">
+      <label 
+        class="btn btn-danger" 
+        ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser" 
+        uib-btn-radio="true" 
+        uncheckable="false"
+        ng-change="$ctrl.checkNearDuplicateRecordsToValidate()"
+      >
         Duplicate
         <span ng-if="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser === true" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </label>
-      <label class="btn btn-success" ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser" uib-btn-radio="false" uncheckable="false">
+      <label
+        class="btn btn-success"
+        ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser"
+        uib-btn-radio="false"
+        uncheckable="false"
+        ng-change="$ctrl.checkNearDuplicateRecordsToValidate()"
+      >
         NOT Duplicate
         <span ng-if="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser === false" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </label>
@@ -81,5 +93,5 @@
 </div>
 <div class="modal-footer">
   <button class="btn btn-warning" ng-click="$ctrl.cancel()">Cancel</button>
-  <button class="btn btn-success" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-success" ng-class="{ disabled: !$ctrl.hasNearDuplicateRecordsToValidate }" ng-click="$ctrl.save()">Save</button>
 </div>

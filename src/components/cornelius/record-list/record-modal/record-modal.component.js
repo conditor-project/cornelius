@@ -9,6 +9,7 @@ export const recordModal = {
       this.recordsComparison = {};
       this.sizeColumnHeaderRecord = 6;
       this.sizeColumnHeaderNested = 6;
+      this.hasNearDuplicateRecordsToValidate = false;
       this.getNearDuplicate().then(() => {
         this.sizeColumnHeaderRecord = (this.nearDuplicateRecords.length > 2) ? 3 : Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeaderNested = (this.nearDuplicateRecords.length > 2) ? 9 : this.sizeColumnHeaderRecord * this.nearDuplicateRecords.length;
@@ -55,7 +56,14 @@ export const recordModal = {
       });
     };
 
+    this.checkNearDuplicateRecordsToValidate = function () {
+      this.hasNearDuplicateRecordsToValidate = Boolean(this.nearDuplicateRecords.filter(record => {
+        return (record.hasOwnProperty('isDuplicateByUser') && record.isDuplicateByUser !== null);
+      }).length);
+    };
+
     this.save = function () {
+      if (!this.hasNearDuplicateRecordsToValidate) return;
       $uibModal.open({
         component: 'confirmModal',
         resolve: {
