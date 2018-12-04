@@ -8,19 +8,19 @@ export const sidebar = {
     this.$onInit = function () {
       this.filterOptions = {
         source: {
-          hal: true,
-          pubmed: true,
-          sudoc: true,
-          wos: true
+          hal: false,
+          pubmed: false,
+          sudoc: false,
+          wos: false
         },
         score: 90,
-        typeConditor: 'All'
+        typeConditor: 'Any'
       };
       const typeConditor = metadataMapping
         .map(source => Object.keys(source.mapping).map(key => source.mapping[key]))
         .reduce((accumulator, current) => accumulator.concat(current))
       ;
-      const uniqTypeConditor = ['All', ...new Set(typeConditor)];
+      const uniqTypeConditor = ['Any', ...new Set(typeConditor)];
       this.typeConditor = uniqTypeConditor;
     };
 

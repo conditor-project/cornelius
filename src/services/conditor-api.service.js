@@ -17,13 +17,13 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   return {
     getRecords: function (filterOptions = {
       source: {
-        hal: true,
-        pubmed: true,
-        sudoc: true,
-        wos: true
+        hal: false,
+        pubmed: false,
+        sudoc: false,
+        wos: false
       },
       score: 90,
-      typeConditor: 'All'
+      typeConditor: 'Any'
     }) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
@@ -31,7 +31,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       let requestUrl = API_CONDITOR_CONFIG.baseUrl + API_CONDITOR_CONFIG.routes.record;
       requestUrl += '/?q=isDuplicate:false AND isNearDuplicate:true';
       if (sources.length > 0) requestUrl += ` AND source:(${sources})`;
-      if (filterOptions.typeConditor !== 'All') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
+      if (filterOptions.typeConditor !== 'Any') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
       requestUrl += `&exclude=${fieldsToExclude.join(',')}`;
       requestUrl += '&page_size=5';
       return $http.get(requestUrl);
