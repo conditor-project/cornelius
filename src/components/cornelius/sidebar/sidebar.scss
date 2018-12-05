@@ -18,17 +18,23 @@ sidebar {
   @media (min-width: $large) {
     width: 292.5px;
   }
-  
+
   fieldset {
     color: #777;
     border: 1px solid #ddd;
     padding: 0 1.4rem 1.4rem 1.4rem;
     margin: 0 0 1.5rem 0;
+    select.form-control {
+      color: #777;
+    }
   }
 
   fieldset.active {
     color: #333;
     border: 1px solid #337ab7;
+    select.form-control {
+      color: #333;
+    }
   }
   
   fieldset legend {
