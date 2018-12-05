@@ -5,6 +5,7 @@ import parseLinkHeader from 'parse-link-header';
 export const recordList = {
   controller: function ($uibModal, jwtModalService, jwtService, conditorApiService) {
     this.$onChanges = function () {
+      this.loading = false;
       this.currentPage = 1;
       this.getRecords();
     };
@@ -24,13 +25,16 @@ export const recordList = {
     };
 
     this.getRecords = function () {
+      this.loading = true;
+      this.totalRecords = '...';
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       conditorApiService.getRecords(this.filterOptions).then((response) => {
+        this.loading = false;
         this.totalRecords = response.headers('X-Total-Count');
-        this.countRecords = response.headers('X-Result-Count');
         this.records = response.data;
         this.links = parseLinkHeader(response.headers('Link'));
       }).catch(response => {
+        this.loading = false;
         this.records = [];
         if (response.status === 401) this.openJwtModal({ force: true });
         // TODO: Manage code error 500
