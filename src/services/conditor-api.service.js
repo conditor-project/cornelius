@@ -35,7 +35,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
       const recordsQueryString = getRecordsQueryString(filterOptions);
-      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
