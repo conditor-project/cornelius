@@ -1,4 +1,4 @@
-import lucene from 'lucene-query-string-builder';
+import luceneQueryStringBuilder from 'lucene-query-string-builder';
 import queryString from 'query-string';
 
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
@@ -17,6 +17,10 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     'path',
     'teiBlob'
   ];
+  const defaultFields = [
+    luceneQueryStringBuilder.field('isDuplicate', 'false'),
+    luceneQueryStringBuilder.field('isNearDuplicate', 'true')
+  ];
   return {
     getRecords: function (filterOptions = {
       source: {
@@ -31,7 +35,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
       const recordsQueryString = getRecordsQueryString(filterOptions);
-      let requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
@@ -48,20 +52,18 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     getAggregationsSource: function () {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const requestUrl = API_CONDITOR_CONFIG.baseUrl + API_CONDITOR_CONFIG.routes.record + `/v1/records/?aggs=terms:source&size=0`;
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?aggs=terms:source&size=0`;
       return $http.get(requestUrl);
     }
   };
 
   function getRecordsQueryString (data) {
+    const { field, group, or, and } = luceneQueryStringBuilder;
     const source = Object.keys(data.source).filter(source => data.source[source]);
-    const fields = [
-      lucene.field('isDuplicate', 'false'),
-      lucene.field('isNearDuplicate', 'true')
-    ];
-    if (source.length > 0) fields.push(lucene.field('source', lucene.group(lucene.or(...source))));
-    if (data.typeConditor !== 'Any') fields.push(lucene.field('typeConditor', data.typeConditor));
-    const luceneQueryString = lucene.and(...fields);
+    const fields = [...defaultFields];
+    if (source.length > 0) fields.push(field('source', group(or(...source))));
+    if (data.typeConditor !== 'Any') fields.push(field('typeConditor', data.typeConditor));
+    const luceneQueryString = and(...fields);
     const output = {
       q: luceneQueryString,
       exclude: fieldsToExclude.join(','),
