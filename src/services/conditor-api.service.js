@@ -1,3 +1,6 @@
+import lucene from 'lucene-query-string-builder';
+import queryString from 'query-string';
+
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   const fieldsToExclude = [
     'authorRef',
@@ -27,13 +30,8 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     }) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const sources = Object.keys(filterOptions.source).filter(source => filterOptions.source[source]).join(' OR ');
-      let requestUrl = API_CONDITOR_CONFIG.baseUrl + API_CONDITOR_CONFIG.routes.record;
-      requestUrl += '/?q=isDuplicate:false AND isNearDuplicate:true';
-      if (sources.length > 0) requestUrl += ` AND source:(${sources})`;
-      if (filterOptions.typeConditor !== 'Any') requestUrl += ` AND typeConditor:${filterOptions.typeConditor}`;
-      requestUrl += `&exclude=${fieldsToExclude.join(',')}`;
-      requestUrl += '&page_size=5';
+      const recordsQueryString = getRecordsQueryString(filterOptions);
+      let requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
@@ -54,4 +52,21 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       return $http.get(requestUrl);
     }
   };
+
+  function getRecordsQueryString (data) {
+    const source = Object.keys(data.source).filter(source => data.source[source]);
+    const fields = [
+      lucene.field('isDuplicate', 'false'),
+      lucene.field('isNearDuplicate', 'true')
+    ];
+    if (source.length > 0) fields.push(lucene.field('source', lucene.group(lucene.or(...source))));
+    if (data.typeConditor !== 'Any') fields.push(lucene.field('typeConditor', data.typeConditor));
+    const luceneQueryString = lucene.and(...fields);
+    const output = {
+      q: luceneQueryString,
+      exclude: fieldsToExclude.join(','),
+      'page_size': 5
+    };
+    return queryString.stringify(output);
+  }
 }
