@@ -1,10 +1,9 @@
 import './sidebar.scss';
 import template from './sidebar.template.html';
 import angular from 'angular';
-import metadataMapping from 'co-config/metadata-mappings.json';
 
 export const sidebar = {
-  controller: function (jwtModalService, jwtService) {
+  controller: function (jwtModalService, jwtService, conditorApiService) {
     this.$onInit = function () {
       this.filterOptionsOrigin = {
         source: {
@@ -13,18 +12,27 @@ export const sidebar = {
           sudoc: false,
           wos: false
         },
-        score: 90,
         typeConditor: 'Any'
       };
       this.filterOptions = angular.copy(this.filterOptionsOrigin);
       this.isSourceFormActive = false;
       this.isTypeConditorFormActive = false;
-      const typeConditor = metadataMapping
-        .map(source => Object.keys(source.mapping).map(key => source.mapping[key]))
-        .reduce((accumulator, current) => accumulator.concat(current))
+      conditorApiService.getAggregationsTypeConditor()
+        .then(response => {
+          this.typeConditor = [
+            this.filterOptionsOrigin.typeConditor,
+            ...response.data.aggregations.typeConditor.buckets.map(bucket => bucket.key)
+          ];
+          return conditorApiService.getAggregationsSource();
+        })
+        .then(response => {
+          this.sources = response.data.aggregations.source.buckets.map(bucket => bucket.key);
+        })
+        .catch(response => {
+          if (response.status === 401) this.openJwtModal({ force: true });
+          console.error(response);
+        })
       ;
-      const uniqTypeConditor = [this.filterOptionsOrigin.typeConditor, ...new Set(typeConditor)];
-      this.typeConditor = uniqTypeConditor;
     };
 
     this.openJwtModal = function (options = { force: false }) {

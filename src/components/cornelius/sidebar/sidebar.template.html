@@ -7,30 +7,16 @@
       <form name="filterForm">
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend>Source</legend>
-          <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.hal" ng-change="$ctrl.onChangeSourceForm()" value="hal">hal</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.pubmed" ng-change="$ctrl.onChangeSourceForm()" value="pubmed">pubmed</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.sudoc" ng-change="$ctrl.onChangeSourceForm()" value="sudoc">sudoc</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source.wos" ng-change="$ctrl.onChangeSourceForm()" value="wos">wos</label>
+          <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
+            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source[source]" ng-change="$ctrl.onChangeSourceForm()" value="source">{{ source }}</label>
           </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
           <legend>Type</legend>
           <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">
-            <option ng-repeat="type in $ctrl.typeConditor">{{ type }}</option>
+            <option ng-repeat="type in $ctrl.typeConditor | orderBy:'+'">{{ type }}</option>
           </select>
         </fieldset>
-        <!-- <fieldset>
-          <legend>Similarity score</legend>
-          <strong>&ge; {{ $ctrl.filterOptions.score }}</strong>
-          <input type="range" min="80" max="100" ng-model="$ctrl.filterOptions.score" class="slider">
-        </fieldset> -->
         <button type="submit" ng-click="$ctrl.apply()" class="btn btn-primary pull-right">Apply</button>
       </form>
     </div>
