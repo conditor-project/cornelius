@@ -52,7 +52,15 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     getAggregationsSource: function () {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}${API_CONDITOR_CONFIG.routes.record}/?aggs=terms:source&size=0`;
+      const aggregationsSourceQueryString = getAggregationsQueryString({ name: 'source', value: 'source' });
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsSourceQueryString}`;
+      return $http.get(requestUrl);
+    },
+    getAggregationsTypeConditor: function () {
+      const tokenJwt = jwtService.getTokenJwt();
+      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      const aggregationsTypeConditorQueryString = getAggregationsQueryString({ name: 'typeConditor', value: 'typeConditor.normalized' });
+      const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
     }
   };
@@ -68,6 +76,18 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       q: luceneQueryString,
       exclude: fieldsToExclude.join(','),
       'page_size': 5
+    };
+    return queryString.stringify(output);
+  }
+
+  function getAggregationsQueryString (terms) {
+    const { field, and } = luceneQueryStringBuilder;
+    const fields = [...defaultFields];
+    const luceneQueryString = and(...fields);
+    const output = {
+      q: luceneQueryString,
+      aggs: field(field('terms', terms.value), `{ name: ${terms.name} }`),
+      'page_size': 0
     };
     return queryString.stringify(output);
   }
