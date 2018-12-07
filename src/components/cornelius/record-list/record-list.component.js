@@ -7,11 +7,11 @@ export const recordList = {
     this.$onChanges = function () {
       this.loading = false;
       this.currentPage = 1;
-      this.getRecords();
+      this.getRecords(this.filterOptions);
     };
 
     this.openJwtModal = function (options = { force: false }) {
-      jwtModalService.open(options).then(() => this.getRecords());
+      jwtModalService.open(options).then(() => this.getRecords(this.filterOptions));
     };
 
     this.openRecordModal = function (record) {

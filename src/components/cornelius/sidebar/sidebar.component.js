@@ -23,7 +23,7 @@ export const sidebar = {
         .map(source => Object.keys(source.mapping).map(key => source.mapping[key]))
         .reduce((accumulator, current) => accumulator.concat(current))
       ;
-      const uniqTypeConditor = ['Any', ...new Set(typeConditor)];
+      const uniqTypeConditor = [this.filterOptionsOrigin.typeConditor, ...new Set(typeConditor)];
       this.typeConditor = uniqTypeConditor;
     };
 
