@@ -9,6 +9,7 @@ export const sidebar = {
         source: {},
         typeConditor: 'Any'
       };
+      this.filterOptions = angular.copy(this.filterOptionsOrigin);
       this.isSourceFormActive = false;
       this.isTypeConditorFormActive = false;
       this.initFilterOptions().catch(response => {
@@ -18,18 +19,18 @@ export const sidebar = {
     };
 
     this.initFilterOptions = function () {
-      return conditorApiService.getAggregationsTypeConditor().then(response => {
+      return conditorApiService.getAggregationsTypeConditor(this.filterOptions).then(response => {
         this.typeConditor = [
           this.filterOptionsOrigin.typeConditor,
           ...response.data.aggregations.typeConditor.buckets.map(bucket => bucket.key)
         ];
-        return conditorApiService.getAggregationsSource();
+        return conditorApiService.getAggregationsSource(this.filterOptions);
       }).then(response => {
         response.data.aggregations.source.buckets.map(bucket => {
           this.filterOptionsOrigin.source[bucket.key] = false;
         });
         this.filterOptions = angular.copy(this.filterOptionsOrigin);
-        this.sources = response.data.aggregations.source.buckets.map(bucket => bucket.key);
+        this.sources = response.data.aggregations.source.buckets;
       });
     };
 
@@ -44,7 +45,17 @@ export const sidebar = {
     this.apply = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       const newFilterOptions = angular.copy(this.filterOptions);
-      this.onFilterOptionsChange({ newFilterOptions });
+      conditorApiService.getAggregationsSource(this.filterOptions).then(response => {
+        this.sources.forEach(source => {
+          source.doc_count = 0;
+        });
+        response.data.aggregations.source.buckets.map(bucket => {
+          const source = this.sources.filter(source => source.key === bucket.key).pop();
+          source.doc_count = bucket.doc_count;
+        });
+      }).then(() => {
+        this.onFilterOptionsChange({ newFilterOptions });
+      });
     };
 
     this.onChangeSourceForm = function () {

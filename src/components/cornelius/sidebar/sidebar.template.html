@@ -8,7 +8,11 @@
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend>Source</legend>
           <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
-            <label><input type="checkbox" ng-model="$ctrl.filterOptions.source[source]" ng-change="$ctrl.onChangeSourceForm()" value="source">{{ source }}</label>
+            <label>
+              <input type="checkbox" ng-model="$ctrl.filterOptions.source[source.key]" ng-change="$ctrl.onChangeSourceForm()" value="source.key">
+              {{ source.key }}
+              <span class="badge">{{ source.doc_count }}</span>
+            </label>
           </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
