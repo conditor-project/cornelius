@@ -49,17 +49,19 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
       return $http.get(url);
     },
-    getAggregationsSource: function () {
+    getAggregationsSource: function (filterOptions) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const aggregationsSourceQueryString = getAggregationsQueryString({ name: 'source', value: 'source' });
+      filterOptions.aggregationTerms = { name: 'source', value: 'source' };
+      const aggregationsSourceQueryString = getAggregationsQueryString(filterOptions);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsSourceQueryString}`;
       return $http.get(requestUrl);
     },
-    getAggregationsTypeConditor: function () {
+    getAggregationsTypeConditor: function (filterOptions) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
-      const aggregationsTypeConditorQueryString = getAggregationsQueryString({ name: 'typeConditor', value: 'typeConditor.normalized' });
+      filterOptions.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
+      const aggregationsTypeConditorQueryString = getAggregationsQueryString(filterOptions);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
     }
@@ -80,13 +82,16 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     return queryString.stringify(output);
   }
 
-  function getAggregationsQueryString (terms) {
-    const { field, and } = luceneQueryStringBuilder;
+  function getAggregationsQueryString (data) {
+    const { field, group, or, and } = luceneQueryStringBuilder;
+    const source = Object.keys(data.source).filter(source => data.source[source]);
     const fields = [...defaultFields];
+    if (source.length > 0) fields.push(field('source', group(or(...source))));
+    if (data.typeConditor !== 'Any') fields.push(field('typeConditor', data.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
       q: luceneQueryString,
-      aggs: field(field('terms', terms.value), `{ name: ${terms.name} }`),
+      aggs: field(field('terms', data.aggregationTerms.value), `{ name: ${data.aggregationTerms.name} }`),
       'page_size': 0
     };
     return queryString.stringify(output);
