@@ -18,7 +18,9 @@
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
           <legend>Type</legend>
           <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">
-            <option ng-repeat="type in $ctrl.typeConditor | orderBy:'+'" value="{{ type.key }}">{{ type.key }} {{ type.doc_count }}</option>
+            <option ng-repeat="type in $ctrl.typeConditor | orderBy:'+'" value="{{ type.key }}">
+              {{ type.key }} {{ type.doc_count }}
+            </option>
           </select>
         </fieldset>
         <button type="submit" ng-click="$ctrl.apply()" class="btn btn-primary pull-right">Apply</button>
