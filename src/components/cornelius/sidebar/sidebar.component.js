@@ -6,37 +6,39 @@ export const sidebar = {
   controller: function (jwtModalService, jwtService, conditorApiService) {
     this.$onInit = function () {
       this.filterOptionsOrigin = {
-        source: {
-          hal: false,
-          pubmed: false,
-          sudoc: false,
-          wos: false
-        },
+        source: {},
         typeConditor: 'Any'
       };
-      this.filterOptions = angular.copy(this.filterOptionsOrigin);
       this.isSourceFormActive = false;
       this.isTypeConditorFormActive = false;
-      conditorApiService.getAggregationsTypeConditor()
-        .then(response => {
-          this.typeConditor = [
-            this.filterOptionsOrigin.typeConditor,
-            ...response.data.aggregations.typeConditor.buckets.map(bucket => bucket.key)
-          ];
-          return conditorApiService.getAggregationsSource();
-        })
-        .then(response => {
-          this.sources = response.data.aggregations.source.buckets.map(bucket => bucket.key);
-        })
-        .catch(response => {
-          if (response.status === 401) this.openJwtModal({ force: true });
-          console.error(response);
-        })
-      ;
+      this.initFilterOptions().catch(response => {
+        if (response.status === 401) this.openJwtModal({ force: true });
+        console.error(response);
+      });
+    };
+
+    this.initFilterOptions = function () {
+      return conditorApiService.getAggregationsTypeConditor().then(response => {
+        this.typeConditor = [
+          this.filterOptionsOrigin.typeConditor,
+          ...response.data.aggregations.typeConditor.buckets.map(bucket => bucket.key)
+        ];
+        return conditorApiService.getAggregationsSource();
+      }).then(response => {
+        response.data.aggregations.source.buckets.map(bucket => {
+          this.filterOptionsOrigin.source[bucket.key] = false;
+        });
+        this.filterOptions = angular.copy(this.filterOptionsOrigin);
+        this.sources = response.data.aggregations.source.buckets.map(bucket => bucket.key);
+      });
     };
 
     this.openJwtModal = function (options = { force: false }) {
-      jwtModalService.open(options).then(() => this.apply());
+      jwtModalService.open(options).then(() => {
+        return this.initFilterOptions();
+      }).then(() => {
+        this.apply();
+      });
     };
 
     this.apply = function () {
