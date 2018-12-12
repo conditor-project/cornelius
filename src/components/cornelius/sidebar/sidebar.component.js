@@ -20,9 +20,16 @@ export const sidebar = {
 
     this.initFilterOptions = function () {
       return conditorApiService.getAggregationsTypeConditor(this.filterOptions).then(response => {
+        const totalCount = response.data.aggregations.typeConditor.buckets
+          .map(bucket => bucket.doc_count)
+          .reduce((accumulator, currentValue) => accumulator + currentValue)
+        ;
         this.typeConditor = [
-          this.filterOptionsOrigin.typeConditor,
-          ...response.data.aggregations.typeConditor.buckets.map(bucket => bucket.key)
+          {
+            key: this.filterOptionsOrigin.typeConditor,
+            doc_count: totalCount
+          },
+          ...response.data.aggregations.typeConditor.buckets
         ];
         return conditorApiService.getAggregationsSource(this.filterOptions);
       }).then(response => {
@@ -52,6 +59,20 @@ export const sidebar = {
         response.data.aggregations.source.buckets.map(bucket => {
           const source = this.sources.filter(source => source.key === bucket.key).pop();
           source.doc_count = bucket.doc_count;
+        });
+        return conditorApiService.getAggregationsTypeConditor(this.filterOptions);
+      }).then(response => {
+        this.typeConditor.forEach(typeConditor => {
+          typeConditor.doc_count = 0;
+        });
+        const totalCount = response.data.aggregations.typeConditor.buckets
+          .map(bucket => bucket.doc_count)
+          .reduce((accumulator, currentValue) => accumulator + currentValue)
+        ;
+        this.typeConditor[0].doc_count = totalCount;
+        response.data.aggregations.typeConditor.buckets.map(bucket => {
+          const typeConditor = this.typeConditor.filter(typeConditor => typeConditor.key === bucket.key).pop();
+          typeConditor.doc_count = bucket.doc_count;
         });
       }).then(() => {
         this.onFilterOptionsChange({ newFilterOptions });
