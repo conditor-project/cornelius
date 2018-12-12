@@ -23,16 +23,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     luceneQueryStringBuilder.field('isNearDuplicate', 'true')
   ];
   return {
-    getRecords: function (filterOptions = {
-      source: {
-        hal: false,
-        pubmed: false,
-        sudoc: false,
-        wos: false
-      },
-      score: 90,
-      typeConditor: 'Any'
-    }) {
+    getRecords: function (filterOptions = { source: {}, typeConditor: 'Any' }) {
       const tokenJwt = jwtService.getTokenJwt();
       if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
       const recordsQueryString = getQueryString(filterOptions);
