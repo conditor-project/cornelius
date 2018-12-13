@@ -37,6 +37,7 @@
     "diff": "^3.5.0",
     "lucene-query-string-builder": "git+https://github.com/conditor-project/lucene-query-string-builder.git",
     "parse-link-header": "^1.0.1",
-    "query-string": "^6.2.0"
+    "query-string": "^6.2.0",
+    "ui-select": "^0.19.8"
   }
 }
