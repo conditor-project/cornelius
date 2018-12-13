@@ -11,7 +11,7 @@
             <label>
               <input type="checkbox" ng-model="$ctrl.filterOptions.source[source.key]" ng-change="$ctrl.onChangeSourceForm()" value="{{ source.key }}">
               {{ source.key }}
-              <span class="badge">{{ source.doc_count }}</span>
+              <span class="badge">{{ source.doc_count | number }}</span>
             </label>
           </div>
         </fieldset>
@@ -21,8 +21,8 @@
             <ui-select ng-model="$ctrl.filterOptions.typeConditor" search-enabled="false" ng-change="$ctrl.onChangeTypeConditorForm()">
               <ui-select-match>{{ $select.selected.key }}</ui-select-match>
               <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
-                <div>{{ type.key }}</div>
-                <small>{{ type.doc_count }} notices</small>
+                {{ type.key }}
+                <span class="badge">{{ type.doc_count | number }}</span>
               </ui-select-choices>
             </ui-select>
           </div>

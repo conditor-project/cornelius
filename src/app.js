@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-i18n/angular-locale_fr-fr';
 import 'angular-animate';
 import ngSanitize from 'angular-sanitize';
 import config from './config.json';
