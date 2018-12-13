@@ -17,11 +17,15 @@
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
           <legend>Type</legend>
-          <select class="form-control" ng-model="$ctrl.filterOptions.typeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">
-            <option ng-repeat="type in $ctrl.typeConditor | orderBy:'+'" value="{{ type.key }}">
-              {{ type.key }} {{ type.doc_count }}
-            </option>
-          </select>
+          <div class="form-group">
+            <ui-select ng-model="$ctrl.filterOptions.typeConditor" search-enabled="false" ng-change="$ctrl.onChangeTypeConditorForm()">
+              <ui-select-match>{{ $select.selected.key }}</ui-select-match>
+              <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
+                <div>{{ type.key }}</div>
+                <small>{{ type.doc_count }} notices</small>
+              </ui-select-choices>
+            </ui-select>
+          </div>
         </fieldset>
         <button type="submit" ng-click="$ctrl.apply()" class="btn btn-primary pull-right">Apply</button>
       </form>
