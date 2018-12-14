@@ -83,7 +83,7 @@ export const sidebar = {
     this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
       this.apply();
-    }, 400);
+    }, 200);
 
     this.onChangeTypeConditorForm = function () {
       this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
