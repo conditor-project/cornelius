@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const config = {
   entry: './src/app.js',
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.resolve(__dirname, './dist'),
     filename: './bundle.js'
   },
   module: {
@@ -52,7 +52,7 @@ const config = {
     minimizer: [new UglifyJsPlugin()]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './public'),
+    contentBase: path.resolve(__dirname, './dist'),
     historyApiFallback: true,
     inline: true,
     open: true,
