@@ -10,3 +10,18 @@ table {
 .modal-header, .modal-footer {
   background-color: #f5f5f5;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.middle {
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  justify-content: right;
+}
