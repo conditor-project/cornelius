@@ -19,7 +19,7 @@
           <legend>Type</legend>
           <div class="form-group">
             <ui-select ng-model="$ctrl.filterOptions.typeConditor" search-enabled="false" ng-change="$ctrl.onChangeTypeConditorForm()">
-              <ui-select-match>{{ $select.selected.key }}</ui-select-match>
+              <ui-select-match>{{ $select.selected.key }} <span class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
               <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
                 {{ type.key }}
                 <span class="badge">{{ type.doc_count | number }}</span>
