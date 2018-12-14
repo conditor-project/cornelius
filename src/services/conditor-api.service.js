@@ -24,26 +24,22 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   ];
   return {
     getRecords: function (filterOptions = { source: {}, typeConditor: 'Any' }) {
-      const tokenJwt = jwtService.getTokenJwt();
-      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      checkTokenJWT();
       const recordsQueryString = getQueryString(filterOptions);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
-      const tokenJwt = jwtService.getTokenJwt();
-      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      checkTokenJWT();
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getRecordsFromUrl: function (url) {
-      const tokenJwt = jwtService.getTokenJwt();
-      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      checkTokenJWT();
       return $http.get(url);
     },
     getAggregationsSource: function (filterOptions) {
-      const tokenJwt = jwtService.getTokenJwt();
-      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      checkTokenJWT();
       const filterOptionsCopy = angular.copy(filterOptions);
       filterOptionsCopy.aggregationTerms = { name: 'source', value: 'source' };
       filterOptionsCopy.source = {};
@@ -52,8 +48,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       return $http.get(requestUrl);
     },
     getAggregationsTypeConditor: function (filterOptions) {
-      const tokenJwt = jwtService.getTokenJwt();
-      if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
+      checkTokenJWT();
       const filterOptionsCopy = angular.copy(filterOptions);
       filterOptionsCopy.typeConditor = 'Any';
       filterOptionsCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
@@ -81,5 +76,10 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       output.page_size = 5;
     }
     return queryString.stringify(output);
+  }
+
+  function checkTokenJWT () {
+    const tokenJwt = jwtService.getTokenJwt();
+    if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
   }
 }
