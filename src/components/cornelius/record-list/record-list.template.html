@@ -1,15 +1,7 @@
 <div class="record-header">
   <div class="row">
-    <div class="col-sm-4">
-      <div class="total-records">
-        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-        Total records
-        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="$ctrl.loading"></span>
-        <span class="badge">{{ $ctrl.totalRecords | number }}</span>
-      </div>
-    </div>
-    <div class="col-sm-4 text-center">
-      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" current-page="$ctrl.currentPage"></pagination>
+    <div class="col-sm-12 middle center">
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
     </div>
   </div>
 </div>
@@ -44,8 +36,8 @@
 </div>
 <div class="record-footer">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4 text-center">
-      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" current-page="$ctrl.currentPage"></pagination>
+    <div class="col-sm-12 middle center">
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
     </div>
   </div>
 </div>
