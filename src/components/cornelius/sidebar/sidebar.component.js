@@ -81,10 +81,12 @@ export const sidebar = {
 
     this.onChangeSourceForm = function () {
       this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
+      this.apply();
     };
 
     this.onChangeTypeConditorForm = function () {
       this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
+      this.apply();
     };
   },
   bindings: {
