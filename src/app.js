@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'angular-i18n/angular-locale_fr-fr';
-import 'angular-animate';
+import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
 import config from './config.json';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
@@ -33,7 +33,7 @@ import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.serv
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [ngSanitize, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect])
+  .module('app', [ngAnimate, ngSanitize, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect])
   .constant('API_CONDITOR_CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
