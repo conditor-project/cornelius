@@ -1,6 +1,7 @@
 import './sidebar.scss';
 import template from './sidebar.template.html';
 import angular from 'angular';
+import debounce from 'lodash.debounce';
 
 export const sidebar = {
   controller: function (jwtModalService, jwtService, conditorApiService) {
@@ -79,10 +80,10 @@ export const sidebar = {
       });
     };
 
-    this.onChangeSourceForm = function () {
+    this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
       this.apply();
-    };
+    }, 400);
 
     this.onChangeTypeConditorForm = function () {
       this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
