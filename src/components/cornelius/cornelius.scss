@@ -1,0 +1,10 @@
+cornelius {
+  display: block;
+  background-color: #DDD;
+  
+  .container > .row {
+    padding-top: 60px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
