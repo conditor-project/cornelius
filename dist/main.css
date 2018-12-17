@@ -6442,9 +6442,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-body {
-  margin-top: 60px; }
-
 table {
   table-layout: fixed;
   word-wrap: break-word; }
@@ -6777,6 +6774,17 @@ body > .ui-select-bootstrap.open {
 
 .ui-select-refreshing.ng-animate {
   -webkit-animation: none 0s; }
+
+cornelius {
+  display: block;
+  background-color: #DDD; }
+  cornelius .container > .row {
+    padding-top: 60px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+
+navbar nav {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
 
 @media (min-width: 768px) {
   sidebar {
