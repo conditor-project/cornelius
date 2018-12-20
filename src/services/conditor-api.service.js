@@ -73,7 +73,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       output.page_size = 0;
     } else {
       output.exclude = fieldsToExclude.join(',');
-      output.page_size = 5;
+      output.page_size = API_CONDITOR_CONFIG.pageSize;
     }
     return queryString.stringify(output);
   }
