@@ -6461,6 +6461,11 @@ table {
   display: flex;
   justify-content: right; }
 
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap; }
+
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
@@ -6879,10 +6884,24 @@ record-list .no-results {
   to {
     transform: scale(1) rotate(360deg); } }
 
-record-modal .modal-header .row .row {
-  overflow-x: auto;
-  white-space: nowrap;
-  cursor: grab; }
+record-modal .modal-header {
+  padding: 0 15px; }
+  record-modal .modal-header .row .row {
+    overflow-x: auto;
+    white-space: nowrap;
+    cursor: grab; }
+
+record-modal .shadow {
+  width: 10px;
+  z-index: 1;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  box-shadow: inset 5px 0 5px -5px #666; }
+
+record-modal .near-duplicate-records {
+  background-color: #e2e2e2;
+  border-left: 1px solid #666; }
 
 record-modal .near-duplicate-record {
   vertical-align: top;
@@ -6891,7 +6910,8 @@ record-modal .near-duplicate-record {
 
 record-modal .modal-header .panel {
   cursor: pointer;
-  white-space: normal; }
+  white-space: normal;
+  margin: 10px 0; }
 
 record-modal .panel-title {
   font-size: 1.3rem; }
