@@ -21,3 +21,9 @@ table {
   display: flex;
   justify-content: right;
 }
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
