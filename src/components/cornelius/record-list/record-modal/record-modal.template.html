@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <div class="row">
-    <div class="col-md-{{ $ctrl.sizeColumnHeaderRecord }}">
+  <div class="row equal">
+    <div class="col-md-{{ $ctrl.sizeColumnHeaderRecord }} origin-record">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
@@ -16,7 +16,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-{{ $ctrl.sizeColumnHeaderNested }}">
+    <div class="col-md-{{ $ctrl.sizeColumnHeaderNested }} near-duplicate-records">
+      <div ng-if="$ctrl.nearDuplicateRecords.length > 2" class="shadow"></div>
       <div drag-scroll="true" axis="x" class="row">
         <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords" class="near-duplicate-record col-md-{{ $ctrl.sizeColumnHeaderNearDuplicateRecords }}">
           <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"

@@ -1,19 +1,37 @@
 record-modal {
-  .modal-header .row .row {
-    overflow-x: auto;
-    white-space: nowrap;
-    cursor: grab;
+  .modal-header {
+    padding: 0 15px;
+    .row .row {
+      overflow-x: auto;
+      white-space: nowrap;
+      cursor: grab;
+    }
   }
-  
+
+  .shadow {
+    width: 10px;
+    z-index: 1;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    box-shadow: inset 5px 0 5px -5px #666;
+  }
+
+  .near-duplicate-records {
+    background-color: #e2e2e2;
+    border-left: 1px solid #666;
+  }
+
   .near-duplicate-record {
     vertical-align: top;
     display: inline-block;
-    float: none; 
+    float: none;
   }
   
   .modal-header .panel {
     cursor: pointer;
     white-space: normal;
+    margin: 10px 0;
   }
   
   .panel-title {
