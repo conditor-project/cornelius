@@ -4,7 +4,36 @@ cornelius {
   
   .container > .row {
     padding-top: 60px;
+    padding-bottom: 30px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    min-height: 500px;
+  }
+
+  footer {
+    padding: 10px 0;
+    background-color: #333;
+    color: #DDD;
+    
+    .logo {
+      height: 40px;
+      margin: 0 10px;
+    }
+
+    a, a:hover {
+      color: #DDD;
+    }
+
+    .list-inline > li {
+      padding: 0 20px;
+    }
+
+    .fa {
+      margin: 0 5px;
+    }
+
+    .fa-heart {
+      color: red;
+    }
   }
 }

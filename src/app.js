@@ -11,6 +11,7 @@ import uiSelect from 'ui-select';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/scss/font-awesome.scss';
 import './app.scss';
 import 'ui-select/dist/select.css';
 
