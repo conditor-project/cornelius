@@ -4,7 +4,8 @@
   "description": "Validation application for bibliographic records",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -d --hot --watch",
+    "start": "node ./bin/www",
+    "dev": "webpack-dev-server -d --hot --watch",
     "build": "webpack --mode=production",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
@@ -36,9 +37,11 @@
     "bootstrap": "^3.4.0",
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "diff": "^4.0.1",
+    "express": "^4.16.4",
     "font-awesome": "^4.7.0",
     "lodash.debounce": "^4.0.8",
     "lucene-query-string-builder": "^1.0.1",
+    "morgan": "^1.9.1",
     "parse-link-header": "^1.0.1",
     "query-string": "^6.2.0",
     "ui-select": "git+https://github.com/conditor-project/ui-select.git"
