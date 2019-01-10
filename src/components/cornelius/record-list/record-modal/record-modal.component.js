@@ -31,23 +31,23 @@ export const recordModal = {
       const recordsComparison = {};
       const sortedField = new Set([
         'source',
-        'title',
-        'titleen',
-        'titlefr',
+        'title.default',
+        'title.en',
+        'title.fr',
         'arxiv',
         'doi',
         'nnt',
         'reportNumber',
-        'authorFull',
+        'authorNames',
         'halAuthorId',
         'isni',
         'orcId',
         'researcherId',
         'viaf',
         'publicationDate',
-        'titreSourceJ',
-        'titreSourceM',
-        'meetingTitle',
+        'title.journal',
+        'title.monography',
+        'title.meeting',
         'volume',
         'xissn',
         'issn',
@@ -56,16 +56,16 @@ export const recordModal = {
         'eisbn',
         'issue',
         'specialIssue',
-        'page',
-        'articleNo',
+        'pageRange',
+        'articleNumber',
         'meetAbstrNo',
         'part',
         'abstract',
         'idHal',
         'pmId',
         'ppn',
-        'ut',
-        'typeDocument',
+        'utKey',
+        'documentType',
         'typeConditor',
         'idConditor'
       ]);
@@ -117,7 +117,7 @@ export const recordModal = {
     };
 
     this.getNearDuplicate = function () {
-      const nearDuplicateRecords = this.record.nearDuplicate.map(nearDuplicateRecord => {
+      const nearDuplicateRecords = this.record.nearDuplicates.map(nearDuplicateRecord => {
         return conditorApiService.getRecordById(nearDuplicateRecord.idConditor);
       });
       return $q.all(nearDuplicateRecords).then(responses => {

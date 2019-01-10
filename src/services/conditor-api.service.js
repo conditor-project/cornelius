@@ -4,17 +4,17 @@ import angular from 'angular';
 
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   const fieldsToExclude = [
-    'authorRef',
+    'authors',
     'creationDate',
-    'duplicate',
+    'duplicates',
     'duplicateRules',
-    'hadTransDuplicate',
+    'hasTransDuplicate',
     'hasDoi',
     'idChain',
     'isDeduplicable',
     'isDuplicate',
     'isNearDuplicate',
-    'ingestId',
+    'sessionName',
     'path',
     'teiBlob'
   ];
