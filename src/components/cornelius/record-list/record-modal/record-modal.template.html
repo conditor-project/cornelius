@@ -3,7 +3,7 @@
     <div class="col-md-{{ $ctrl.sizeColumnHeaderRecord }} origin-record">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
+          <h5 class="panel-title">{{ $ctrl.record.title.default }}</h5>
         </div>
         <div class="panel-body">
           <div class="details">
@@ -23,7 +23,7 @@
           <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
             ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
             <div class="panel-heading">
-              <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
+              <h5 class="panel-title">{{ nearDuplicateRecord.title.default }}</h5>
             </div>
             <div class="panel-body">
               <div class="details">

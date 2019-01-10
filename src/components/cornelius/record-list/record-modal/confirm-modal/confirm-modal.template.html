@@ -7,7 +7,7 @@
   </p>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
+      <h5 class="panel-title">{{ $ctrl.record.title.default }}</h5>
     </div>
     <div class="panel-body">
       <div class="details">
@@ -22,7 +22,7 @@
   <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords | filter:{ isDuplicateByUser: '' }" class="near-duplicate-record">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
+        <h5 class="panel-title">{{ nearDuplicateRecord.title.default }}</h5>
       </div>
       <div class="panel-body">
         <div class="details">
