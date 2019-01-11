@@ -76,7 +76,7 @@ export const filter = {
           typeConditor.doc_count = bucket.doc_count;
         });
       }).then(() => {
-        this.onoptionsChange({ newOptions });
+        this.onOptionsChange({ newOptions });
       });
     };
 
@@ -91,7 +91,7 @@ export const filter = {
     };
   },
   bindings: {
-    onoptionsChange: '&'
+    onOptionsChange: '&'
   },
   template
 };
