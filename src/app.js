@@ -18,7 +18,7 @@ import 'ui-select/dist/select.css';
 // Components
 import { cornelius } from './components/cornelius/cornelius.component';
 import { navbar } from './components/cornelius/navbar/navbar.component';
-import { sidebar } from './components/cornelius/sidebar/sidebar.component';
+import { filter } from './components/cornelius/filter/filter.component';
 import { recordList } from './components/cornelius/record-list/record-list.component';
 import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
 import { recordModal } from './components/cornelius/record-list/record-modal/record-modal.component';
@@ -38,7 +38,7 @@ angular
   .constant('API_CONDITOR_CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
-  .component('sidebar', sidebar)
+  .component('filter', filter)
   .component('recordList', recordList)
   .component('jwtModal', jwtModal)
   .component('recordModal', recordModal)
