@@ -12,13 +12,14 @@ import uiSelect from 'ui-select';
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/scss/font-awesome.scss';
-import './app.scss';
 import 'ui-select/dist/select.css';
+import './app.scss';
 
 // Components
 import { cornelius } from './components/cornelius/cornelius.component';
 import { navbar } from './components/cornelius/navbar/navbar.component';
 import { filter } from './components/cornelius/filter/filter.component';
+import { sort } from './components/cornelius/sort/sort.component';
 import { recordList } from './components/cornelius/record-list/record-list.component';
 import { jwtModal } from './components/cornelius/jwt-modal/jwt-modal.component';
 import { recordModal } from './components/cornelius/record-list/record-modal/record-modal.component';
@@ -39,6 +40,7 @@ angular
   .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('filter', filter)
+  .component('sort', sort)
   .component('recordList', recordList)
   .component('jwtModal', jwtModal)
   .component('recordModal', recordModal)
