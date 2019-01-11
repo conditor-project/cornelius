@@ -23,7 +23,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     luceneQueryStringBuilder.field('isNearDuplicate', 'true')
   ];
   return {
-    getRecords: function (filterOptions = { source: {}, typeConditor: 'Any' }) {
+    getRecords: function (filterOptions = { source: {}, typeConditor: 'Tous les types' }) {
       checkTokenJWT();
       const recordsQueryString = getQueryString(filterOptions);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
@@ -50,7 +50,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     getAggregationsTypeConditor: function (filterOptions) {
       checkTokenJWT();
       const filterOptionsCopy = angular.copy(filterOptions);
-      filterOptionsCopy.typeConditor = 'Any';
+      filterOptionsCopy.typeConditor = 'Tous les types';
       filterOptionsCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
       const aggregationsTypeConditorQueryString = getQueryString(filterOptionsCopy);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsTypeConditorQueryString}`;
@@ -63,7 +63,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     const source = Object.keys(data.source).filter(source => data.source[source]);
     const fields = [...defaultFields];
     if (source.length > 0) fields.push(field('source', group(or(...source))));
-    if (data.typeConditor !== 'Any') fields.push(field('typeConditor', data.typeConditor));
+    if (data.typeConditor !== 'Tous les types') fields.push(field('typeConditor', data.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
       q: luceneQueryString

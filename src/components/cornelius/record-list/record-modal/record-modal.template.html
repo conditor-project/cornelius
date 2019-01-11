@@ -35,7 +35,7 @@
               <span 
                 class="label"
                 ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
-              >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'duplicate' : nearDuplicateRecord.isDuplicateByUser === false ? 'not duplicate' : null }}</span>
+              >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'valide' : null }}</span>
               <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
             </div>
           </div>
@@ -76,7 +76,7 @@
         uncheckable="false"
         ng-change="$ctrl.checkNearDuplicateRecordsToValidate()"
       >
-        Duplicate
+        Doublon
         <span ng-if="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser === true" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </label>
       <label
@@ -86,13 +86,13 @@
         uncheckable="false"
         ng-change="$ctrl.checkNearDuplicateRecordsToValidate()"
       >
-        NOT Duplicate
+        Valide
         <span ng-if="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser === false" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </label>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="$ctrl.cancel()">Cancel</button>
-  <button class="btn btn-success" ng-class="{ disabled: !$ctrl.hasNearDuplicateRecordsToValidate }" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-warning" ng-click="$ctrl.cancel()">Annuler</button>
+  <button class="btn btn-success" ng-class="{ disabled: !$ctrl.hasNearDuplicateRecordsToValidate }" ng-click="$ctrl.save()">Enregistrer</button>
 </div>

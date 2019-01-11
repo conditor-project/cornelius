@@ -24,9 +24,9 @@
       <div class="author">{{ record.author }}</div>
     </div>
     <div class="panel-footer">
-      <div class="idConditor">id conditor: {{ record.idConditor }}</div>
+      <div class="idConditor">identifiant conditor: {{ record.idConditor }}</div>
       <div class="near-duplicates">
-        near duplicate: {{ record.nearDuplicates.length }}
+        nombre de doublon incertain: {{ record.nearDuplicates.length }}
         (<span ng-repeat="nearDuplicate in record.nearDuplicates">
           <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }}
         </span>)

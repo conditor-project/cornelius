@@ -1,12 +1,12 @@
 <div class="sidebar">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Filter</span></h3>
+      <h3 class="panel-title">Filtre</span></h3>
     </div>
     <div class="panel-body">
       <form name="filterForm">
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
-          <legend>Source</legend>
+          <legend>Source de données</legend>
           <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
             <label>
               <input type="checkbox" ng-model="$ctrl.filterOptions.source[source.key]" ng-change="$ctrl.onChangeSourceForm()" value="{{ source.key }}">
@@ -16,7 +16,7 @@
           </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
-          <legend>Type</legend>
+          <legend>Type de publication</legend>
           <div class="form-group">
             <ui-select ng-model="$ctrl.filterOptions.typeConditor" search-enabled="false" ng-change="$ctrl.onChangeTypeConditorForm()">
               <ui-select-match>{{ $select.selected.key }} <span class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>

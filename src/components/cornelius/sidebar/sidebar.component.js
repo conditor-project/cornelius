@@ -8,7 +8,7 @@ export const sidebar = {
     this.$onInit = function () {
       this.filterOptionsOrigin = {
         source: {},
-        typeConditor: 'Any'
+        typeConditor: 'Tous les types'
       };
       this.filterOptions = angular.copy(this.filterOptionsOrigin);
       this.isSourceFormActive = false;
