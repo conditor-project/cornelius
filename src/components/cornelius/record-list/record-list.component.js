@@ -9,11 +9,11 @@ export const recordList = {
       this.loading = false;
       this.currentPage = 1;
       this.pageSize = 1;
-      this.getRecords(this.filterOptions);
+      this.getRecords();
     };
 
     this.openJwtModal = function (options = { force: false }) {
-      jwtModalService.open(options).then(() => this.getRecords(this.filterOptions));
+      jwtModalService.open(options).then(() => this.getRecords());
     };
 
     this.openRecordModal = function (record) {
