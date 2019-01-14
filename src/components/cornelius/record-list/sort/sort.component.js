@@ -15,6 +15,16 @@ export const sort = {
           text: 'titre (Z-A)',
           field: 'title.default.normalized',
           order: 'desc'
+        },
+        {
+          text: 'date de publication (>)',
+          field: 'publicationDate.date',
+          order: 'desc'
+        },
+        {
+          text: 'date de publication (<)',
+          field: 'publicationDate.date',
+          order: 'asc'
         }
       ];
       this.optionSelected = this.options[0];
