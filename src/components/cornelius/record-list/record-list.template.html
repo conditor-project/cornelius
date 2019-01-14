@@ -4,7 +4,7 @@
       <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
     </div>
     <div class="col-sm-3 middle right">
-      <sort></sort>
+      <sort on-options-change="$ctrl.sortRecords(newOptions)">></sort>
     </div>
   </div>
 </div>

@@ -30,7 +30,7 @@ export const recordList = {
       this.loading = true;
       this.totalRecords = '...';
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
-      conditorApiService.getRecords(this.filterOptions).then((response) => {
+      conditorApiService.getRecords(this.filterOptions, this.sortOptions).then((response) => {
         this.loading = false;
         this.totalRecords = response.headers('X-Total-Count');
         this.records = response.data;
@@ -55,6 +55,11 @@ export const recordList = {
         if (response.status === 401) this.openJwtModal({ force: true });
         // TODO: Manage code error 500
       });
+    };
+
+    this.sortRecords = function (options) {
+      this.sortOptions = options;
+      this.getRecords();
     };
   },
   bindings: {

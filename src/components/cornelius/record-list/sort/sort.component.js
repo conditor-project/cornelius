@@ -5,10 +5,21 @@ import angular from 'angular';
 export const sort = {
   controller: function () {
     this.$onInit = function () {
-      this.options = ['titre (A-Z)', 'titre (Z-A)'];
+      this.options = [
+        {
+          text: 'titre (A-Z)',
+          field: 'title.default.normalized',
+          order: 'asc'
+        },
+        {
+          text: 'titre (Z-A)',
+          field: 'title.default.normalized',
+          order: 'desc'
+        }
+      ];
       this.optionSelected = this.options[0];
     };
-    this.onChange = function () {
+    this.onFormChange = function () {
       const newOptions = angular.copy(this.optionSelected);
       this.onOptionsChange({ newOptions });
     };
