@@ -17,12 +17,12 @@ export const sort = {
           order: 'desc'
         },
         {
-          text: 'date de publication (>)',
+          text: 'date de publication (\u25BC)',
           field: 'publicationDate.date',
           order: 'desc'
         },
         {
-          text: 'date de publication (<)',
+          text: 'date de publication (\u25B2)',
           field: 'publicationDate.date',
           order: 'asc'
         }
