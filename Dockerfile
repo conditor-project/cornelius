@@ -1,9 +1,2 @@
-FROM node:10
-
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install --prod
-COPY . .
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+FROM nginx
+COPY dist /usr/share/nginx/html
