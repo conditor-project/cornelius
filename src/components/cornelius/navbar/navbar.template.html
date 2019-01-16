@@ -1,15 +1,37 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand middle" href="#">
         <img class="corneille" src="crow-icon.png" alt="corneille">
         Cornelius
       </a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <button class="btn btn-default navbar-btn navbar-right" ng-click="$ctrl.openJwtModal()">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      </button>
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li uib-dropdown class="dropdown-notifications" on-toggle="toggled(open)">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          <i data-count="3" class="glyphicon glyphicon-bell notification-icon"></i>
+        </a>
+        <div class="dropdown-container">
+          <div class="dropdown-toolbar">
+            <div class="dropdown-toolbar-actions">
+              <a href="#">Mark all as read</a>
+            </div>
+            <h3 class="dropdown-toolbar-title">Notifications (2)</h3>
+          </div>
+          <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+            <li>bob</li>
+            <li>john</li>
+            <!-- <li ng-repeat="choice in items">
+                      <a href>{{choice}}</a>
+                    </li> -->
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a ng-click="$ctrl.openJwtModal()">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
