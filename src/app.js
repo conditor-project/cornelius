@@ -8,11 +8,14 @@ import modal from 'angular-ui-bootstrap/src/modal';
 import buttons from 'angular-ui-bootstrap/src/buttons';
 import 'angular-drag-scroll';
 import uiSelect from 'ui-select';
+import 'angular-ui-notification';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/scss/font-awesome.scss';
 import 'ui-select/dist/select.css';
+import 'angular-ui-notification/dist/angular-ui-notification.css';
+import './assets/bootstrap-notifications.css';
 import './app.scss';
 
 // Components
@@ -35,7 +38,14 @@ import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.serv
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [ngAnimate, ngSanitize, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect])
+  .module('app', [ngAnimate, ngSanitize, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
+  .config(function (NotificationProvider) {
+    NotificationProvider.setOptions({
+      delay: 5000,
+      positionX: 'right',
+      positionY: 'bottom'
+    });
+  })
   .constant('API_CONDITOR_CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
