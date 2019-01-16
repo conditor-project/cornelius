@@ -4,17 +4,17 @@ import angular from 'angular';
 
 export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   const fieldsToExclude = [
-    'authorRef',
+    'authors',
     'creationDate',
-    'duplicate',
+    'duplicates',
     'duplicateRules',
-    'hadTransDuplicate',
+    'hasTransDuplicate',
     'hasDoi',
     'idChain',
     'isDeduplicable',
     'isDuplicate',
     'isNearDuplicate',
-    'ingestId',
+    'sessionName',
     'path',
     'teiBlob'
   ];
@@ -23,9 +23,12 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     luceneQueryStringBuilder.field('isNearDuplicate', 'true')
   ];
   return {
-    getRecords: function (filterOptions = { source: {}, typeConditor: 'Any' }) {
+    getRecords: function (
+      filter = { source: {}, typeConditor: 'Tous les types' },
+      sort = { field: 'title.default.normalized', order: 'asc' }
+    ) {
       checkTokenJWT();
-      const recordsQueryString = getQueryString(filterOptions);
+      const recordsQueryString = getQueryString(filter, sort);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
@@ -38,42 +41,43 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       checkTokenJWT();
       return $http.get(url);
     },
-    getAggregationsSource: function (filterOptions) {
+    getAggregationsSource: function (filter) {
       checkTokenJWT();
-      const filterOptionsCopy = angular.copy(filterOptions);
-      filterOptionsCopy.aggregationTerms = { name: 'source', value: 'source' };
-      filterOptionsCopy.source = {};
-      const aggregationsSourceQueryString = getQueryString(filterOptionsCopy);
+      const filterCopy = angular.copy(filter);
+      filterCopy.aggregationTerms = { name: 'source', value: 'source' };
+      filterCopy.source = {};
+      const aggregationsSourceQueryString = getQueryString(filterCopy);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsSourceQueryString}`;
       return $http.get(requestUrl);
     },
-    getAggregationsTypeConditor: function (filterOptions) {
+    getAggregationsTypeConditor: function (filter) {
       checkTokenJWT();
-      const filterOptionsCopy = angular.copy(filterOptions);
-      filterOptionsCopy.typeConditor = 'Any';
-      filterOptionsCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
-      const aggregationsTypeConditorQueryString = getQueryString(filterOptionsCopy);
+      const filterCopy = angular.copy(filter);
+      filterCopy.typeConditor = 'Tous les types';
+      filterCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
+      const aggregationsTypeConditorQueryString = getQueryString(filterCopy);
       const requestUrl = `${API_CONDITOR_CONFIG.baseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
     }
   };
 
-  function getQueryString (data) {
+  function getQueryString (filter, sort) {
     const { field, group, or, and } = luceneQueryStringBuilder;
-    const source = Object.keys(data.source).filter(source => data.source[source]);
+    const source = Object.keys(filter.source).filter(source => filter.source[source]);
     const fields = [...defaultFields];
     if (source.length > 0) fields.push(field('source', group(or(...source))));
-    if (data.typeConditor !== 'Any') fields.push(field('typeConditor', data.typeConditor));
+    if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
       q: luceneQueryString
     };
-    if (data.hasOwnProperty('aggregationTerms')) {
-      output.aggs = field(field('terms', data.aggregationTerms.value), `{ name: ${data.aggregationTerms.name} }`);
+    if (filter.hasOwnProperty('aggregationTerms')) {
+      output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name} }`);
       output.page_size = 0;
     } else {
       output.exclude = fieldsToExclude.join(',');
       output.page_size = API_CONDITOR_CONFIG.pageSize;
+      if (sort) output.sort = `${sort.field}:${sort.order}`;
     }
     return queryString.stringify(output);
   }

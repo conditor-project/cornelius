@@ -1,0 +1,8 @@
+<div class="sort">
+  <ui-select ng-model="$ctrl.optionSelected" search-enabled="false" ng-change="$ctrl.onFormChange()">
+    <ui-select-match>Tri par {{ $select.selected.text }}</span></ui-select-match>
+    <ui-select-choices repeat="item in $ctrl.options | orderBy:'+'">
+      Tri par {{ item.text }}
+    </ui-select-choices>
+  </ui-select>
+</div>

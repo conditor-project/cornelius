@@ -5,24 +5,10 @@
   <p>
     Vous allez valider le dédoublonnage des notices en cours de comparaison. Cette opération créera un lien signalant que les notices sont des doublons ou non.
   </p>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h5 class="panel-title">{{ $ctrl.record.title }}</h5>
-    </div>
-    <div class="panel-body">
-      <div class="details">
-        <span class="label label-default">{{ $ctrl.record.source }}</span>
-        <span class="label label-default">{{ $ctrl.record.typeConditor }}</span>
-        <span class="label label-default">{{ $ctrl.record.publicationDate }}</span>
-      </div>
-      <div class="author">{{ $ctrl.record.author }}</div>
-      <div class="idConditor pull-right">{{ $ctrl.record.idConditor }}</div>
-    </div>
-  </div>
   <div ng-repeat="nearDuplicateRecord in $ctrl.nearDuplicateRecords | filter:{ isDuplicateByUser: '' }" class="near-duplicate-record">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h5 class="panel-title">{{ nearDuplicateRecord.title }}</h5>
+        <h5 class="panel-title">{{ nearDuplicateRecord.title.default }}</h5>
       </div>
       <div class="panel-body">
         <div class="details">
@@ -34,13 +20,13 @@
         <span 
           class="label"
           ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
-        >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'duplicate' : nearDuplicateRecord.isDuplicateByUser === false ? 'not duplicate' : null }}</span>
+        >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'valide' : null }}</span>
         <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
       </div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="$ctrl.no()">No</button>
-  <button class="btn btn-success" ng-click="$ctrl.yes()">Yes</button>
+  <button class="btn btn-warning" ng-click="$ctrl.no()">Non</button>
+  <button class="btn btn-success" ng-click="$ctrl.yes()">Oui</button>
 </div>

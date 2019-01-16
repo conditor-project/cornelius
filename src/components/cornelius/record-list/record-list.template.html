@@ -1,7 +1,10 @@
 <div class="record-header">
   <div class="row">
-    <div class="col-sm-12 middle center">
+    <div class="col-sm-6 col-md-offset-3 middle center">
       <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
+    </div>
+    <div class="col-sm-3 middle right">
+      <sort on-options-change="$ctrl.sortRecords(newOptions)">></sort>
     </div>
   </div>
 </div>
@@ -12,7 +15,7 @@
   <div ng-repeat="record in $ctrl.records" class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}"
     ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-click="$ctrl.openRecordModal(record)">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ record.title }}</h3>
+      <h3 class="panel-title">{{ record.title.default }}</h3>
     </div>
     <div class="panel-body">
       <div class="details">
@@ -24,10 +27,10 @@
       <div class="author">{{ record.author }}</div>
     </div>
     <div class="panel-footer">
-      <div class="idConditor">id conditor: {{ record.idConditor }}</div>
+      <div class="idConditor">identifiant conditor: {{ record.idConditor }}</div>
       <div class="near-duplicates">
-        near duplicate: {{ record.nearDuplicate.length }}
-        (<span ng-repeat="nearDuplicate in record.nearDuplicate">
+        nombre de doublon incertain: {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
+        (<span ng-repeat="nearDuplicate in record.nearDuplicates">
           <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }}
         </span>)
       </div>

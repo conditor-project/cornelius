@@ -1,50 +1,50 @@
-import './sidebar.scss';
-import template from './sidebar.template.html';
+import './filter.scss';
+import template from './filter.template.html';
 import angular from 'angular';
 import debounce from 'lodash.debounce';
 
-export const sidebar = {
+export const filter = {
   controller: function (jwtModalService, jwtService, conditorApiService) {
     this.$onInit = function () {
-      this.filterOptionsOrigin = {
+      this.optionsOrigin = {
         source: {},
-        typeConditor: 'Any'
+        typeConditor: 'Tous les types'
       };
-      this.filterOptions = angular.copy(this.filterOptionsOrigin);
+      this.options = angular.copy(this.optionsOrigin);
       this.isSourceFormActive = false;
       this.isTypeConditorFormActive = false;
-      this.initFilterOptions().catch(response => {
+      this.initOptions().catch(response => {
         if (response.status === 401) this.openJwtModal({ force: true });
         console.error(response);
       });
     };
 
-    this.initFilterOptions = function () {
-      return conditorApiService.getAggregationsTypeConditor(this.filterOptions).then(response => {
+    this.initOptions = function () {
+      return conditorApiService.getAggregationsTypeConditor(this.options).then(response => {
         const totalCount = response.data.aggregations.typeConditor.buckets
           .map(bucket => bucket.doc_count)
           .reduce((accumulator, currentValue) => accumulator + currentValue)
         ;
         this.typeConditor = [
           {
-            key: this.filterOptionsOrigin.typeConditor,
+            key: this.optionsOrigin.typeConditor,
             doc_count: totalCount
           },
           ...response.data.aggregations.typeConditor.buckets
         ];
-        return conditorApiService.getAggregationsSource(this.filterOptions);
+        return conditorApiService.getAggregationsSource(this.options);
       }).then(response => {
         response.data.aggregations.source.buckets.map(bucket => {
-          this.filterOptionsOrigin.source[bucket.key] = false;
+          this.optionsOrigin.source[bucket.key] = false;
         });
-        this.filterOptions = angular.copy(this.filterOptionsOrigin);
+        this.options = angular.copy(this.optionsOrigin);
         this.sources = response.data.aggregations.source.buckets;
       });
     };
 
     this.openJwtModal = function (options = { force: false }) {
       jwtModalService.open(options).then(() => {
-        return this.initFilterOptions();
+        return this.initOptions();
       }).then(() => {
         this.apply();
       });
@@ -52,8 +52,8 @@ export const sidebar = {
 
     this.apply = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
-      const newFilterOptions = angular.copy(this.filterOptions);
-      conditorApiService.getAggregationsSource(this.filterOptions).then(response => {
+      const newOptions = angular.copy(this.options);
+      conditorApiService.getAggregationsSource(this.options).then(response => {
         this.sources.forEach(source => {
           source.doc_count = 0;
         });
@@ -61,7 +61,7 @@ export const sidebar = {
           const source = this.sources.filter(source => source.key === bucket.key).pop();
           source.doc_count = bucket.doc_count;
         });
-        return conditorApiService.getAggregationsTypeConditor(this.filterOptions);
+        return conditorApiService.getAggregationsTypeConditor(this.options);
       }).then(response => {
         this.typeConditor.forEach(typeConditor => {
           typeConditor.doc_count = 0;
@@ -76,22 +76,22 @@ export const sidebar = {
           typeConditor.doc_count = bucket.doc_count;
         });
       }).then(() => {
-        this.onFilterOptionsChange({ newFilterOptions });
+        this.onOptionsChange({ newOptions });
       });
     };
 
     this.onChangeSourceForm = debounce(function () {
-      this.isSourceFormActive = !angular.equals(this.filterOptions.source, this.filterOptionsOrigin.source);
+      this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
       this.apply();
     }, 200);
 
     this.onChangeTypeConditorForm = function () {
-      this.isTypeConditorFormActive = !angular.equals(this.filterOptions.typeConditor, this.filterOptionsOrigin.typeConditor);
+      this.isTypeConditorFormActive = !angular.equals(this.options.typeConditor, this.optionsOrigin.typeConditor);
       this.apply();
     };
   },
   bindings: {
-    onFilterOptionsChange: '&'
+    onOptionsChange: '&'
   },
   template
 };

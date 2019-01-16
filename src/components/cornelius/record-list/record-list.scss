@@ -1,4 +1,8 @@
 record-list {
+  .record-header div[class^="col-"] {
+    height: 50px;
+  }
+
   .panel {
     cursor: pointer;
   }
