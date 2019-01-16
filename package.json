@@ -4,8 +4,7 @@
   "description": "Validation application for bibliographic records",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "webpack-dev-server -d --hot --watch",
+    "start": "webpack-dev-server -d --hot --watch",
     "build": "webpack --mode=production",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
