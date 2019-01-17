@@ -2,7 +2,7 @@ import './confirm-modal.scss';
 import template from './confirm-modal.template.html';
 
 export const confirmModal = {
-  controller: function (Notification) {
+  controller: function (notificationLogService) {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.nearDuplicateRecords = this.resolve.nearDuplicateRecords;
@@ -11,8 +11,15 @@ export const confirmModal = {
     this.yes = function () {
       this.modalInstance.close();
       setTimeout(function () {
-        Notification('Primary notification');
-      }, 2000);
+        const isOk = Math.round(Math.random() * 10) > 5;
+        if (isOk) {
+          const message = 'Tout a bien été enregistré';
+          notificationLogService.add(message, 'success');
+        } else {
+          const message = 'Le serveur invoque une defense talismanique et vous renvoie votre validation';
+          notificationLogService.add(message, 'error');
+        }
+      }, 1000);
     };
 
     this.no = function () {

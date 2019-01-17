@@ -9,21 +9,22 @@
     <ul class="nav navbar-nav navbar-right">
       <li uib-dropdown class="dropdown-notifications" on-toggle="toggled(open)">
         <a href class="dropdown-toggle" uib-dropdown-toggle>
-          <i data-count="3" class="glyphicon glyphicon-bell notification-icon"></i>
+          <i data-count="{{ $ctrl.logs.length }}" class="glyphicon glyphicon-bell notification-icon"></i>
         </a>
         <div class="dropdown-container">
           <div class="dropdown-toolbar">
             <div class="dropdown-toolbar-actions">
-              <a href="#">Mark all as read</a>
+              <a ng-if="$ctrl.logs.length > 0" href="#">Mark all as read</a>
             </div>
-            <h3 class="dropdown-toolbar-title">Notifications (2)</h3>
+            <h3 class="dropdown-toolbar-title">Notifications ({{ $ctrl.logs.length }})</h3>
           </div>
-          <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
-            <li>bob</li>
-            <li>john</li>
-            <!-- <li ng-repeat="choice in items">
-                      <a href>{{choice}}</a>
-                    </li> -->
+          <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="simple-dropdown">
+            <li class="list-group-item" ng-repeat="log in $ctrl.logs">
+              <div class="content">
+                {{ log.message }}
+              </div>
+              {{ log.dateTime | date:'short' }}
+            </li>
           </ul>
         </div>
       </li>

@@ -33,6 +33,7 @@ import { pagination } from './components/cornelius/record-list/pagination/pagina
 import { jwtService } from './services/jwt.service';
 import { conditorApiService } from './services/conditor-api.service';
 import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.service';
+import { notificationLogService } from './services/notification-log.service';
 
 // Directives
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
@@ -59,5 +60,6 @@ angular
   .factory('jwtService', jwtService)
   .factory('conditorApiService', conditorApiService)
   .factory('jwtModalService', jwtModalService)
+  .factory('notificationLogService', notificationLogService)
   .directive('myEnterKeypress', myEnterKeypress)
 ;
