@@ -38,6 +38,7 @@
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "diff": "^4.0.1",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "lucene-query-string-builder": "^1.0.1",
     "parse-link-header": "^1.0.1",
