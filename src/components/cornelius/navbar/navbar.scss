@@ -8,9 +8,12 @@ navbar {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 
+  .navbar-header {
+    flex-grow: 1;
+  }
+
   .navbar-default .navbar-brand {
     color: #444;
-    flex-grow: 1;
   }
 
   .navbar-brand {
@@ -26,5 +29,11 @@ navbar {
 
   .glyphicon {
     font-size: 1.4em;
+    cursor: pointer;
+  }
+
+  .dropdown-container {
+    left: auto;
+    right: 0;
   }
 }
