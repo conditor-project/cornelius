@@ -19,7 +19,7 @@
             <h3 class="dropdown-toolbar-title">Notifications ({{ $ctrl.logs.length }})</h3>
           </div>
           <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="simple-dropdown">
-            <li class="list-group-item" ng-repeat="log in $ctrl.logs">
+            <li class="list-group-item list-group-item-{{ log.context }}" ng-repeat="log in $ctrl.logs">
               <div class="content">
                 {{ log.message }}
               </div>
