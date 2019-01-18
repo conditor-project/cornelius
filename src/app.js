@@ -62,4 +62,9 @@ angular
   .factory('jwtModalService', jwtModalService)
   .factory('notificationLogService', notificationLogService)
   .directive('myEnterKeypress', myEnterKeypress)
+  .filter('percentage', ['$filter', function ($filter) {
+    return function (input, decimals = 2) {
+      return $filter('number')(input * 100, decimals) + '%';
+    };
+  }])
 ;
