@@ -9,21 +9,20 @@
     <ul class="nav navbar-nav navbar-right">
       <li uib-dropdown class="dropdown-notifications" on-toggle="toggled(open)">
         <a href class="dropdown-toggle" uib-dropdown-toggle>
-          <i data-count="{{ $ctrl.logs.length }}" class="glyphicon glyphicon-bell notification-icon"></i>
+          <i data-count="{{ $ctrl.logs.length }}" class="glyphicon glyphicon-bell" ng-class="{'notification-icon': ($ctrl.logs.length > 0)}"></i>
         </a>
-        <div class="dropdown-container">
+        <div class="dropdown-container" ng-click="$event.stopPropagation()">
           <div class="dropdown-toolbar">
             <div class="dropdown-toolbar-actions">
-              <a ng-if="$ctrl.logs.length > 0" href="#">Mark all as read</a>
+              <a ng-if="$ctrl.logs.length > 0" ng-click="$ctrl.clearNotificationLogs()">Tout supprimer</a>
             </div>
-            <h3 class="dropdown-toolbar-title">Notifications ({{ $ctrl.logs.length }})</h3>
+            <h3 class="dropdown-toolbar-title">Notifications <span class="badge">{{ $ctrl.logs.length }}</span></h3>
           </div>
-          <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="simple-dropdown">
+          <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="notification-log-dropdown">
             <li class="list-group-item list-group-item-{{ log.context }}" ng-repeat="log in $ctrl.logs">
-              <div class="content">
-                {{ log.message }}
-              </div>
-              {{ log.dateTime | date:'short' }}
+              <button type="button" ng-click="$ctrl.deleteNotificationLogsEntry(log)" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <div class="date-time-notification-log">{{ log.dateTime | date:'medium' }}</div>
+              <div class="content">{{ log.message }}</div>
             </li>
           </ul>
         </div>

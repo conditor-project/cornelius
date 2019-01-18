@@ -24,7 +24,6 @@ navbar {
 
   .navbar-nav > li > a {
     padding: 10px;
-    // margin: 0 10px;
   }
 
   .glyphicon {
@@ -39,5 +38,13 @@ navbar {
 
   .dropdown-notifications .dropdown-toolbar {
     border-bottom: none;
+  }
+
+  .dropdown-toolbar {
+    border-radius: 4px;
+  }
+
+  .list-group-item, .list-group-item:first-child, .list-group-item:last-child {
+    margin: 5px;
   }
 }

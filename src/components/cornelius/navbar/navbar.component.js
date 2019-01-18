@@ -12,6 +12,12 @@ export const navbar = {
         backdrop: 'static'
       });
     };
+    this.clearNotificationLogs = function () {
+      this.logs = notificationLogService.clear();
+    };
+    this.deleteNotificationLogsEntry = function (entry) {
+      this.logs = notificationLogService.deleteEntry(entry);
+    };
   },
   template
 };

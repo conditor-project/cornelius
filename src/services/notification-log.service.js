@@ -1,14 +1,22 @@
 export function notificationLogService (Notification) {
-  const logs = [];
+  let logs = [];
   return {
-    add: (message, context = 'primary') => {
-      logs.push({
+    add: (message, context = 'info') => {
+      logs.unshift({
         message,
         context,
         dateTime: Date.now()
       });
       Notification(message, context);
     },
-    getAll: () => logs
+    getAll: () => logs,
+    clear: () => {
+      logs = [];
+      return logs;
+    },
+    deleteEntry: (entry) => {
+      if (logs.includes(entry)) logs.splice(logs.indexOf(entry), 1);
+      return logs;
+    }
   };
 }
