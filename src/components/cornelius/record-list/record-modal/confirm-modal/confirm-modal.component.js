@@ -13,10 +13,10 @@ export const confirmModal = {
       setTimeout(function () {
         const isOk = Math.round(Math.random() * 10) > 5;
         if (isOk) {
-          const message = 'Tout a bien été enregistré';
+          const message = 'Message de succes généré aléatoirement';
           notificationLogService.add(message, 'success');
         } else {
-          const message = 'Le serveur invoque une defense talismanique et vous renvoie votre validation';
+          const message = 'Message d\'erreur généré aléatoirement';
           notificationLogService.add(message, 'error');
         }
       }, 1000);
