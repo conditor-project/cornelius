@@ -20,7 +20,7 @@
         <span 
           class="label"
           ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
-        >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'valide' : null }}</span>
+        >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'non doublon' : null }}</span>
         <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
       </div>
     </div>
