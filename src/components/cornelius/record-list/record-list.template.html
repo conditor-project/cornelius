@@ -31,7 +31,8 @@
       <div class="near-duplicates">
         nombre de doublon incertain: {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
         (<span ng-repeat="nearDuplicate in record.nearDuplicates">
-          <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }}
+          <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }} 
+          <span ng-if="nearDuplicate.similarityRate" class="similarity-rate">{{ nearDuplicate.similarityRate | percentage }}</span>
         </span>)
       </div>
     </div>
