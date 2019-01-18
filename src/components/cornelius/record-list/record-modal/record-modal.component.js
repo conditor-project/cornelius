@@ -1,6 +1,7 @@
 import './record-modal.scss';
 import template from './record-modal.template.html';
 import { diffWords } from 'diff';
+import get from 'lodash.get';
 
 export const recordModal = {
   controller: function ($q, $uibModal, conditorApiService) {
@@ -69,8 +70,8 @@ export const recordModal = {
         'typeConditor'
       ]);
       sortedField.forEach(key => {
-        let record = this.record.hasOwnProperty(key) ? this.record[key] : '';
-        let nearDuplicateRecordSelected = this.nearDuplicateRecordSelected.hasOwnProperty(key) ? this.nearDuplicateRecordSelected[key] : '';
+        let record = get(this.record, key, '');
+        let nearDuplicateRecordSelected = get(this.nearDuplicateRecordSelected, key, '');
         record = (typeof record === 'string') ? record : String(record);
         nearDuplicateRecordSelected = (typeof nearDuplicateRecord === 'string') ? nearDuplicateRecordSelected : String(nearDuplicateRecordSelected);
         if ((record.length + nearDuplicateRecordSelected.length) === 0) return;
