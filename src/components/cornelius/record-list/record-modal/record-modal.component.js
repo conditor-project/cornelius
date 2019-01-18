@@ -66,8 +66,7 @@ export const recordModal = {
         'ppn',
         'utKey',
         'documentType',
-        'typeConditor',
-        'idConditor'
+        'typeConditor'
       ]);
       sortedField.forEach(key => {
         let record = this.record.hasOwnProperty(key) ? this.record[key] : '';
