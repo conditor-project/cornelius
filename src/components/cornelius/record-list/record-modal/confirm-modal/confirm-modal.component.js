@@ -8,7 +8,7 @@ export const confirmModal = {
       this.nearDuplicateRecords = this.resolve.nearDuplicateRecords;
     };
 
-    this.yes = function () {
+    this.confirm = function () {
       this.modalInstance.close();
       setTimeout(function () {
         const isOk = Math.round(Math.random() * 10) > 5;
@@ -22,7 +22,7 @@ export const confirmModal = {
       }, 1000);
     };
 
-    this.no = function () {
+    this.goBack = function () {
       this.modalInstance.dismiss();
     };
   },

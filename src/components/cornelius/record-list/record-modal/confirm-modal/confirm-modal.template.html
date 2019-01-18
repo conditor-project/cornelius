@@ -19,7 +19,7 @@
         <div class="author">{{ nearDuplicateRecord.author }}</div>
         <span 
           class="label"
-          ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
+          ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
         >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'non doublon' : null }}</span>
         <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
       </div>
@@ -27,6 +27,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="$ctrl.no()">Non</button>
-  <button class="btn btn-success" ng-click="$ctrl.yes()">Oui</button>
+  <button class="btn btn-warning" ng-click="$ctrl.goBack()">Revenir en arrière</button>
+  <button class="btn btn-success" ng-click="$ctrl.confirm()">Confirmer</button>
 </div>

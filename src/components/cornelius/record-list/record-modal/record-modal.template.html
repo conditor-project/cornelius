@@ -34,7 +34,7 @@
               <div class="author">{{ nearDuplicateRecord.author }}</div>
               <span 
                 class="label"
-                ng-class="{'label-danger': nearDuplicateRecord.isDuplicateByUser, 'label-success': !nearDuplicateRecord.isDuplicateByUser}"
+                ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
               >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'non doublon' : null }}</span>
               <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
             </div>
@@ -70,7 +70,7 @@
   <div class="validation-action">
     <div class="btn-group">
       <label 
-        class="btn btn-danger" 
+        class="btn btn-success" 
         ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser" 
         uib-btn-radio="true" 
         uncheckable="false"
@@ -80,7 +80,7 @@
         <span ng-if="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser === true" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </label>
       <label
-        class="btn btn-success"
+        class="btn btn-danger"
         ng-model="$ctrl.nearDuplicateRecordSelected.isDuplicateByUser"
         uib-btn-radio="false"
         uncheckable="false"
