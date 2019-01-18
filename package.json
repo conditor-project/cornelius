@@ -27,11 +27,11 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "angular": "^1.7.5",
-    "angular-animate": "^1.7.5",
+    "angular": "^1.7.6",
+    "angular-animate": "^1.7.6",
     "angular-drag-scroll": "^0.2.2",
-    "angular-i18n": "^1.7.5",
-    "angular-sanitize": "^1.7.5",
+    "angular-i18n": "^1.7.6",
+    "angular-sanitize": "^1.7.6",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-notification": "^0.3.6",
     "bootstrap": "^3.4.0",
