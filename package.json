@@ -1,6 +1,6 @@
 {
   "name": "cornelius",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Validation application for bibliographic records",
   "main": "index.js",
   "scripts": {
