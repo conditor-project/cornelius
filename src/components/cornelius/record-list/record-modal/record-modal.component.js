@@ -2,6 +2,7 @@ import './record-modal.scss';
 import template from './record-modal.template.html';
 import { diffWords } from 'diff';
 import get from 'lodash.get';
+import angular from 'angular';
 
 export const recordModal = {
   controller: function ($q, $uibModal, conditorApiService) {
@@ -122,8 +123,10 @@ export const recordModal = {
       });
       return $q.all(nearDuplicateRecords).then(responses => {
         this.nearDuplicateRecords = responses.map(response => {
-          response.data.isSelected = false;
-          return response.data;
+          const output = angular.copy(response.data);
+          output.isSelected = false;
+          output.similarityRate = this.record.nearDuplicates.filter(nearDuplicate => nearDuplicate.idConditor === response.data.idConditor).pop().similarityRate;
+          return output;
         });
       });
     };

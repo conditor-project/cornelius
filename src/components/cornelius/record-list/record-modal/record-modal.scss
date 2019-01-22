@@ -65,6 +65,11 @@ record-modal {
   .validation-action > .btn-group > label {
     width: 50%;
   }
+
+  .authors {
+    font-size: 1.3rem;
+    margin-top: 5px;
+  }
 }
 
 @media (min-width: 992px) {
