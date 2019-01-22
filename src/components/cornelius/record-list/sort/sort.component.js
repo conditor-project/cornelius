@@ -8,23 +8,27 @@ export const sort = {
       this.options = [
         {
           text: 'titre (A-Z)',
-          field: 'title.default.normalized',
-          order: 'asc'
+          query: 'title.default.normalized:asc'
         },
         {
           text: 'titre (Z-A)',
-          field: 'title.default.normalized',
-          order: 'desc'
+          query: 'title.default.normalized:desc'
         },
         {
           text: 'date de publication (\u25BC)',
-          field: 'publicationDate.date',
-          order: 'desc'
+          query: 'publicationDate.date:desc'
         },
         {
           text: 'date de publication (\u25B2)',
-          field: 'publicationDate.date',
-          order: 'asc'
+          query: 'publicationDate.date:asc'
+        },
+        {
+          text: 'taux de similarité (\u25BC)',
+          query: 'nearDuplicates.similarityRate:desc:avg:{nested:{path:nearDuplicates}}'
+        },
+        {
+          text: 'taux de similarité (\u25B2)',
+          query: 'nearDuplicates.similarityRate:asc:avg:{nested:{path:nearDuplicates}}'
         }
       ];
       this.optionSelected = this.options[0];
