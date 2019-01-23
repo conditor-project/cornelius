@@ -25,7 +25,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
   return {
     getRecords: function (
       filter = { source: {}, typeConditor: 'Tous les types' },
-      sort = { field: 'title.default.normalized', order: 'asc' }
+      sort = { query: 'title.default.normalized:asc' }
     ) {
       checkTokenJWT();
       const recordsQueryString = getQueryString(filter, sort);
