@@ -25,15 +25,20 @@
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
       <div class="authors">{{ record.first3AuthorNames }}</div>
+      <div class="idConditor pull-right">{{ record.idConditor }}</div>
     </div>
     <div class="panel-footer">
-      <div class="idConditor">identifiant conditor: {{ record.idConditor }}</div>
       <div class="near-duplicates">
-        nombre de doublon incertain: {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
-        (<span ng-repeat="nearDuplicate in record.nearDuplicates">
+        doublon incertain:
+        <ul class="list-group">
+          <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
+            {{ nearDuplicate.idConditor }} <span ng-if="nearDuplicate.similarityRate" class="badge">{{ nearDuplicate.similarityRate | percentage }}</span>
+          </li>
+        </ul>
+        <!-- (<span ng-repeat="nearDuplicate in record.nearDuplicates">
           <span ng-if="!$first">, </span>{{ nearDuplicate.idConditor }}
-          <span ng-if="nearDuplicate.similarityRate" class="label label-default">{{ nearDuplicate.similarityRate | percentage }}</span>
-        </span>)
+          <span ng-if="nearDuplicate.similarityRate" class="label label-default">similarité à {{ nearDuplicate.similarityRate | percentage }}</span>
+        </span>) -->
       </div>
     </div>
   </div>

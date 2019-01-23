@@ -44,6 +44,10 @@ record-modal {
     cursor: grab;
   }
 
+  .panel-heading .badge {
+    font-size: 1rem;
+  }
+
   .removed {
     background-color: rgba($color: red, $alpha: 0.2);
   }

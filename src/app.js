@@ -64,6 +64,7 @@ angular
   .directive('myEnterKeypress', myEnterKeypress)
   .filter('percentage', ['$filter', function ($filter) {
     return function (input, decimals = 2) {
+      if (!input) return input;
       return $filter('number')(input * 100, decimals) + ' %';
     };
   }])

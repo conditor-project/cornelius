@@ -23,7 +23,7 @@
           <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
             ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
             <div class="panel-heading">
-              <h5 class="panel-title">{{ nearDuplicateRecord.title.default }}</h5>
+              <h5 class="panel-title">{{ nearDuplicateRecord.title.default }} <span class="badge">{{ nearDuplicateRecord.similarityRate | percentage }}</span></h5> 
             </div>
             <div class="panel-body">
               <div class="details">
@@ -32,7 +32,6 @@
                 <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
               </div>
               <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
-              <span class="label label-info">{{ nearDuplicateRecord.similarityRate | percentage }}</span>
               <span 
                 class="label"
                 ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
@@ -52,7 +51,7 @@
         <tr>
           <th style="width:10%"></th>
           <th style="width:45%">{{ $ctrl.record.idConditor }}</th>
-          <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }}</th>
+          <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }} <span class="badge">{{ $ctrl.nearDuplicateRecordSelected.similarityRate | percentage }}</span></th>
         </tr>
       </thead>
       <tbody>
