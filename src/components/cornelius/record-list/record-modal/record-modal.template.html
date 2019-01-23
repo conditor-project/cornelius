@@ -11,7 +11,7 @@
             <span class="label label-default">{{ $ctrl.record.typeConditor }}</span>
             <span class="label label-default">{{ $ctrl.record.publicationDate }}</span>
           </div>
-          <div class="authors">{{ $ctrl.record.authorNames }}</div>
+          <div class="authors">{{ $ctrl.record.first3AuthorNames }}</div>
           <div class="idConditor pull-right">{{ $ctrl.record.idConditor }}</div>
         </div>
       </div>
@@ -30,9 +30,9 @@
                 <span class="label label-default">{{ nearDuplicateRecord.source }}</span>
                 <span class="label label-default">{{ nearDuplicateRecord.typeConditor }}</span>
                 <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
-                <span class="label label-info">{{ nearDuplicateRecord.similarityRate | percentage }}</span>
               </div>
-              <div class="authors">{{ nearDuplicateRecord.authorNames }}</div>
+              <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
+              <span class="label label-info">{{ nearDuplicateRecord.similarityRate | percentage }}</span>
               <span 
                 class="label"
                 ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"

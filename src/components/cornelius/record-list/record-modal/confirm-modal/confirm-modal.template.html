@@ -16,7 +16,7 @@
           <span class="label label-default">{{ nearDuplicateRecord.typeConditor }}</span>
           <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
         </div>
-        <div class="author">{{ nearDuplicateRecord.author }}</div>
+        <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
         <span 
           class="label"
           ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
