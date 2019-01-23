@@ -29,10 +29,10 @@
     </div>
     <div class="panel-footer">
       <div class="near-duplicates">
-        doublon incertain:
+        doublon incertain (taux de similarité):
         <ul class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
-            {{ nearDuplicate.idConditor }} <span ng-if="nearDuplicate.similarityRate" class="badge">{{ nearDuplicate.similarityRate | percentage }}</span>
+            {{ nearDuplicate.idConditor }} <span class="badge">{{ nearDuplicate.similarityRate | percentage }}</span>
           </li>
         </ul>
       </div>
