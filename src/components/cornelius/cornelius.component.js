@@ -1,4 +1,12 @@
 import './cornelius.scss';
 import template from './cornelius.template.html';
-
-export const cornelius = { template };
+import pkg from '../../../package.json';
+console.log(pkg);
+export const cornelius = {
+  controller: function () {
+    this.$onInit = function () {
+      this.version = pkg.version;
+    };
+  },
+  template
+};
