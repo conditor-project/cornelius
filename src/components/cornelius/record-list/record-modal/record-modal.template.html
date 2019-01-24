@@ -7,9 +7,9 @@
         </div>
         <div class="panel-body">
           <div class="details">
-            <span class="label label-default">{{ $ctrl.record.source }}</span>
-            <span class="label label-default">{{ $ctrl.record.typeConditor }}</span>
-            <span class="label label-default">{{ $ctrl.record.publicationDate }}</span>
+            <span class="label label-primary">{{ $ctrl.record.source }}</span>
+            <span class="label label-primary">{{ $ctrl.record.typeConditor }}</span>
+            <span class="label label-primary">{{ $ctrl.record.publicationDate }}</span>
           </div>
           <div class="authors">{{ $ctrl.record.first3AuthorNames }}</div>
           <div class="idConditor pull-right">{{ $ctrl.record.idConditor }}</div>
@@ -27,16 +27,17 @@
             </div>
             <div class="panel-body">
               <div class="details">
-                <span class="label label-default">{{ nearDuplicateRecord.source }}</span>
-                <span class="label label-default">{{ nearDuplicateRecord.typeConditor }}</span>
-                <span class="label label-default">{{ nearDuplicateRecord.publicationDate }}</span>
+                <span class="label" ng-class="{'label-primary': nearDuplicateRecord.isSelected, 'label-info': hover, 'label-default': !nearDuplicateRecord.isSelected}">{{ nearDuplicateRecord.source }}</span>
+                <span class="label" ng-class="{'label-primary': nearDuplicateRecord.isSelected, 'label-info': hover, 'label-default': !nearDuplicateRecord.isSelected}">{{ nearDuplicateRecord.typeConditor }}</span>
+                <span class="label" ng-class="{'label-primary': nearDuplicateRecord.isSelected, 'label-info': hover, 'label-default': !nearDuplicateRecord.isSelected}">{{ nearDuplicateRecord.publicationDate }}</span>
               </div>
               <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
-              <span 
+              <div ng-if="nearDuplicateRecord.similarityRate" class="label label-default">similaire à {{ nearDuplicateRecord.similarityRate | percentage }}</div>
+              <div
                 class="label"
                 ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
-              >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'non doublon' : null }}</span>
-              <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }} <span class="badge">{{ nearDuplicateRecord.similarityRate | percentage }}</span></div>
+              >{{ nearDuplicateRecord.isDuplicateByUser === true ? 'doublon' : nearDuplicateRecord.isDuplicateByUser === false ? 'non doublon' : null }}</div>
+              <div class="idConditor pull-right">{{ nearDuplicateRecord.idConditor }}</div>
             </div>
           </div>
         </div>
@@ -51,7 +52,7 @@
         <tr>
           <th style="width:10%"></th>
           <th style="width:45%">{{ $ctrl.record.idConditor }}</th>
-          <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }} <span class="badge">{{ $ctrl.nearDuplicateRecordSelected.similarityRate | percentage }}</span></th>
+          <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }}</th>
         </tr>
       </thead>
       <tbody>

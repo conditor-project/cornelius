@@ -19,9 +19,9 @@
     </div>
     <div class="panel-body">
       <div class="details">
-        <span class="label label-default">{{ record.source }}</span>
-        <span class="label label-default">{{ record.typeConditor }}</span>
-        <span class="label label-default">{{ record.publicationDate }}</span>
+        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.source }}</span>
+        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
+        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
       <div class="authors">{{ record.first3AuthorNames }}</div>
@@ -29,10 +29,10 @@
     </div>
     <div class="panel-footer">
       <div class="near-duplicates">
-        doublon incertain (taux de similarité):
+        doublon incertain : {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
         <ul class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
-            {{ nearDuplicate.idConditor }} <span class="badge">{{ nearDuplicate.similarityRate | percentage }}</span>
+            {{ nearDuplicate.idConditor }} <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
           </li>
         </ul>
       </div>
