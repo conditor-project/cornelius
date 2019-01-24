@@ -9680,8 +9680,7 @@ record-list .record-header div[class^="col-"] {
 record-list .panel {
   cursor: pointer; }
 
-record-list .author {
-  font-style: italic;
+record-list .authors {
   font-size: 1.3rem;
   margin-top: 5px; }
 
@@ -9761,6 +9760,9 @@ record-modal .modal-body > .panel {
   overflow-y: auto;
   cursor: grab; }
 
+record-modal .panel-heading .badge {
+  font-size: 1rem; }
+
 record-modal .removed {
   background-color: rgba(255, 0, 0, 0.2); }
 
@@ -9777,6 +9779,13 @@ record-modal .validation-action > .btn-group {
 record-modal .validation-action > .btn-group > label {
   width: 50%; }
 
+record-modal .authors {
+  font-size: 1.3rem;
+  margin-top: 5px; }
+
+record-modal .idConditor {
+  font-size: 1.2rem; }
+
 @media (min-width: 992px) {
   .modal-xl {
     width: 90%; } }
@@ -9786,6 +9795,13 @@ confirm-modal .panel {
 
 confirm-modal .panel-title {
   font-size: 1.4rem; }
+
+confirm-modal .authors {
+  font-size: 1.3rem;
+  margin-top: 5px; }
+
+confirm-modal .idConditor {
+  font-size: 1.2rem; }
 
 pagination .pagination {
   margin: 5px 0; }
