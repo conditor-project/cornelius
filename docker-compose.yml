@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  conditorapi:
+    container_name: cornelius
+    image: conditor/cornelius:0.0.26
+    environment :
+      LOG_PATH: /var/log/nginx
+
+    ports:
+      - 8090:80
+    networks:
+      - apinet
+    volumes:
+      - ${LOG_PATH}:/var/log/nginx
+    restart: "on-failure:5"
+
+networks:
+  apinet:
+    driver: bridge
