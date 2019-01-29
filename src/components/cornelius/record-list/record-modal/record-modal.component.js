@@ -89,11 +89,11 @@ export const recordModal = {
         }
         if (key === 'idHal') {
           if (record) origin.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${nearDuplicateRecordSelected}`;
         }
         if (key === 'pmId') {
           if (record) origin.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${nearDuplicateRecordSelected}`;
         }
         recordsComparison[key] = [isEqual, origin, target];
       });
