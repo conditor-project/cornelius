@@ -41,7 +41,7 @@ record-modal {
   .modal-body > .panel {
     max-height: 500px;
     overflow-y: auto;
-    cursor: grab;
+    // cursor: grab;
   }
 
   .panel-heading .badge {
