@@ -59,10 +59,22 @@
         <tr ng-repeat="(key, infos) in $ctrl.recordsComparison" ng-class="{warning: !infos[0]}">
           <td>{{ key }}</td>
           <td>
-            <span ng-repeat="info in infos[1]" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+            <span ng-if="infos[1].hasOwnProperty('details')">
+              <span ng-repeat="info in infos[1].details" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+            </span>
+            <span ng-if="!infos[1].hasOwnProperty('details')">
+              {{ infos[1].raw }}
+            </span>
+            <a ng-if="infos[1].hasOwnProperty('url')" ng-href="{{ infos[1].url }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
           </td>
           <td>
-            <span ng-repeat="info in infos[2]" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+            <span ng-if="infos[2].hasOwnProperty('details')">
+              <span ng-repeat="info in infos[2].details" ng-class="{added: info.added, removed: info.removed}">{{ info.value }}</span>
+            </span>
+            <span ng-if="!infos[2].hasOwnProperty('details')">
+              {{ infos[2].raw }}
+            </span>
+            <a ng-if="infos[2].hasOwnProperty('url')" ng-href="{{ infos[2].url }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
           </td>
         </tr>
       </tbody>

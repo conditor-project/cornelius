@@ -5,7 +5,7 @@ import get from 'lodash.get';
 import angular from 'angular';
 
 export const recordModal = {
-  controller: function ($q, $uibModal, conditorApiService) {
+  controller: function ($q, $uibModal, conditorApiService, API_CONDITOR_CONFIG) {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.recordsComparison = {};
@@ -80,18 +80,24 @@ export const recordModal = {
         const averageNumberCharacters = (record.length + nearDuplicateRecordSelected.length) / 2;
         const maxSizeAbstract = 3000;
         const toBeCompared = !['source'].includes(key);
+        const origin = { raw: record };
+        const target = { raw: nearDuplicateRecordSelected };
         if (averageNumberCharacters < maxSizeAbstract && toBeCompared) {
           const comparison = diffWords(record, nearDuplicateRecordSelected, { ignoreCase: true });
-          const origin = comparison.filter(chunk => (!chunk.added));
-          const target = comparison.filter(chunk => (!chunk.removed));
-          recordsComparison[key] = [isEqual, origin, target];
-        } else {
-          const origin = [{ value: record }];
-          const target = [{ value: nearDuplicateRecordSelected }];
-          recordsComparison[key] = [isEqual, origin, target];
+          origin.details = comparison.filter(chunk => (!chunk.added));
+          target.details = comparison.filter(chunk => (!chunk.removed));
         }
-        this.recordsComparison = recordsComparison;
+        if (key === 'idHal') {
+          if (record) origin.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${record}`;
+        }
+        if (key === 'pmId') {
+          if (record) origin.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${record}`;
+        }
+        recordsComparison[key] = [isEqual, origin, target];
       });
+      this.recordsComparison = recordsComparison;
     };
 
     this.checkNearDuplicateRecordsToValidate = function () {

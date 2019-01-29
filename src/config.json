@@ -1,5 +1,7 @@
 {
-  "baseUrl": "https://api-integ.conditor.fr/v1",
+  "apiConditorBaseUrl": "https://api-integ.conditor.fr/v1",
+  "halBaseUrl": "https://hal.archives-ouvertes.fr",
+  "pubmedBaseUrl": "https://www.ncbi.nlm.nih.gov/pubmed",
   "routes": {
     "record": "records"
   },
