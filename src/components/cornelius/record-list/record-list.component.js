@@ -59,6 +59,7 @@ export const recordList = {
 
     this.sortRecords = function (options) {
       this.sortOptions = options;
+      this.currentPage = 1;
       this.getRecords();
     };
   },
