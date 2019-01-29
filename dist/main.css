@@ -9757,8 +9757,7 @@ record-modal .panel-title {
 
 record-modal .modal-body > .panel {
   max-height: 500px;
-  overflow-y: auto;
-  cursor: grab; }
+  overflow-y: auto; }
 
 record-modal .panel-heading .badge {
   font-size: 1rem; }
