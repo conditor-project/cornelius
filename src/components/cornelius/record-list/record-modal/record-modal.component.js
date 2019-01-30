@@ -89,15 +89,15 @@ export const recordModal = {
         }
         if (key === 'idHal') {
           if (record) origin.url = `${CONFIG.hal.baseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${CONFIG.halBaseUrl}/${nearDuplicateRecordSelected}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.hal.baseUrl}/${nearDuplicateRecordSelected}`;
         }
         if (key === 'pmId') {
           if (record) origin.url = `${CONFIG.pubmed.baseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${CONFIG.pubmedBaseUrl}/${nearDuplicateRecordSelected}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.pubmed.baseUrl}/${nearDuplicateRecordSelected}`;
         }
         if (key === 'orcId') {
           if (record) origin.url = `${CONFIG.orcid.baseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${CONFIG.orcidBaseUrl}/${nearDuplicateRecordSelected}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.orcid.baseUrl}/${nearDuplicateRecordSelected}`;
         }
         recordsComparison[key] = [isEqual, origin, target];
       });
