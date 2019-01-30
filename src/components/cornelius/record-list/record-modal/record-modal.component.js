@@ -5,7 +5,7 @@ import get from 'lodash.get';
 import angular from 'angular';
 
 export const recordModal = {
-  controller: function ($q, $uibModal, conditorApiService, API_CONDITOR_CONFIG) {
+  controller: function ($q, $uibModal, conditorApiService, CONFIG) {
     this.$onInit = function () {
       this.record = this.resolve.record;
       this.recordsComparison = {};
@@ -88,12 +88,16 @@ export const recordModal = {
           target.details = comparison.filter(chunk => (!chunk.removed));
         }
         if (key === 'idHal') {
-          if (record) origin.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.halBaseUrl}/${nearDuplicateRecordSelected}`;
+          if (record) origin.url = `${CONFIG.hal.baseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.halBaseUrl}/${nearDuplicateRecordSelected}`;
         }
         if (key === 'pmId') {
-          if (record) origin.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${record}`;
-          if (nearDuplicateRecordSelected) target.url = `${API_CONDITOR_CONFIG.pubmedBaseUrl}/${nearDuplicateRecordSelected}`;
+          if (record) origin.url = `${CONFIG.pubmed.baseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.pubmedBaseUrl}/${nearDuplicateRecordSelected}`;
+        }
+        if (key === 'orcId') {
+          if (record) origin.url = `${CONFIG.orcid.baseUrl}/${record}`;
+          if (nearDuplicateRecordSelected) target.url = `${CONFIG.orcidBaseUrl}/${nearDuplicateRecordSelected}`;
         }
         recordsComparison[key] = [isEqual, origin, target];
       });

@@ -47,7 +47,7 @@ angular
       positionY: 'bottom'
     });
   })
-  .constant('API_CONDITOR_CONFIG', config)
+  .constant('CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
   .component('filter', filter)

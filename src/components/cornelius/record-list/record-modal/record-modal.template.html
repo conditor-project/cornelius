@@ -51,7 +51,10 @@
       <thead>
         <tr>
           <th style="width:10%"></th>
-          <th style="width:45%">{{ $ctrl.record.idConditor }}</th>
+          <th style="width:45%">
+            {{ $ctrl.record.idConditor }}
+            <a ng-href="{{ infos[1].url }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+          </th>
           <th style="width:45%">{{ $ctrl.nearDuplicateRecordSelected.idConditor }}</th>
         </tr>
       </thead>

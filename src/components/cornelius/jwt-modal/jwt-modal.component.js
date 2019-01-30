@@ -3,7 +3,7 @@ import template from './jwt-modal.template.html';
 import jwtDecode from 'jwt-decode';
 
 export const jwtModal = {
-  controller: function ($http, jwtService, API_CONDITOR_CONFIG) {
+  controller: function ($http, jwtService, CONFIG) {
     this.$onInit = function () {
       this.loading = false;
       this.options = this.resolve.options || false;
@@ -23,7 +23,7 @@ export const jwtModal = {
       } else {
         this.loading = true;
         $http.defaults.headers.common.Authorization = 'Bearer ' + this.tokenJwt;
-        $http.get(`${API_CONDITOR_CONFIG.apiConditorBaseUrl}/${API_CONDITOR_CONFIG.routes.record}`)
+        $http.get(`${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}`)
           .then(() => {
             this.loading = false;
             jwtService.saveTokenJwt(this.tokenJwt);

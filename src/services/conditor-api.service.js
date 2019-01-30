@@ -2,7 +2,7 @@ import luceneQueryStringBuilder from 'lucene-query-string-builder';
 import queryString from 'query-string';
 import angular from 'angular';
 
-export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
+export function conditorApiService ($http, jwtService, CONFIG) {
   const fieldsToExclude = [
     'authors',
     'creationDate',
@@ -29,12 +29,12 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
     ) {
       checkTokenJWT();
       const recordsQueryString = getQueryString(filter, sort);
-      const requestUrl = `${API_CONDITOR_CONFIG.apiConditorBaseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${recordsQueryString}`;
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
       checkTokenJWT();
-      const requestUrl = `${API_CONDITOR_CONFIG.apiConditorBaseUrl}/${API_CONDITOR_CONFIG.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getRecordsFromUrl: function (url) {
@@ -47,7 +47,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       filterCopy.aggregationTerms = { name: 'source', value: 'source' };
       filterCopy.source = {};
       const aggregationsSourceQueryString = getQueryString(filterCopy);
-      const requestUrl = `${API_CONDITOR_CONFIG.apiConditorBaseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsSourceQueryString}`;
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsSourceQueryString}`;
       return $http.get(requestUrl);
     },
     getAggregationsTypeConditor: function (filter) {
@@ -56,7 +56,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       filterCopy.typeConditor = 'Tous les types';
       filterCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
       const aggregationsTypeConditorQueryString = getQueryString(filterCopy);
-      const requestUrl = `${API_CONDITOR_CONFIG.apiConditorBaseUrl}/${API_CONDITOR_CONFIG.routes.record}/?${aggregationsTypeConditorQueryString}`;
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
     }
   };
@@ -76,7 +76,7 @@ export function conditorApiService ($http, jwtService, API_CONDITOR_CONFIG) {
       output.page_size = 0;
     } else {
       output.exclude = fieldsToExclude.join(',');
-      output.page_size = API_CONDITOR_CONFIG.pageSize;
+      output.page_size = CONFIG.apiConditor.pageSize;
       if (sort) output.sort = sort.query;
     }
     return queryString.stringify(output);
