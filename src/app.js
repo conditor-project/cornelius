@@ -34,7 +34,7 @@ import { jwtService } from './services/jwt.service';
 import { conditorApiService } from './services/conditor-api.service';
 import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.service';
 import { notificationLogService } from './services/notification-log.service';
-
+import { authTokenInterceptorService } from './services/auth-token-interceptor.service';
 // Directives
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
@@ -61,6 +61,10 @@ angular
   .factory('conditorApiService', conditorApiService)
   .factory('jwtModalService', jwtModalService)
   .factory('notificationLogService', notificationLogService)
+  .factory('authTokenInterceptorService', authTokenInterceptorService)
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authTokenInterceptorService');
+  })
   .directive('myEnterKeypress', myEnterKeypress)
   .filter('percentage', ['$filter', function ($filter) {
     return function (input, decimals = 2) {

@@ -22,7 +22,7 @@ export const jwtModal = {
         };
       } else {
         this.loading = true;
-        $http.defaults.headers.common.Authorization = 'Bearer ' + this.tokenJwt;
+        jwtService.saveTokenJwt(this.tokenJwt);
         $http.get(`${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}`)
           .then(() => {
             this.loading = false;

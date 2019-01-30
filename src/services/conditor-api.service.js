@@ -2,7 +2,7 @@ import luceneQueryStringBuilder from 'lucene-query-string-builder';
 import queryString from 'query-string';
 import angular from 'angular';
 
-export function conditorApiService ($http, jwtService, CONFIG) {
+export function conditorApiService ($http, CONFIG) {
   const fieldsToExclude = [
     'authors',
     'creationDate',
@@ -27,22 +27,18 @@ export function conditorApiService ($http, jwtService, CONFIG) {
       filter = { source: {}, typeConditor: 'Tous les types' },
       sort = { query: 'title.default.normalized:asc' }
     ) {
-      checkTokenJWT();
       const recordsQueryString = getQueryString(filter, sort);
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${recordsQueryString}`;
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
-      checkTokenJWT();
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getRecordsFromUrl: function (url) {
-      checkTokenJWT();
       return $http.get(url);
     },
     getAggregationsSource: function (filter) {
-      checkTokenJWT();
       const filterCopy = angular.copy(filter);
       filterCopy.aggregationTerms = { name: 'source', value: 'source' };
       filterCopy.source = {};
@@ -51,7 +47,6 @@ export function conditorApiService ($http, jwtService, CONFIG) {
       return $http.get(requestUrl);
     },
     getAggregationsTypeConditor: function (filter) {
-      checkTokenJWT();
       const filterCopy = angular.copy(filter);
       filterCopy.typeConditor = 'Tous les types';
       filterCopy.aggregationTerms = { name: 'typeConditor', value: 'typeConditor.normalized' };
@@ -80,10 +75,5 @@ export function conditorApiService ($http, jwtService, CONFIG) {
       if (sort) output.sort = sort.query;
     }
     return queryString.stringify(output);
-  }
-
-  function checkTokenJWT () {
-    const tokenJwt = jwtService.getTokenJwt();
-    if (tokenJwt) $http.defaults.headers.common.Authorization = `Bearer ${tokenJwt}`;
   }
 }
