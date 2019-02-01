@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:900);
 .uib-position-measure {
   display: block !important;
   visibility: hidden !important;
@@ -9525,6 +9524,11 @@ a.notification:hover {
 
 .btn-xs .notification-icon {
   margin-right: 3.43875px; }
+
+@font-face {
+  font-family: "Lato Bold";
+  src: url(77d353744697c77955f9bacc7f3ed90a.ttf) format("truetype");
+  font-weight: bold; }
 
 table {
   table-layout: fixed;
