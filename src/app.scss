@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:900');
+// @import url('https://fonts.googleapis.com/css?family=Lato:900');
+@font-face {
+  font-family: "Lato Bold";
+  src: url('fonts/Lato/Lato-Black.ttf') format('truetype');
+  font-weight: bold;
+}
 
 table {
   table-layout: fixed;
