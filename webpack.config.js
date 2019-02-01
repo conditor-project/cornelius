@@ -1,12 +1,14 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
   entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: './bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     rules: [{
@@ -40,16 +42,38 @@ const config = {
     {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url-loader?limit=10000&minetype=image/svg+xml'
+    },
+    {
+      test: /angular\.min\.js$/,
+      loader: 'exports-loader?angular'
     }]
   },
+  resolve: {
+    alias: {
+      angular: 'angular/angular.min.js'
+    }
+  },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'AngularJS - Webpack',
+      template: 'src/index.html',
+      inject: true
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new CopyWebpackPlugin([
+      'src/assets'
+    ])
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin()]
+    noEmitOnErrors: true,
+    minimizer: [new TerserPlugin()]
+  },
+  performance: {
+    maxAssetSize: 500000,
+    maxEntrypointSize: 2000000
   },
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
@@ -58,7 +82,7 @@ const config = {
     open: true,
     hot: true
   },
-  devtool: 'eval-source-map'
+  devtool: 'eval'
 };
 
 module.exports = config;

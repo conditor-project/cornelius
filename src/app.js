@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/scss/font-awesome.scss';
 import 'ui-select/dist/select.css';
 import 'angular-ui-notification/dist/angular-ui-notification.css';
-import './assets/bootstrap-notifications.css';
+import './lib/bootstrap-notifications.css';
 import './app.scss';
 
 // Components
