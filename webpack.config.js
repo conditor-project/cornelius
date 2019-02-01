@@ -42,18 +42,8 @@ const config = {
     {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url-loader?limit=10000&minetype=image/svg+xml'
-    },
-    // {
-    //   test: /angular\.min\.js$/,
-    //   loader: 'exports-loader?angular'
-    // }
-    ]
+    }]
   },
-  // resolve: {
-  //   alias: {
-  //     angular: 'angular/angular.min.js'
-  //   }
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'AngularJS - Webpack',
