@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-i18n/angular-locale_fr-fr';
 import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
+import uiRouter from '@uirouter/angularjs';
 import config from './config.json';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
@@ -39,7 +40,7 @@ import { authTokenInterceptorService } from './services/auth-token-interceptor.s
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 
 angular
-  .module('app', [ngAnimate, ngSanitize, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
+  .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
   .config(function (NotificationProvider) {
     NotificationProvider.setOptions({
       delay: 5000,
