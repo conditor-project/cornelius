@@ -32,7 +32,9 @@
         doublon incertain : {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
         <ul class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
-            {{ nearDuplicate.idConditor }} <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
+            {{ nearDuplicate.idConditor }}
+            <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
+            <span ng-if="nearDuplicate.duplicateBySymmetry" class="badge">doublon par symétrie</span>
           </li>
         </ul>
       </div>
