@@ -48,6 +48,34 @@ angular
       positionY: 'bottom'
     });
   })
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('home');
+    $stateProvider.state('home', {
+      url: '/'
+    });
+    $stateProvider.state('record', {
+      url: '/record/{idConditor}',
+      params: {
+        idConditor: null,
+        data: null
+      },
+      onEnter: function ($stateParams, $state, $uibModal, conditorApiService) {
+        $uibModal.open({
+          component: 'recordModal',
+          size: 'xl',
+          resolve: {
+            record: () => {
+              if ($stateParams.data) return $stateParams.data;
+              return conditorApiService.getRecordById($stateParams.idConditor).then(response => response.data);
+            }
+          }
+        }).result
+          .catch(() => console.info('Record modal dismissed'))
+          .finally(() => $state.go('home'))
+        ;
+      }
+    });
+  })
   .constant('CONFIG', config)
   .component('cornelius', cornelius)
   .component('navbar', navbar)
@@ -73,4 +101,4 @@ angular
       return $filter('number')(input * 100, decimals) + ' %';
     };
   }])
-;
+  ;

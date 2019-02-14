@@ -1,7 +1,8 @@
 <div class="record-header">
   <div class="row">
     <div class="col-sm-6 col-md-offset-3 middle center">
-      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize"
+        current-page="$ctrl.currentPage"></pagination>
     </div>
     <div class="col-sm-3 middle right">
       <sort on-options-change="$ctrl.sortRecords(newOptions)">></sort>
@@ -9,19 +10,26 @@
   </div>
 </div>
 <div class="record-list">
+  <!-- <a ui-sref="record({idConditor: 'nPQXqdvZwUPWlonm4_qeToWtt'})" ui-sref-active="active">Hello</a> -->
+  <!-- <ui-view></ui-view> -->
   <div class="no-results" ng-if="!$ctrl.records.length">
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
   </div>
-  <div ng-repeat="record in $ctrl.records" class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}"
-    ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-click="$ctrl.openRecordModal(record)">
+  <div class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}" ng-repeat="record in $ctrl.records"
+    ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
+    ui-sref="record({idConditor: record.idConditor, data: record})"
+  >
+    <!-- ng-click="$ctrl.openRecordModal(record)" -->
     <div class="panel-heading">
       <h3 class="panel-title">{{ record.title.default }}</h3>
     </div>
     <div class="panel-body">
       <div class="details">
         <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.source }}</span>
-        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
-        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
+        <span class="label"
+          ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
+        <span class="label"
+          ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
       <div class="authors">{{ record.first3AuthorNames }}</div>
@@ -33,7 +41,8 @@
         <ul class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
             {{ nearDuplicate.idConditor }}
-            <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
+            <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à
+              {{ nearDuplicate.similarityRate | percentage }}</span>
             <span ng-if="nearDuplicate.duplicateBySymmetry" class="badge">doublon par symétrie</span>
           </li>
         </ul>
@@ -44,7 +53,8 @@
 <div class="record-footer">
   <div class="row">
     <div class="col-sm-12 middle center">
-      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize" current-page="$ctrl.currentPage"></pagination>
+      <pagination links="$ctrl.links" on-paginate="$ctrl.paginateRecords(action)" page-size="$ctrl.pageSize"
+        current-page="$ctrl.currentPage"></pagination>
     </div>
   </div>
 </div>
