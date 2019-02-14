@@ -135,7 +135,11 @@ export const recordModal = {
         this.nearDuplicateRecords = responses.map(response => {
           const output = angular.copy(response.data);
           output.isSelected = false;
-          output.similarityRate = this.record.nearDuplicates.filter(nearDuplicate => nearDuplicate.idConditor === response.data.idConditor).pop().similarityRate;
+          const nearDuplicate = this.record.nearDuplicates
+            .filter(nearDuplicate => nearDuplicate.idConditor === response.data.idConditor)
+            .pop();
+          output.similarityRate = nearDuplicate.similarityRate;
+          output.duplicateBySymmetry = nearDuplicate.duplicateBySymmetry;
           return output;
         });
       });

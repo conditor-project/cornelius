@@ -33,6 +33,7 @@
               </div>
               <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
               <div ng-if="nearDuplicateRecord.similarityRate" class="label label-default">similaire à {{ nearDuplicateRecord.similarityRate | percentage }}</div>
+              <span ng-if="nearDuplicateRecord.duplicateBySymmetry" class="badge">doublon par symétrie</span>
               <div
                 class="label"
                 ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
