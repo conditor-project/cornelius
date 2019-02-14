@@ -1,3 +1,4 @@
+// Dependencies
 import angular from 'angular';
 import 'angular-i18n/angular-locale_fr-fr';
 import ngAnimate from 'angular-animate';
@@ -36,8 +37,12 @@ import { conditorApiService } from './services/conditor-api.service';
 import { jwtModalService } from './components/cornelius/jwt-modal/jwt-modal.service';
 import { notificationLogService } from './services/notification-log.service';
 import { authTokenInterceptorService } from './services/auth-token-interceptor.service';
+
 // Directives
 import { myEnterKeypress } from './directives/my-enter-keypress.directive';
+
+// Routes
+import { homeState, recordState } from './routes';
 
 angular
   .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
@@ -50,39 +55,8 @@ angular
   })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('home');
-    $stateProvider.state('home', {
-      url: '/home'
-    });
-    let numberModalOpened = 0;
-    $stateProvider.state('record', {
-      url: '/record/{idConditor}',
-      params: {
-        idConditor: null,
-        data: null
-      },
-      onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService) {
-        $uibModalStack.dismissAll();
-        const modalInstance = $uibModal.open({
-          component: 'recordModal',
-          size: 'xl',
-          resolve: {
-            record: () => {
-              const isTheGoodRecord = ($stateParams.data) ? $stateParams.data.idConditor === $stateParams.idConditor : false;
-              if ($stateParams.data && isTheGoodRecord) return $stateParams.data;
-              return conditorApiService.getRecordById($stateParams.idConditor).then(response => response.data);
-            }
-          }
-        });
-        numberModalOpened++;
-        modalInstance.result
-          .catch(() => console.info('Record modal dismissed'))
-          .finally(() => {
-            numberModalOpened--;
-            if (numberModalOpened === 0) $state.go('home');
-          })
-        ;
-      }
-    });
+    $stateProvider.state(homeState);
+    $stateProvider.state(recordState);
   })
   .constant('CONFIG', config)
   .component('cornelius', cornelius)
