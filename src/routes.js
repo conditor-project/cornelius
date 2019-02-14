@@ -1,5 +1,5 @@
 export const homeState = {
-  name: 'hello',
+  name: 'home',
   url: '/home'
 };
 
@@ -11,25 +11,31 @@ export const recordState = {
     idConditor: null,
     data: null
   },
-  onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService) {
-    $uibModalStack.dismissAll();
-    const modalInstance = $uibModal.open({
-      component: 'recordModal',
-      size: 'xl',
-      resolve: {
-        record: () => {
-          const isTheGoodRecord = ($stateParams.data) ? $stateParams.data.idConditor === $stateParams.idConditor : false;
-          if ($stateParams.data && isTheGoodRecord) return $stateParams.data;
-          return conditorApiService.getRecordById($stateParams.idConditor).then(response => response.data);
+  onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService, notificationLogService) {
+    Promise.resolve().then(() => {
+      const isTheGoodRecord = ($stateParams.data) ? $stateParams.data.idConditor === $stateParams.idConditor : false;
+      if ($stateParams.data && isTheGoodRecord) return $stateParams;
+      return conditorApiService.getRecordById($stateParams.idConditor);
+    }).then(response => {
+      $uibModalStack.dismissAll();
+      const modalInstance = $uibModal.open({
+        component: 'recordModal',
+        size: 'xl',
+        resolve: {
+          record: () => response.data
         }
-      }
-    });
-    numberModalOpened++;
-    modalInstance.result
-      .catch(() => console.info('Record modal dismissed'))
-      .finally(() => {
-        numberModalOpened--;
-        if (numberModalOpened === 0) $state.go('home');
       });
+      numberModalOpened++;
+      modalInstance.result
+        .catch(() => console.info('Record modal dismissed'))
+        .finally(() => {
+          numberModalOpened--;
+          if (numberModalOpened === 0) $state.go('home');
+        });
+    }).catch(response => {
+      if (response.status === 401) this.openJwtModal({ force: true });
+      notificationLogService.add(`La notice demandée est introuvable`, 'error');
+      if (numberModalOpened === 0) $state.go('home');
+    });
   }
 };
