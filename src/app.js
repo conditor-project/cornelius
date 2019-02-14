@@ -51,27 +51,35 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('home');
     $stateProvider.state('home', {
-      url: '/'
+      url: '/home'
     });
+    let numberModalOpened = 0;
     $stateProvider.state('record', {
       url: '/record/{idConditor}',
       params: {
         idConditor: null,
         data: null
       },
-      onEnter: function ($stateParams, $state, $uibModal, conditorApiService) {
-        $uibModal.open({
+      onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService) {
+        $uibModalStack.dismissAll();
+        const modalInstance = $uibModal.open({
           component: 'recordModal',
           size: 'xl',
           resolve: {
             record: () => {
-              if ($stateParams.data) return $stateParams.data;
+              const isTheGoodRecord = ($stateParams.data) ? $stateParams.data.idConditor === $stateParams.idConditor : false;
+              if ($stateParams.data && isTheGoodRecord) return $stateParams.data;
               return conditorApiService.getRecordById($stateParams.idConditor).then(response => response.data);
             }
           }
-        }).result
+        });
+        numberModalOpened++;
+        modalInstance.result
           .catch(() => console.info('Record modal dismissed'))
-          .finally(() => $state.go('home'))
+          .finally(() => {
+            numberModalOpened--;
+            if (numberModalOpened === 0) $state.go('home');
+          })
         ;
       }
     });
@@ -100,5 +108,4 @@ angular
       if (!input) return input;
       return $filter('number')(input * 100, decimals) + ' %';
     };
-  }])
-  ;
+  }]);
