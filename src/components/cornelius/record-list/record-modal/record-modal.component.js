@@ -7,6 +7,8 @@ import angular from 'angular';
 export const recordModal = {
   controller: function ($q, $uibModal, conditorApiService, CONFIG) {
     this.$onInit = function () {
+      this.ready = false;
+      this.hasNearDuplicates = false;
       this.record = this.resolve.record;
       this.recordsComparison = {};
       this.sizeColumnHeaderRecord = 6;
@@ -26,10 +28,12 @@ export const recordModal = {
         this.sizeColumnHeaderRecord = (this.nearDuplicateRecords.length > 2) ? 3 : Math.floor(12 / (this.nearDuplicateRecords.length + 1));
         this.sizeColumnHeaderNested = (this.nearDuplicateRecords.length > 2) ? 9 : this.sizeColumnHeaderRecord * this.nearDuplicateRecords.length;
         this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
-        this.nearDuplicateRecordSelected = this.nearDuplicateRecords[0];
+        this.nearDuplicateRecordSelected = this.nearDuplicateRecords.length > 0 ? this.nearDuplicateRecords[0] : {};
         this.nearDuplicateRecordSelected.isSelected = true;
         this.recordsComparison = getComparisonInfos(this.record, this.nearDuplicateRecordSelected, CONFIG);
-      });
+        this.hasNearDuplicates = this.nearDuplicateRecords.length > 0;
+        this.ready = true;
+      }).catch(console.error);
     };
 
     this.selectNearDuplicateRecord = function (nearDuplicateRecord) {
@@ -121,7 +125,7 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
     'meetAbstrNo',
     'part',
     'abstract',
-    'idHal',
+    'halId',
     'pmId',
     'ppn',
     'utKey',

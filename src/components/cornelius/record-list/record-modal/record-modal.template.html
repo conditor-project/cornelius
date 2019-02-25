@@ -1,4 +1,7 @@
 <div class="modal-header">
+  <h4 ng-if="$ctrl.ready && !$ctrl.hasNearDuplicates" class="text-danger">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Il n'y a aucun doublon incertain à valider pour cette notice
+  </h4>
   <div class="row equal">
     <div class="col-md-{{ $ctrl.sizeColumnHeaderRecord }} origin-record">
       <div class="panel panel-primary">
@@ -46,7 +49,7 @@
     </div>
   </div>
 </div>
-<div class="modal-body">
+<div ng-if="$ctrl.hasNearDuplicates" class="modal-body">
   <div class="panel panel-default">
     <table class="table table-striped table-bordered">
       <thead>
