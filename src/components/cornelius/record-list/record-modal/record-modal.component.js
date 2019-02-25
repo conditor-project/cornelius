@@ -89,7 +89,7 @@ export const recordModal = {
 
 function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
   const recordsComparison = {};
-  const sortedField = new Set([
+  const filteredSortedFields = new Set([
     'source',
     'title.default',
     'title.en',
@@ -128,7 +128,7 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
     'documentType',
     'typeConditor'
   ]);
-  sortedField.forEach(key => {
+  filteredSortedFields.forEach(key => {
     let recordData = get(record, key, '');
     let nearDuplicateRecordData = get(nearDuplicateRecordSelected, key, '');
     recordData = (typeof recordData === 'string') ? recordData : String(recordData);
