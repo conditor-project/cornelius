@@ -26,9 +26,9 @@
     "terser-webpack-plugin": "^1.2.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.2.0"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.22",
@@ -39,7 +39,7 @@
     "angular-sanitize": "^1.7.7",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-notification": "^0.3.6",
-    "bootstrap": "^3.4.0",
+    "bootstrap": "^3.4.1",
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "diff": "^4.0.1",
     "exports-loader": "^0.7.0",
