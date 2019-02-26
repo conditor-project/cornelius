@@ -42,7 +42,7 @@
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
             {{ nearDuplicate.idConditor }}
             <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
-            <span ng-if="nearDuplicate.duplicateBySymmetry" class="badge">doublon par symétrie</span>
+            <span ng-if="nearDuplicate.duplicateBySymmetry" class="badge">similaire par symétrie</span>
           </li>
         </ul>
       </div>

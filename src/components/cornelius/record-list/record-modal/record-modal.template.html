@@ -26,7 +26,10 @@
           <div class="panel" ng-init="hover = false" ng-mouseenter="hover = !nearDuplicateRecord.isSelected" ng-mouseleave="hover = false"
             ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
             <div class="panel-heading">
-              <h5 class="panel-title">{{ nearDuplicateRecord.title.default }}</h5> 
+              <h5 class="panel-title">
+                {{ nearDuplicateRecord.title.default }}
+                <span class="label label-default">notice similaire</span>
+              </h5> 
             </div>
             <div class="panel-body">
               <div class="details">
@@ -36,7 +39,7 @@
               </div>
               <div class="authors">{{ nearDuplicateRecord.first3AuthorNames }}</div>
               <div ng-if="nearDuplicateRecord.similarityRate" class="label label-default">similaire à {{ nearDuplicateRecord.similarityRate | percentage }}</div>
-              <span ng-if="nearDuplicateRecord.duplicateBySymmetry" class="badge">doublon par symétrie</span>
+              <span ng-if="nearDuplicateRecord.duplicateBySymmetry" class="badge">similaire par symétrie</span>
               <div
                 class="label"
                 ng-class="{'label-danger': !nearDuplicateRecord.isDuplicateByUser, 'label-success': nearDuplicateRecord.isDuplicateByUser}"
