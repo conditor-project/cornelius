@@ -10,8 +10,6 @@
   </div>
 </div>
 <div class="record-list">
-  <!-- <a ui-sref="record({idConditor: 'nPQXqdvZwUPWlonm4_qeToWtt'})" ui-sref-active="active">Hello</a> -->
-  <!-- <ui-view></ui-view> -->
   <div class="no-results" ng-if="!$ctrl.records.length">
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
   </div>
@@ -19,7 +17,6 @@
     ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
     ui-sref="record({idConditor: record.idConditor, data: record})"
   >
-    <!-- ng-click="$ctrl.openRecordModal(record)" -->
     <div class="panel-heading">
       <h3 class="panel-title">{{ record.title.default }}</h3>
     </div>

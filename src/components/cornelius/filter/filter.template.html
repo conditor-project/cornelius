@@ -5,6 +5,10 @@
     </div>
     <div class="panel-body">
       <form name="filterForm">
+          <fieldset>
+            <legend>Champ de recherche</legend>
+            <input type="text" ng-model="$ctrl.options.search" class="form-control" id="search">
+          </fieldset>
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend>Source de données</legend>
           <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
