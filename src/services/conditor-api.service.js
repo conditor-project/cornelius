@@ -32,7 +32,7 @@ export function conditorApiService ($http, CONFIG) {
       return $http.get(requestUrl);
     },
     getRecordById: function (idConditor) {
-      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/${String(idConditor)}?exclude=${fieldsToExclude.join(',')}`;
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/${String(idConditor)}?excludes=${fieldsToExclude.join(',')}`;
       return $http.get(requestUrl);
     },
     getRecordsFromUrl: function (url) {
@@ -70,7 +70,7 @@ export function conditorApiService ($http, CONFIG) {
       output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name} }`);
       output.page_size = 0;
     } else {
-      output.exclude = fieldsToExclude.join(',');
+      output.excludes = fieldsToExclude.join(',');
       output.page_size = CONFIG.apiConditor.pageSize;
       if (sort) output.sort = sort.query;
     }
