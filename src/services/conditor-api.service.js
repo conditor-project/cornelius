@@ -60,12 +60,30 @@ export function conditorApiService ($http, CONFIG) {
     const { field, group, or, and } = luceneQueryStringBuilder;
     const source = Object.keys(filter.source).filter(source => filter.source[source]);
     const fields = [...defaultFields];
+
+    // Input search
+    if (filter.hasOwnProperty('search') && filter.search) {
+      const whereToLook = [
+        'abstract',
+        'title.default',
+        'title.journal',
+        'title.meeting',
+        'title.monography'
+      ].map(item => field(item, filter.search));
+      const luceneQueryForSearch = or(...whereToLook);
+      fields.push(group(luceneQueryForSearch));
+    }
+
+    // Checkbox source
     if (source.length > 0) fields.push(field('source', group(or(...source))));
+
+    // Input dropdown type conditor
     if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
       q: luceneQueryString
     };
+
     if (filter.hasOwnProperty('aggregationTerms')) {
       output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name} }`);
       output.page_size = 0;
@@ -74,6 +92,7 @@ export function conditorApiService ($http, CONFIG) {
       output.page_size = CONFIG.apiConditor.pageSize;
       if (sort) output.sort = sort.query;
     }
+
     return queryString.stringify(output);
   }
 }

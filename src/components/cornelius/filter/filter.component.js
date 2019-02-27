@@ -63,15 +63,16 @@ export const filter = {
         });
         return conditorApiService.getAggregationsTypeConditor(this.options);
       }).then(response => {
+        const typeConditorBuckets = response.data.aggregations.typeConditor.buckets;
         this.typeConditor.forEach(typeConditor => {
           typeConditor.doc_count = 0;
         });
-        const totalCount = response.data.aggregations.typeConditor.buckets
+        const totalCount = typeConditorBuckets.length === 0 ? 0 : response.data.aggregations.typeConditor.buckets
           .map(bucket => bucket.doc_count)
           .reduce((accumulator, currentValue) => accumulator + currentValue)
         ;
         this.typeConditor[0].doc_count = totalCount;
-        response.data.aggregations.typeConditor.buckets.map(bucket => {
+        typeConditorBuckets.map(bucket => {
           const typeConditor = this.typeConditor.filter(typeConditor => typeConditor.key === bucket.key).pop();
           typeConditor.doc_count = bucket.doc_count;
         });
@@ -79,6 +80,10 @@ export const filter = {
         this.onOptionsChange({ newOptions });
       });
     };
+
+    this.onChangeSearchForm = debounce(function () {
+      this.apply();
+    }, 400);
 
     this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
