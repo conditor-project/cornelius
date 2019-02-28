@@ -81,6 +81,31 @@ export function conditorApiService ($http, CONFIG) {
       fields.push(field('authorNames', filter.author));
     }
 
+    // Input id
+    if (filter.hasOwnProperty('id') && filter.id) {
+      const whereToLook = [
+        'arxiv',
+        'doi',
+        'eisbn',
+        'eissn',
+        'halAuthorId',
+        'halId',
+        'idConditor',
+        'isbn',
+        'isni',
+        'issn',
+        'nnt',
+        'orcId',
+        'pmId',
+        'ppn',
+        'researcherId',
+        'utKey',
+        'viaf'
+      ].map(item => field(item, filter.id));
+      const luceneQueryForId = or(...whereToLook);
+      fields.push(group(luceneQueryForId));
+    }
+
     // Checkbox source
     if (source.length > 0) fields.push(field('source', group(or(...source))));
 

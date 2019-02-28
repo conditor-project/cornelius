@@ -91,6 +91,11 @@ export const filter = {
       this.apply();
     }, 400);
 
+    this.onChangeIdForm = debounce(function () {
+      this.isIdFormActive = Boolean(this.options.id);
+      this.apply();
+    }, 400);
+
     this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
       this.apply();
