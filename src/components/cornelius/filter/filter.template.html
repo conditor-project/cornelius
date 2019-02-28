@@ -5,6 +5,31 @@
     </div>
     <div class="panel-body">
       <form name="filterForm">
+        <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
+          <legend><i class="fa fa-database" aria-hidden="true"></i> Source de données</legend>
+          <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
+            <label>
+              <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()"
+                value="{{ source.key }}">
+              {{ source.key }}
+              <span class="badge">{{ source.doc_count | number }}</span>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
+          <legend><i class="fa fa-pencil" aria-hidden="true"></i> Type de publication</legend>
+          <div class="form-group">
+            <ui-select ng-model="$ctrl.options.typeConditor" search-enabled="false"
+              ng-change="$ctrl.onChangeTypeConditorForm()">
+              <ui-select-match>{{ $select.selected.key }} <span
+                  class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
+              <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
+                {{ type.key }}
+                <span class="badge">{{ type.doc_count | number }}</span>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTitleAbstractFormActive }">
           <legend><i class="fa fa-newspaper-o" aria-hidden="true"></i> Titre / Résumé</legend>
           <div class="btn-group">
@@ -33,31 +58,6 @@
             <span ng-if="$ctrl.options.id" ng-click="$ctrl.clearIdForm()"
               class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
             </span>
-          </div>
-        </fieldset>
-        <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
-          <legend><i class="fa fa-database" aria-hidden="true"></i> Source de données</legend>
-          <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
-            <label>
-              <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()"
-                value="{{ source.key }}">
-              {{ source.key }}
-              <span class="badge">{{ source.doc_count | number }}</span>
-            </label>
-          </div>
-        </fieldset>
-        <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
-          <legend><i class="fa fa-pencil" aria-hidden="true"></i> Type de publication</legend>
-          <div class="form-group">
-            <ui-select ng-model="$ctrl.options.typeConditor" search-enabled="false"
-              ng-change="$ctrl.onChangeTypeConditorForm()">
-              <ui-select-match>{{ $select.selected.key }} <span
-                  class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
-              <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
-                {{ type.key }}
-                <span class="badge">{{ type.doc_count | number }}</span>
-              </ui-select-choices>
-            </ui-select>
           </div>
         </fieldset>
       </form>
