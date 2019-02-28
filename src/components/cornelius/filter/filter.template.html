@@ -5,12 +5,16 @@
     </div>
     <div class="panel-body">
       <form name="filterForm">
-          <fieldset>
-            <legend><i class="fa fa-search" aria-hidden="true"></i> Titre / Résumé</legend>
-            <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()" ng-minlength="3" ng-maxlength="50" class="form-control">
-          </fieldset>
+        <fieldset ng-class="{ active: $ctrl.isTitleAbstractFormActive }">
+          <legend><i class="fa fa-newspaper-o" aria-hidden="true"></i> Titre / Résumé</legend>
+          <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()" ng-minlength="3" ng-maxlength="100" class="form-control">
+        </fieldset>
+        <fieldset ng-class="{ active: $ctrl.isAuthorFormActive }">
+          <legend><i class="fa fa-user" aria-hidden="true"></i> Auteur</legend>
+          <input type="text" ng-model="$ctrl.options.author" ng-change="$ctrl.onChangeAuthorForm()" ng-minlength="3" ng-maxlength="100" class="form-control">
+        </fieldset>
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
-          <legend><i class="fa fa-files-o" aria-hidden="true"></i> Source de données</legend>
+          <legend><i class="fa fa-database" aria-hidden="true"></i> Source de données</legend>
           <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
             <label>
               <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()" value="{{ source.key }}">

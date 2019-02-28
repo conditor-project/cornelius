@@ -82,6 +82,12 @@ export const filter = {
     };
 
     this.onChangeTitleAbstractForm = debounce(function () {
+      this.isTitleAbstractFormActive = Boolean(this.options.titleAbstract);
+      this.apply();
+    }, 400);
+
+    this.onChangeAuthorForm = debounce(function () {
+      this.isAuthorFormActive = Boolean(this.options.author);
       this.apply();
     }, 400);
 

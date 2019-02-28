@@ -72,8 +72,13 @@ export function conditorApiService ($http, CONFIG) {
         'title.meeting',
         'title.monography'
       ].map(item => field(item, filter.titleAbstract));
-      const luceneQueryForSearch = or(...whereToLook);
-      fields.push(group(luceneQueryForSearch));
+      const luceneQueryForTitleAbstract = or(...whereToLook);
+      fields.push(group(luceneQueryForTitleAbstract));
+    }
+
+    // Input author
+    if (filter.hasOwnProperty('author') && filter.author) {
+      fields.push(field('authorNames', filter.author));
     }
 
     // Checkbox source
