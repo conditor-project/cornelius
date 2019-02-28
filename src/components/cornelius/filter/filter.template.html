@@ -7,21 +7,40 @@
       <form name="filterForm">
         <fieldset ng-class="{ active: $ctrl.isTitleAbstractFormActive }">
           <legend><i class="fa fa-newspaper-o" aria-hidden="true"></i> Titre / Résumé</legend>
-          <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()" ng-minlength="3" ng-maxlength="100" class="form-control">
+          <div class="btn-group">
+            <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()"
+              ng-minlength="3" ng-maxlength="100" class="form-control">
+            <span ng-if="$ctrl.options.titleAbstract" ng-click="$ctrl.clearTitleAbstractForm()"
+              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+            </span>
+          </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isAuthorFormActive }">
           <legend><i class="fa fa-user" aria-hidden="true"></i> Auteur</legend>
-          <input type="text" ng-model="$ctrl.options.author" ng-change="$ctrl.onChangeAuthorForm()" ng-minlength="3" ng-maxlength="100" class="form-control">
+          <div class="btn-group">
+            <input type="text" ng-model="$ctrl.options.author" ng-change="$ctrl.onChangeAuthorForm()" ng-minlength="3"
+              ng-maxlength="100" class="form-control">
+            <span ng-if="$ctrl.options.author" ng-click="$ctrl.clearAuthorForm()"
+              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+            </span>
+          </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isIdFormActive }">
           <legend><i class="fa fa-id-card-o" aria-hidden="true"></i> Identifiant</legend>
-          <input type="text" ng-model="$ctrl.options.id" ng-change="$ctrl.onChangeIdForm()" ng-minlength="3" ng-maxlength="100" class="form-control">
+          <div class="btn-group">
+            <input type="text" ng-model="$ctrl.options.id" ng-change="$ctrl.onChangeIdForm()" ng-minlength="3"
+              ng-maxlength="100" class="form-control">
+            <span ng-if="$ctrl.options.id" ng-click="$ctrl.clearIdForm()"
+              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+            </span>
+          </div>
         </fieldset>
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend><i class="fa fa-database" aria-hidden="true"></i> Source de données</legend>
           <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
             <label>
-              <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()" value="{{ source.key }}">
+              <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()"
+                value="{{ source.key }}">
               {{ source.key }}
               <span class="badge">{{ source.doc_count | number }}</span>
             </label>
@@ -30,8 +49,10 @@
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
           <legend><i class="fa fa-pencil" aria-hidden="true"></i> Type de publication</legend>
           <div class="form-group">
-            <ui-select ng-model="$ctrl.options.typeConditor" search-enabled="false" ng-change="$ctrl.onChangeTypeConditorForm()">
-              <ui-select-match>{{ $select.selected.key }} <span class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
+            <ui-select ng-model="$ctrl.options.typeConditor" search-enabled="false"
+              ng-change="$ctrl.onChangeTypeConditorForm()">
+              <ui-select-match>{{ $select.selected.key }} <span
+                  class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
               <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
                 {{ type.key }}
                 <span class="badge">{{ type.doc_count | number }}</span>

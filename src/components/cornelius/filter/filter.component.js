@@ -86,15 +86,33 @@ export const filter = {
       this.apply();
     }, 400);
 
+    this.clearTitleAbstractForm = function () {
+      this.isTitleAbstractFormActive = false;
+      this.options.titleAbstract = '';
+      this.apply();
+    };
+
     this.onChangeAuthorForm = debounce(function () {
       this.isAuthorFormActive = Boolean(this.options.author);
       this.apply();
     }, 400);
 
+    this.clearAuthorForm = function () {
+      this.isAuthorFormActive = false;
+      this.options.author = '';
+      this.apply();
+    };
+
     this.onChangeIdForm = debounce(function () {
       this.isIdFormActive = Boolean(this.options.id);
       this.apply();
     }, 400);
+
+    this.clearIdForm = function () {
+      this.isIdFormActive = false;
+      this.options.id = '';
+      this.apply();
+    };
 
     this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
