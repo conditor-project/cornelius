@@ -81,7 +81,7 @@ export const filter = {
       });
     };
 
-    this.onChangeSearchForm = debounce(function () {
+    this.onChangeTitleAbstractForm = debounce(function () {
       this.apply();
     }, 400);
 

@@ -61,15 +61,17 @@ export function conditorApiService ($http, CONFIG) {
     const source = Object.keys(filter.source).filter(source => filter.source[source]);
     const fields = [...defaultFields];
 
-    // Input search
-    if (filter.hasOwnProperty('search') && filter.search) {
+    // Input title abstract
+    if (filter.hasOwnProperty('titleAbstract') && filter.titleAbstract) {
       const whereToLook = [
         'abstract',
         'title.default',
+        'title.en',
+        'title.fr',
         'title.journal',
         'title.meeting',
         'title.monography'
-      ].map(item => field(item, filter.search));
+      ].map(item => field(item, filter.titleAbstract));
       const luceneQueryForSearch = or(...whereToLook);
       fields.push(group(luceneQueryForSearch));
     }

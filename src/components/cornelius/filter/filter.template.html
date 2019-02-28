@@ -6,8 +6,8 @@
     <div class="panel-body">
       <form name="filterForm">
           <fieldset>
-            <legend><i class="fa fa-search" aria-hidden="true"></i> Recherche libre</legend>
-            <input type="text" ng-model="$ctrl.options.search" ng-change="$ctrl.onChangeSearchForm()" ng-minlength="3" ng-maxlength="50" class="form-control">
+            <legend><i class="fa fa-search" aria-hidden="true"></i> Titre / Résumé</legend>
+            <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()" ng-minlength="3" ng-maxlength="50" class="form-control">
           </fieldset>
         <fieldset class="checkbox-group" ng-class="{ active: $ctrl.isSourceFormActive }">
           <legend><i class="fa fa-files-o" aria-hidden="true"></i> Source de données</legend>
