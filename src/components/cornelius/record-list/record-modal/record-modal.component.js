@@ -65,24 +65,6 @@ export const recordModal = {
     this.cancel = function () {
       this.modalInstance.close();
     };
-
-    this.getNearDuplicate = function () {
-      const nearDuplicateRecords = this.record.nearDuplicates.map(nearDuplicateRecord => {
-        return conditorApiService.getRecordById(nearDuplicateRecord.idConditor);
-      });
-      return $q.all(nearDuplicateRecords).then(responses => {
-        this.nearDuplicateRecords = responses.map(response => {
-          const output = angular.copy(response.data);
-          output.isSelected = false;
-          const nearDuplicate = this.record.nearDuplicates
-            .filter(nearDuplicate => nearDuplicate.idConditor === response.data.idConditor)
-            .pop();
-          output.similarityRate = nearDuplicate.similarityRate;
-          output.duplicateBySymmetry = nearDuplicate.duplicateBySymmetry;
-          return output;
-        });
-      });
-    };
   },
   bindings: {
     modalInstance: '<',
