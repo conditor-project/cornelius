@@ -32,33 +32,44 @@
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTitleAbstractFormActive }">
           <legend><i class="fa fa-newspaper-o" aria-hidden="true"></i> Titre / Résumé</legend>
-          <div class="btn-group">
+          <div class="input-group">
             <input type="text" ng-model="$ctrl.options.titleAbstract" ng-change="$ctrl.onChangeTitleAbstractForm()"
-              ng-minlength="3" ng-maxlength="100" class="form-control">
-            <span ng-if="$ctrl.options.titleAbstract" ng-click="$ctrl.clearTitleAbstractForm()"
-              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+              ng-minlength="3" ng-maxlength="40" class="form-control" name="titleAbstract">
+            <span ng-if="filterForm.titleAbstract.$viewValue" ng-click="$ctrl.clearTitleAbstractForm()"
+              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+              <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
+          <small ng-if="filterForm.titleAbstract.$error.minlength" class="text-warning">3 caractères minimum
+            requis</small>
+          <small ng-if="filterForm.titleAbstract.$error.maxlength" class="text-warning">40 caractères maximum
+            requis</small>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isAuthorFormActive }">
           <legend><i class="fa fa-user" aria-hidden="true"></i> Auteur</legend>
-          <div class="btn-group">
+          <div class="input-group">
             <input type="text" ng-model="$ctrl.options.author" ng-change="$ctrl.onChangeAuthorForm()" ng-minlength="3"
-              ng-maxlength="100" class="form-control">
-            <span ng-if="$ctrl.options.author" ng-click="$ctrl.clearAuthorForm()"
-              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+              ng-maxlength="40" class="form-control" name="author">
+            <span ng-if="filterForm.author.$viewValue" ng-click="$ctrl.clearAuthorForm()"
+              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+              <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
+          <small ng-if="filterForm.author.$error.minlength" class="text-warning">3 caractères minimum requis</small>
+          <small ng-if="filterForm.author.$error.maxlength" class="text-warning">40 caractères maximum requis</small>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isIdFormActive }">
           <legend><i class="fa fa-id-card-o" aria-hidden="true"></i> Identifiant</legend>
-          <div class="btn-group">
+          <div class="input-group">
             <input type="text" ng-model="$ctrl.options.id" ng-change="$ctrl.onChangeIdForm()" ng-minlength="3"
-              ng-maxlength="100" class="form-control">
-            <span ng-if="$ctrl.options.id" ng-click="$ctrl.clearIdForm()"
-              class="glyphicon glyphicon-remove form-control-feedback" style="cursor: pointer; pointer-events: all;">
+              ng-maxlength="40" class="form-control" name="id">
+            <span ng-if="filterForm.id.$viewValue" ng-click="$ctrl.clearIdForm()"
+              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+              <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
+          <small ng-if="filterForm.id.$error.minlength" class="text-warning">3 caractères minimum requis</small>
+          <small ng-if="filterForm.id.$error.maxlength" class="text-warning">40 caractères maximum requis</small>
         </fieldset>
       </form>
     </div>
