@@ -9530,6 +9530,9 @@ a.notification:hover {
   src: url(77d353744697c77955f9bacc7f3ed90a.ttf) format("truetype");
   font-weight: bold; }
 
+html {
+  background-color: #333333; }
+
 table {
   table-layout: fixed;
   word-wrap: break-word; }
@@ -9588,7 +9591,7 @@ cornelius {
     padding-bottom: 30px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    min-height: 500px; }
+    min-height: 800px; }
   cornelius footer {
     padding: 10px 0;
     background-color: #333;
