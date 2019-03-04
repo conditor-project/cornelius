@@ -5,12 +5,31 @@ import { diffWords } from 'diff';
 import get from 'lodash.get';
 import angular from 'angular';
 
+const xpathsInfoFromTei = [
+  {
+    name: 'conferencePlace',
+    xpath: '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:meeting//TEI:settlement'
+  },
+  {
+    name: 'conferenceStartDate',
+    xpath: '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:meeting//TEI:date[@type="start"]'
+  },
+  {
+    name: 'conferenceEndDate',
+    xpath: '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:meeting//TEI:date[@type="end"]'
+  }
+];
+
 export const recordModal = {
   controller: function ($uibModal, conditorApiService, CONFIG) {
     this.$onInit = function () {
       this.ready = false;
       this.hasNearDuplicates = false;
       this.record = this.resolve.record;
+      const infosFromTeiBlob = getInfosFromTeiBlob(this.record.teiBlob, xpathsInfoFromTei);
+      infosFromTeiBlob.map(info => {
+        this.record[info.name] = info.value;
+      });
       this.recordsComparison = {};
       this.sizeColumnHeaderRecord = 6;
       this.sizeColumnHeaderNested = 6;
@@ -31,25 +50,10 @@ export const recordModal = {
         this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords.length > 0 ? this.nearDuplicateRecords[0] : {};
         this.nearDuplicateRecordSelected.isSelected = true;
-
-        const parser = new DOMParser();
-        const tei = window.atob(this.nearDuplicateRecordSelected.teiBlob);
-        const doc = parser.parseFromString(tei, 'application/xml');
-        const nsResolver = function (prefix) {
-          const ns = {
-            'TEI': 'http://www.tei-c.org/ns/1.0'
-          };
-          return ns[prefix] || null;
-        };
-        const result = doc.evaluate(
-          '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:meeting//TEI:settlement',
-          doc,
-          nsResolver,
-          XPathResult.FIRST_ORDERED_NODE_TYPE,
-          null
-        );
-        console.log('result :', result.singleNodeValue.textContent);
-
+        const infosFromTeiBlob = getInfosFromTeiBlob(this.nearDuplicateRecordSelected.teiBlob, xpathsInfoFromTei);
+        infosFromTeiBlob.map(info => {
+          this.nearDuplicateRecordSelected[info.name] = info.value;
+        });
         this.recordsComparison = getComparisonInfos(this.record, this.nearDuplicateRecordSelected, CONFIG);
         this.hasNearDuplicates = this.nearDuplicateRecords.length > 0;
         this.ready = true;
@@ -93,7 +97,7 @@ export const recordModal = {
   template
 };
 
-function getComparisonInfos(record, nearDuplicateRecordSelected, CONFIG) {
+function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
   const recordsComparison = {};
   const filteredSortedFields = new Set([
     'source',
@@ -132,7 +136,10 @@ function getComparisonInfos(record, nearDuplicateRecordSelected, CONFIG) {
     'ppn',
     'utKey',
     'documentType',
-    'typeConditor'
+    'typeConditor',
+    'conferencePlace',
+    'conferenceStartDate',
+    'conferenceEndDate'
   ]);
   filteredSortedFields.forEach(key => {
     let recordData = get(record, key, '');
@@ -168,9 +175,33 @@ function getComparisonInfos(record, nearDuplicateRecordSelected, CONFIG) {
   return recordsComparison;
 }
 
-function getNearDuplicates(record, conditorApiService) {
+function getNearDuplicates (record, conditorApiService) {
   const nearDuplicateRecords = record.nearDuplicates.map(nearDuplicateRecord => {
     return conditorApiService.getRecordById(nearDuplicateRecord.idConditor);
   });
   return Promise.all(nearDuplicateRecords);
+}
+
+function getInfosFromTeiBlob (teiBlob, xpathsCollection) {
+  const parser = new DOMParser();
+  const tei = window.atob(teiBlob);
+  const doc = parser.parseFromString(tei, 'application/xml');
+  const nsResolver = function (prefix) {
+    const ns = {
+      'TEI': 'http://www.tei-c.org/ns/1.0'
+    };
+    return ns[prefix] || null;
+  };
+  const results = xpathsCollection.map(item => {
+    const value = doc.evaluate(
+      item.xpath,
+      doc,
+      nsResolver,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
+      null
+    );
+    item.value = (value.singleNodeValue) ? value.singleNodeValue.textContent : '';
+    return item;
+  });
+  return results;
 }
