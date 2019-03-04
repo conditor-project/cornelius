@@ -70,14 +70,14 @@ export function conditorApiService ($http, CONFIG) {
         'title.journal',
         'title.meeting',
         'title.monography'
-      ].map(item => field(item, filter.titleAbstract));
+      ].map(item => field(item, group(filter.titleAbstract)));
       const luceneQueryForTitleAbstract = or(...whereToLook);
       fields.push(group(luceneQueryForTitleAbstract));
     }
 
     // Input author
     if (filter.hasOwnProperty('author') && filter.author) {
-      fields.push(field('authorNames', filter.author));
+      fields.push(field('authorNames', group(filter.author)));
     }
 
     // Input id
@@ -100,7 +100,7 @@ export function conditorApiService ($http, CONFIG) {
         'researcherId',
         'utKey',
         'viaf'
-      ].map(item => field(item, filter.id));
+      ].map(item => field(item, group(filter.id)));
       const luceneQueryForId = or(...whereToLook);
       fields.push(group(luceneQueryForId));
     }
