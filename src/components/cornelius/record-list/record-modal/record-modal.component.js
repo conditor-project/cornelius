@@ -1,3 +1,4 @@
+/* global DOMParser XPathResult */
 import './record-modal.scss';
 import template from './record-modal.template.html';
 import { diffWords } from 'diff';
@@ -5,7 +6,7 @@ import get from 'lodash.get';
 import angular from 'angular';
 
 export const recordModal = {
-  controller: function ($q, $uibModal, conditorApiService, CONFIG) {
+  controller: function ($uibModal, conditorApiService, CONFIG) {
     this.$onInit = function () {
       this.ready = false;
       this.hasNearDuplicates = false;
@@ -30,6 +31,25 @@ export const recordModal = {
         this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords.length > 0 ? this.nearDuplicateRecords[0] : {};
         this.nearDuplicateRecordSelected.isSelected = true;
+
+        const parser = new DOMParser();
+        const tei = window.atob(this.nearDuplicateRecordSelected.teiBlob);
+        const doc = parser.parseFromString(tei, 'application/xml');
+        const nsResolver = function (prefix) {
+          const ns = {
+            'TEI': 'http://www.tei-c.org/ns/1.0'
+          };
+          return ns[prefix] || null;
+        };
+        const result = doc.evaluate(
+          '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:meeting//TEI:settlement',
+          doc,
+          nsResolver,
+          XPathResult.FIRST_ORDERED_NODE_TYPE,
+          null
+        );
+        console.log('result :', result.singleNodeValue.textContent);
+
         this.recordsComparison = getComparisonInfos(this.record, this.nearDuplicateRecordSelected, CONFIG);
         this.hasNearDuplicates = this.nearDuplicateRecords.length > 0;
         this.ready = true;
@@ -73,7 +93,7 @@ export const recordModal = {
   template
 };
 
-function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
+function getComparisonInfos(record, nearDuplicateRecordSelected, CONFIG) {
   const recordsComparison = {};
   const filteredSortedFields = new Set([
     'source',
@@ -148,7 +168,7 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
   return recordsComparison;
 }
 
-function getNearDuplicates (record, conditorApiService) {
+function getNearDuplicates(record, conditorApiService) {
   const nearDuplicateRecords = record.nearDuplicates.map(nearDuplicateRecord => {
     return conditorApiService.getRecordById(nearDuplicateRecord.idConditor);
   });

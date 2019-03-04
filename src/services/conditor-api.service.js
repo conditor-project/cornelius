@@ -15,8 +15,7 @@ export function conditorApiService ($http, CONFIG) {
     'isDuplicate',
     'isNearDuplicate',
     'sessionName',
-    'path',
-    'teiBlob'
+    'path'
   ];
   const defaultFields = [
     luceneQueryStringBuilder.field('isDuplicate', 'false'),
