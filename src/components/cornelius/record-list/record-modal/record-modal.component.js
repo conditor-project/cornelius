@@ -168,7 +168,7 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
       origin.details = comparison.filter(chunk => (!chunk.added));
       target.details = comparison.filter(chunk => (!chunk.removed));
     }
-    if (key === 'idHal') {
+    if (key === 'halId') {
       if (recordData) origin.url = `${CONFIG.hal.baseUrl}/${recordData}`;
       if (nearDuplicateRecordData) target.url = `${CONFIG.hal.baseUrl}/${nearDuplicateRecordData}`;
     }
