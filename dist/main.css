@@ -9612,6 +9612,9 @@ navbar .corneille {
   display: inline-block;
   height: 36px; }
 
+navbar .menu {
+  margin: 0 10px; }
+
 navbar nav {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
 
