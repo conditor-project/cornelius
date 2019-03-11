@@ -7,27 +7,27 @@ export const sort = {
     this.$onInit = function () {
       this.options = [
         {
-          text: 'titre (A-Z)',
+          text: 'titre <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>',
           query: 'title.default.normalized:asc'
         },
         {
-          text: 'titre (Z-A)',
+          text: 'titre <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>',
           query: 'title.default.normalized:desc'
         },
         {
-          text: 'date de publication (\u25BC)',
+          text: 'date de publication <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>',
           query: 'publicationDate.date:desc'
         },
         {
-          text: 'date de publication (\u25B2)',
+          text: 'date de publication <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
           query: 'publicationDate.date:asc'
         },
         {
-          text: 'taux de similarité (\u25BC)',
+          text: 'taux de similarité <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>',
           query: 'nearDuplicates.similarityRate:desc:avg:{nested:{path:nearDuplicates}}'
         },
         {
-          text: 'taux de similarité (\u25B2)',
+          text: 'taux de similarité <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>',
           query: 'nearDuplicates.similarityRate:asc:avg:{nested:{path:nearDuplicates}}'
         }
       ];
