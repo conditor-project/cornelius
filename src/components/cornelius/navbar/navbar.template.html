@@ -1,15 +1,21 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container middle">
-    <div class="navbar-header">
+    <div class="navbar-header middle">
       <a class="navbar-brand middle" href="#">
         <img class="corneille" src="crow-icon.png" alt="corneille">
         Cornelius
       </a>
+      <ul class="nav navbar-nav menu">
+        <li class="active"><a href="#/home">Accueil</a></li>
+        <li><a href="https://wiki.conditor.fr">Wiki</a></li>
+        <li><a href="https://www.ouvrirlascience.fr/conditor/">A propos</a></li>
+      </ul>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li uib-dropdown class="dropdown-notifications" on-toggle="toggled(open)">
         <a href class="dropdown-toggle" uib-dropdown-toggle>
-          <i data-count="{{ $ctrl.logs.length }}" class="glyphicon glyphicon-bell" ng-class="{'notification-icon': ($ctrl.logs.length > 0)}"></i>
+          <i data-count="{{ $ctrl.logs.length }}" class="glyphicon glyphicon-bell"
+            ng-class="{'notification-icon': ($ctrl.logs.length > 0)}"></i>
         </a>
         <div class="dropdown-container" ng-click="$event.stopPropagation()">
           <div class="dropdown-toolbar">
@@ -20,7 +26,8 @@
           </div>
           <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="notification-log-dropdown">
             <li class="list-group-item list-group-item-{{ log.context }}" ng-repeat="log in $ctrl.logs">
-              <button type="button" ng-click="$ctrl.deleteNotificationLogsEntry(log)" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button type="button" ng-click="$ctrl.deleteNotificationLogsEntry(log)" class="close"
+                aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <div class="date-time-notification-log">{{ log.dateTime | date:'medium' }}</div>
               <div class="content">{{ log.message }}</div>
             </li>
