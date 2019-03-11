@@ -11,7 +11,7 @@
 </div>
 <div class="record-list">
   <div class="no-results" ng-if="!$ctrl.records.length">
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Sorry, no results found.
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Désolé, aucune notice n'a été trouvé.
   </div>
   <div class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}" ng-repeat="record in $ctrl.records"
     ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
