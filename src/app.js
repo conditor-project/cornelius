@@ -4,7 +4,6 @@ import 'angular-i18n/angular-locale_fr-fr';
 import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
 import uiRouter from '@uirouter/angularjs';
-import config from './config.json';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
 import modal from 'angular-ui-bootstrap/src/modal';
 import buttons from 'angular-ui-bootstrap/src/buttons';
@@ -44,42 +43,48 @@ import { myEnterKeypress } from './directives/my-enter-keypress.directive';
 // Routes
 import { homeState, recordState } from './routes';
 
-angular
-  .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
-  .config(function (NotificationProvider) {
-    NotificationProvider.setOptions({
-      delay: 5000,
-      positionX: 'right',
-      positionY: 'bottom'
-    });
+fetch('./config.json')
+  .then(response => response.json())
+  .then(config => {
+    angular
+      .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
+      .config(function (NotificationProvider) {
+        NotificationProvider.setOptions({
+          delay: 5000,
+          positionX: 'right',
+          positionY: 'bottom'
+        });
+      })
+      .config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('home');
+        $stateProvider.state(homeState);
+        $stateProvider.state(recordState);
+      })
+      .constant('CONFIG', config)
+      .component('cornelius', cornelius)
+      .component('navbar', navbar)
+      .component('filter', filter)
+      .component('sort', sort)
+      .component('recordList', recordList)
+      .component('jwtModal', jwtModal)
+      .component('recordModal', recordModal)
+      .component('confirmModal', confirmModal)
+      .component('pagination', pagination)
+      .factory('jwtService', jwtService)
+      .factory('conditorApiService', conditorApiService)
+      .factory('jwtModalService', jwtModalService)
+      .factory('notificationLogService', notificationLogService)
+      .factory('authTokenInterceptorService', authTokenInterceptorService)
+      .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authTokenInterceptorService');
+      })
+      .directive('myEnterKeypress', myEnterKeypress)
+      .filter('percentage', ['$filter', function ($filter) {
+        return function (input, decimals = 2) {
+          if (!input) return input;
+          return $filter('number')(input * 100, decimals) + ' %';
+        };
+      }]);
+    angular.bootstrap(document, ['app']);
   })
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('home');
-    $stateProvider.state(homeState);
-    $stateProvider.state(recordState);
-  })
-  .constant('CONFIG', config)
-  .component('cornelius', cornelius)
-  .component('navbar', navbar)
-  .component('filter', filter)
-  .component('sort', sort)
-  .component('recordList', recordList)
-  .component('jwtModal', jwtModal)
-  .component('recordModal', recordModal)
-  .component('confirmModal', confirmModal)
-  .component('pagination', pagination)
-  .factory('jwtService', jwtService)
-  .factory('conditorApiService', conditorApiService)
-  .factory('jwtModalService', jwtModalService)
-  .factory('notificationLogService', notificationLogService)
-  .factory('authTokenInterceptorService', authTokenInterceptorService)
-  .config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authTokenInterceptorService');
-  })
-  .directive('myEnterKeypress', myEnterKeypress)
-  .filter('percentage', ['$filter', function ($filter) {
-    return function (input, decimals = 2) {
-      if (!input) return input;
-      return $filter('number')(input * 100, decimals) + ' %';
-    };
-  }]);
+  .catch(console.error);
