@@ -19,7 +19,8 @@ const config = {
         'css-loader',
         'sass-loader'
       ]
-    }, {
+    },
+    {
       test: /\.html$/,
       loader: 'raw-loader'
     },
@@ -55,7 +56,8 @@ const config = {
       chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
-      'src/assets'
+      'src/assets',
+      'src/config.json'
     ])
   ],
   optimization: {
