@@ -1,0 +1,18 @@
+{
+  "apiConditor": {
+    "baseUrl": "https://api-integ.conditor.fr/v1",
+    "routes": {
+      "record": "records"
+    },
+    "pageSize": 5
+  },
+  "hal": {
+    "baseUrl": "https://hal.archives-ouvertes.fr"
+  },
+  "pubmed": {
+    "baseUrl": "https://www.ncbi.nlm.nih.gov/pubmed"
+  },
+  "orcid": {
+    "baseUrl": "https://orcid.org"
+  }
+}
