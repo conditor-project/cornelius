@@ -7,7 +7,9 @@ export const jwtModal = {
     this.$onInit = function () {
       this.loading = false;
       this.options = this.resolve.options || false;
-      this.tokenJwt = jwtService.getTokenJwt();
+      const tokenJwt = jwtService.getTokenJwt();
+      const isTokenJwtExpired = checkTokenJwtIsExpired(tokenJwt);
+      this.tokenJwt = (isTokenJwtExpired) ? '' : tokenJwt;
     };
 
     this.save = function () {
@@ -26,12 +28,11 @@ export const jwtModal = {
         $http.get(`${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}`)
           .then(() => {
             this.loading = false;
-            jwtService.saveTokenJwt(this.tokenJwt);
             this.modalInstance.close();
           })
           .catch(response => {
             this.loading = false;
-            $http.defaults.headers.common.Authorization = '';
+            jwtService.removeTokenJwt(this.tokenJwt);
             if (String(response.status)[0] === '5') {
               this.msgErrors = {
                 level: 'danger',
@@ -58,3 +59,11 @@ export const jwtModal = {
   },
   template
 };
+
+function checkTokenJwtIsExpired (tokenJwt) {
+  const decodedTokenJwt = jwtDecode(tokenJwt);
+  const expired = new Date(decodedTokenJwt.exp * 1000);
+  const now = Date.now();
+  const isTokenExpired = expired < now;
+  return isTokenExpired;
+}
