@@ -1,3 +1,5 @@
+/* global fetch */
+
 // Dependencies
 import angular from 'angular';
 import 'angular-i18n/angular-locale_fr-fr';
