@@ -15,10 +15,11 @@ Cornelius can be configured with some options via environment variables
 
 ## Install
 
-Once you have exported environment variables
+Once you have exported environment variables :
 
 ```bash
 git clone https://github.com/conditor-project/cornelius.git
+cd cornelius
 npm install && npm run build # only needed if you want to overload default configuration
 make run-prod
 ```
