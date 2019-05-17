@@ -112,7 +112,7 @@ export function conditorApiService ($http, CONFIG) {
     if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
-      q: luceneQueryString
+      q: `"${luceneQueryString}"`
     };
 
     if (filter.hasOwnProperty('aggregationTerms')) {
