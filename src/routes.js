@@ -11,7 +11,7 @@ export const recordState = {
     idConditor: null,
     data: null
   },
-  onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService, notificationLogService) {
+  onEnter: function ($stateParams, $state, $uibModal, $uibModalStack, conditorApiService, notificationLogService, jwtModalService) {
     Promise.resolve().then(() => {
       const isTheGoodRecord = ($stateParams.data) ? $stateParams.data.idConditor === $stateParams.idConditor : false;
       if ($stateParams.data && isTheGoodRecord) return $stateParams;
@@ -32,8 +32,8 @@ export const recordState = {
           numberModalOpened--;
           if (numberModalOpened === 0) $state.go('home');
         });
-    }).catch(response => {
-      if (response.status === 401) this.openJwtModal({ force: true });
+    }).catch((response) => {
+      if (response.status === 401) jwtModalService.open({ force: true });
       notificationLogService.add(`La notice demandée est introuvable`, 'error');
       if (numberModalOpened === 0) $state.go('home');
     });
