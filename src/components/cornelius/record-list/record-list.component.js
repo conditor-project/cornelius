@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import parseLinkHeader from 'parse-link-header';
 
 export const recordList = {
-  controller: function ($uibModal, jwtModalService, jwtService, conditorApiService) {
+  controller: function (jwtModalService, jwtService, conditorApiService) {
     this.$onChanges = function () {
       this.loading = false;
       this.currentPage = 1;
@@ -14,17 +14,6 @@ export const recordList = {
 
     this.openJwtModal = function (options = { force: false }) {
       jwtModalService.open(options).then(() => this.getRecords());
-    };
-
-    this.openRecordModal = function (record) {
-      $uibModal.open({
-        animation: false,
-        component: 'recordModal',
-        size: 'xl',
-        resolve: {
-          record: () => record
-        }
-      }).result.catch(() => console.info('Record modal dismissed'));
     };
 
     this.getRecords = function () {
