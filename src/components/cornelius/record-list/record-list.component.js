@@ -18,6 +18,7 @@ export const recordList = {
 
     this.openRecordModal = function (record) {
       $uibModal.open({
+        animation: false,
         component: 'recordModal',
         size: 'xl',
         resolve: {
