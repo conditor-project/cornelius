@@ -52,6 +52,10 @@ export function conditorApiService ($http, CONFIG) {
       const aggregationsTypeConditorQueryString = getQueryString(filterCopy);
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
+    },
+    postDuplicatesValidation: function (duplicatesValidation) {
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/duplicatesValidations/?debug`;
+      return $http.post(requestUrl, duplicatesValidation);
     }
   };
 
