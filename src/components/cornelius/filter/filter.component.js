@@ -83,7 +83,7 @@ export const filter = {
         });
       }).then(() => {
         this.onOptionsChange({ newOptions });
-      });
+      }).catch(console.error);
     };
 
     this.onChangeTitleAbstractForm = debounce(function () {
