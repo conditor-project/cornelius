@@ -15,15 +15,15 @@ export const confirmModal = {
         reportDuplicates: this.nearDuplicateRecords.filter(record => record.isDuplicateByUser).map(record => record.idConditor),
         reportNonDuplicates: this.nearDuplicateRecords.filter(record => !record.isDuplicateByUser).map(record => record.idConditor)
       };
-      conditorApiService.postDuplicatesValidation(duplicatesValidation).then(response => {
-        console.log(response);
-        const message = 'Message de success';
+      conditorApiService.postDuplicatesValidation(duplicatesValidation).then(() => {
+        const message = 'Le signalement a bien été enregistré.';
         notificationLogService.add(message, 'success');
         $rootScope.$emit('refresh');
       }).catch(response => {
-        console.log(response);
-        const message = 'Message d\'erreur';
-        notificationLogService.add(message, 'error');
+        response.data.errors.map(error => {
+          const message = `Le signalement a rencontré une erreur : ${error.statusName}, ${error.name} (${error.details})`;
+          notificationLogService.add(message, 'error');
+        });
       });
       this.modalInstance.close();
     };
