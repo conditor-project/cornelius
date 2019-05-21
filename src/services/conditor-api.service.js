@@ -18,7 +18,6 @@ export function conditorApiService ($http, CONFIG) {
     'path'
   ];
   const defaultFields = [
-    luceneQueryStringBuilder.field('isDuplicate', 'false'),
     luceneQueryStringBuilder.field('isNearDuplicate', 'true')
   ];
   return {
