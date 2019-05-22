@@ -1,6 +1,5 @@
 import './confirm-modal.scss';
 import template from './confirm-modal.template.html';
-// import angular from 'angular';
 
 export const confirmModal = {
   controller: function (notificationLogService, conditorApiService, $rootScope) {
@@ -21,7 +20,8 @@ export const confirmModal = {
         $rootScope.$emit('refresh');
       }).catch(response => {
         response.data.errors.map(error => {
-          const message = `Le signalement a rencontré une erreur : ${error.statusName}, ${error.name} (${error.details})`;
+          const message = `Le traitement de votre signalement n'a pas pu aboutir : ${error.statusName}, ${error.message} (${error.details})`;
+          console.error(error);
           notificationLogService.add(message, 'error');
         });
       });
