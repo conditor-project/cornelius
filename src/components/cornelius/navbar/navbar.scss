@@ -51,4 +51,8 @@ navbar {
   .list-group-item, .list-group-item:first-child, .list-group-item:last-child {
     margin: 5px;
   }
+
+  .notification .content {
+    word-break: break-word;
+  }
 }

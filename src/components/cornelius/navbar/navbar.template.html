@@ -25,7 +25,7 @@
             <h3 class="dropdown-toolbar-title">Notifications <span class="badge">{{ $ctrl.logs.length }}</span></h3>
           </div>
           <ul class="dropdown-menu list-group" uib-dropdown-menu aria-labelledby="notification-log-dropdown">
-            <li class="list-group-item list-group-item-{{ log.context }}" ng-repeat="log in $ctrl.logs">
+            <li class="list-group-item list-group-item-{{ log.context }} notification" ng-repeat="log in $ctrl.logs">
               <button type="button" ng-click="$ctrl.deleteNotificationLogsEntry(log)" class="close"
                 aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <div class="date-time-notification-log">{{ log.dateTime | date:'medium' }}</div>
