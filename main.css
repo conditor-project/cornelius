@@ -9649,6 +9649,9 @@ navbar .dropdown-toolbar {
 navbar .list-group-item, navbar .list-group-item:first-child, navbar .list-group-item:last-child {
   margin: 5px; }
 
+navbar .notification .content {
+  word-break: break-word; }
+
 @media (min-width: 768px) {
   filter {
     min-height: 1px;
