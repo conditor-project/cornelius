@@ -27,6 +27,7 @@
             ng-click="$ctrl.selectNearDuplicateRecord(nearDuplicateRecord); hover = false" ng-class="{'panel-primary': nearDuplicateRecord.isSelected, 'panel-info': hover, 'panel-default': !nearDuplicateRecord.isSelected}">
             <div class="panel-heading">
               <h5 class="panel-title">
+                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="$ctrl.loading"></span>
                 {{ nearDuplicateRecord.title.default }}
                 <span class="label label-default">notice similaire</span>
               </h5> 
@@ -50,6 +51,30 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div ng-if="$ctrl.loading" class="modal-body placeholder">
+  <div class="panel panel-default">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th style="width:10%"></th>
+          <th style="width:45%">
+            <div class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></div>
+          </th>
+          <th style="width:45%">
+            <div class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in [1, 2, 3]">
+          <td> ... </td>
+          <td> ... </td>
+          <td> ... </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <div ng-if="$ctrl.hasNearDuplicates" class="modal-body">

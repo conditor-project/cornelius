@@ -29,9 +29,9 @@ const xpathsInfoFromTei = [
 ];
 
 export const recordModal = {
-  controller: function ($uibModal, conditorApiService, CONFIG) {
+  controller: function ($uibModal, conditorApiService, CONFIG, $scope) {
     this.$onInit = function () {
-      this.ready = false;
+      this.loading = true;
       this.hasNearDuplicates = false;
       this.record = this.resolve.record;
       const infosFromTeiBlob = getInfosFromTeiBlob(this.record.teiBlob, xpathsInfoFromTei);
@@ -42,6 +42,18 @@ export const recordModal = {
       this.sizeColumnHeaderRecord = 6;
       this.sizeColumnHeaderNested = 6;
       this.hasNearDuplicateRecordsToValidate = false;
+      this.nearDuplicateRecords = [{
+        title: {
+          default: '..................'
+        },
+        source: '...',
+        typeConditor: '...',
+        publicationDate: '...',
+        first3AuthorNames: '...',
+        idConditor: '0000000000101010',
+        isSelected: false
+      }];
+      this.sizeColumnHeaderNearDuplicateRecords = 12;
       getNearDuplicates(this.record, conditorApiService).then(nearDuplicates => {
         this.nearDuplicateRecords = nearDuplicates.map(response => {
           const output = angular.copy(response.data);
@@ -64,7 +76,8 @@ export const recordModal = {
         });
         this.recordsComparison = getComparisonInfos(this.record, this.nearDuplicateRecordSelected, CONFIG);
         this.hasNearDuplicates = this.nearDuplicateRecords.length > 0;
-        this.ready = true;
+        this.loading = false;
+        $scope.$digest();
       }).catch(console.error);
     };
 

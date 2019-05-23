@@ -18,7 +18,6 @@ export function conditorApiService ($http, CONFIG) {
     'path'
   ];
   const defaultFields = [
-    luceneQueryStringBuilder.field('isDuplicate', 'false'),
     luceneQueryStringBuilder.field('isNearDuplicate', 'true')
   ];
   return {
@@ -52,6 +51,10 @@ export function conditorApiService ($http, CONFIG) {
       const aggregationsTypeConditorQueryString = getQueryString(filterCopy);
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
+    },
+    postDuplicatesValidation: function (duplicatesValidation) {
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/duplicatesValidations/?debug`;
+      return $http.post(requestUrl, duplicatesValidation);
     }
   };
 
@@ -112,7 +115,7 @@ export function conditorApiService ($http, CONFIG) {
     if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
     const luceneQueryString = and(...fields);
     const output = {
-      q: luceneQueryString
+      q: `"${luceneQueryString}"`
     };
 
     if (filter.hasOwnProperty('aggregationTerms')) {
