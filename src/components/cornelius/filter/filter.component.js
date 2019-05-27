@@ -6,7 +6,6 @@ import debounce from 'lodash.debounce';
 export const filter = {
   controller: function (jwtModalService, jwtService, conditorApiService, $rootScope) {
     $rootScope.$on('refresh', () => {
-      console.log('refresh');
       this.apply();
     });
 
