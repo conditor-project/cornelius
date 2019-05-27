@@ -9,10 +9,13 @@ export const confirmModal = {
     };
 
     this.confirm = function () {
+      const reportRecords = this.nearDuplicateRecords.filter(record => record.hasOwnProperty('isDuplicateByUser'));
+      const reportDuplicates = reportRecords.filter(record => record.isDuplicateByUser).map(record => record.idConditor);
+      const reportNonDuplicates = reportRecords.filter(record => !record.isDuplicateByUser).map(record => record.idConditor);
       const duplicatesValidation = {
         recordId: this.record.idConditor,
-        reportDuplicates: this.nearDuplicateRecords.filter(record => record.isDuplicateByUser).map(record => record.idConditor),
-        reportNonDuplicates: this.nearDuplicateRecords.filter(record => !record.isDuplicateByUser).map(record => record.idConditor)
+        reportDuplicates,
+        reportNonDuplicates
       };
       conditorApiService.postDuplicatesValidation(duplicatesValidation).then(() => {
         const message = `Le signalement de la notice (${this.record.sourceId}) a bien été enregistré.`;
