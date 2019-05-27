@@ -57,16 +57,7 @@ const config = {
     }),
     new CopyWebpackPlugin([
       'src/assets',
-      { 
-        from:'src/config.json',
-        transform(content) {
-          const newContent = content.toString('utf8');
-          const apiURL = process.env.CONDITORAPI_URL ? process.env.CONDITORAPI_URL : 'https://api.conditor.fr';
-          const corneliusPageSize = process.env.CORNELIUS_PAGESIZE ? process.env.CORNELIUS_PAGESIZE : 5;
-          return newContent.replace('${CONDITORAPI_URL}',apiURL)
-            .replace('${CORNELIUS_PAGESIZE}',corneliusPageSize);
-        }
-      }
+      'src/config.json'
     ])
   ],
   optimization: {

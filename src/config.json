@@ -1,10 +1,10 @@
 {
   "apiConditor": {
-    "baseUrl": "${CONDITORAPI_URL}",
+    "baseUrl": "https://api-dev.conditor.fr/v1",
     "routes": {
       "record": "records"
     },
-    "pageSize": ${CORNELIUS_PAGESIZE}
+    "pageSize": 5
   },
   "hal": {
     "baseUrl": "https://hal.archives-ouvertes.fr"
