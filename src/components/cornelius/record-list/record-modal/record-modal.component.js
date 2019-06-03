@@ -70,10 +70,12 @@ export const recordModal = {
         this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords.length > 0 ? this.nearDuplicateRecords[0] : {};
         this.nearDuplicateRecordSelected.isSelected = true;
-        const infosFromTeiBlob = getInfosFromTeiBlob(this.nearDuplicateRecordSelected.teiBlob, xpathsInfoFromTei);
-        infosFromTeiBlob.map(info => {
-          this.nearDuplicateRecordSelected[info.name] = info.value;
-        });
+        if (this.nearDuplicateRecordSelected.hasOwnProperty('teiBlob')) {
+          const infosFromTeiBlob = getInfosFromTeiBlob(this.nearDuplicateRecordSelected.teiBlob, xpathsInfoFromTei);
+          infosFromTeiBlob.map(info => {
+            this.nearDuplicateRecordSelected[info.name] = info.value;
+          });
+        }
         this.recordsComparison = getComparisonInfos(this.record, this.nearDuplicateRecordSelected, CONFIG);
         this.hasNearDuplicates = this.nearDuplicateRecords.length > 0;
         this.loading = false;
