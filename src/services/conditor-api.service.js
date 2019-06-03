@@ -4,7 +4,7 @@ import angular from 'angular';
 
 export function conditorApiService ($http, CONFIG) {
   const fieldsToExclude = [
-    'authors',
+    // 'authors',
     'creationDate',
     'duplicates',
     'duplicateRules',

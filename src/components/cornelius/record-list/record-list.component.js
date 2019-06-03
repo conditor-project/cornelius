@@ -10,6 +10,7 @@ export const recordList = {
       this.currentPage = 1;
       this.pageSize = 1;
       this.getRecords();
+      this.isNearDuplicatesVisible = false;
     };
 
     this.openJwtModal = function (options = { force: false }) {
@@ -23,7 +24,12 @@ export const recordList = {
       conditorApiService.getRecords(this.filterOptions, this.sortOptions).then((response) => {
         this.loading = false;
         this.totalRecords = response.headers('X-Total-Count');
-        this.records = response.data;
+        this.records = response.data.map(record => {
+          record.isNearDuplicatesVisible = false;
+          record.isAuthorsVisible = false;
+          return record;
+        });
+
         this.pageSize = queryString.parse(queryString.extract(response.config.url)).page_size;
         this.links = parseLinkHeader(response.headers('Link'));
       }).catch(response => {

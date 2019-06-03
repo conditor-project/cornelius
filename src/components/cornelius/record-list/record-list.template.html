@@ -15,9 +15,8 @@
   </div>
   <div class="panel" ng-class="{'panel-primary': hover, 'panel-default': !hover}" ng-repeat="record in $ctrl.records"
     ng-init="hover = false" ng-mouseenter="hover = true" ng-mouseleave="hover = false"
-    ui-sref="record({idConditor: record.idConditor, data: record})"
   >
-    <div class="panel-heading">
+    <div class="panel-heading" ui-sref="record({idConditor: record.idConditor, data: record})">
       <h3 class="panel-title">{{ record.title.default }}</h3>
     </div>
     <div class="panel-body">
@@ -29,13 +28,23 @@
           ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
-      <div class="authors">{{ record.first3AuthorNames }}</div>
+      <!-- <div class="authors">{{ record.first3AuthorNames }}</div> -->
+      <div class="authors">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="author in record.authors">
+            {{ author.forename }} {{ author.surname }} <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isAuthorsVisible, 'fa-minus-square-o': record.isAuthorsVisible }"aria-hidden="true" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible"></i>
+            <ul class="list-group" ng-if="record.isAuthorsVisible">
+                <li class="list-group-item" ng-repeat="affiliation in author.affiliations">{{ affiliation.address }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <div class="idConditor pull-right">{{ record.idConditor }}</div>
     </div>
-    <div class="panel-footer">
+    <div class="panel-footer" ng-click="record.isNearDuplicatesVisible = !record.isNearDuplicatesVisible">
       <div class="near-duplicates">
         notice similaire : {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
-        <ul class="list-group">
+        <ul ng-if="record.isNearDuplicatesVisible" class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
             {{ nearDuplicate.source }} - {{ nearDuplicate.idConditor }}
             <span ng-if="nearDuplicate.similarityRate" class="badge">similaire à {{ nearDuplicate.similarityRate | percentage }}</span>
