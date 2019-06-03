@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 ng-if="$ctrl.ready && !$ctrl.hasNearDuplicates" class="text-danger">
+  <h4 ng-if="!$ctrl.loading && !$ctrl.hasNearDuplicates" class="text-danger">
     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Il n'y a aucune notice similaire à valider pour cette notice
   </h4>
   <div class="row equal">
