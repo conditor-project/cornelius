@@ -33,6 +33,7 @@
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
     "angular-animate": "^1.7.8",
+    "angular-bootstrap-toggle": "^0.4.2",
     "angular-drag-scroll": "^0.2.2",
     "angular-i18n": "^1.7.8",
     "angular-sanitize": "^1.7.8",

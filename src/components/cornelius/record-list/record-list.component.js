@@ -24,11 +24,7 @@ export const recordList = {
       conditorApiService.getRecords(this.filterOptions, this.sortOptions).then((response) => {
         this.loading = false;
         this.totalRecords = response.headers('X-Total-Count');
-        this.records = response.data.map(record => {
-          record.isNearDuplicatesVisible = false;
-          record.isAuthorsVisible = false;
-          return record;
-        });
+        this.records = hydrate(response.data);
 
         this.pageSize = queryString.parse(queryString.extract(response.config.url)).page_size;
         this.links = parseLinkHeader(response.headers('Link'));
@@ -44,7 +40,7 @@ export const recordList = {
       this.currentPage = this.links[action].page;
       this.pageSize = this.links[action].page_size;
       conditorApiService.getRecordsFromUrl(this.links[action].url).then(response => {
-        this.records = response.data;
+        this.records = hydrate(response.data);
         this.links = parseLinkHeader(response.headers('Link'));
       }).catch(response => {
         this.records = [];
@@ -64,3 +60,20 @@ export const recordList = {
   },
   template
 };
+
+function hydrate (records) {
+  return records.map(record => {
+    record.isNearDuplicatesVisible = false;
+    record.isAuthorsVisible = false;
+    record.averageScore = record.nearDuplicates.map(nearDuplicate => nearDuplicate.similarityRate)
+      .reduce((total, amount, index, array) => {
+        total += amount;
+        if (index === (array.length - 1)) {
+          return total / array.length;
+        } else {
+          return total;
+        }
+      });
+    return record;
+  });
+}

@@ -31,8 +31,8 @@
       <!-- <div class="authors">{{ record.first3AuthorNames }}</div> -->
       <div class="authors">
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="author in record.authors">
-            {{ author.forename }} {{ author.surname }} <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isAuthorsVisible, 'fa-minus-square-o': record.isAuthorsVisible }"aria-hidden="true" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible"></i>
+          <li class="list-group-item" ng-repeat="author in record.authors" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible">
+            {{ author.forename }} {{ author.surname }} <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isAuthorsVisible, 'fa-minus-square-o': record.isAuthorsVisible }"aria-hidden="true"></i>
             <ul class="list-group" ng-if="record.isAuthorsVisible">
                 <li class="list-group-item" ng-repeat="affiliation in author.affiliations">{{ affiliation.address }}</li>
             </ul>
@@ -43,7 +43,7 @@
     </div>
     <div class="panel-footer" ng-click="record.isNearDuplicatesVisible = !record.isNearDuplicatesVisible">
       <div class="near-duplicates">
-        notice similaire : {{ record.nearDuplicates.length }} <i class="fa fa-file-text-o"></i>
+        <i class="fa fa-file-text-o"></i> {{ record.nearDuplicates.length }} notice similaire avec un taux de similarité <span ng-if="record.nearDuplicates.length > 1" >moyen</span> de {{ record.averageScore | percentage }}
         <ul ng-if="record.isNearDuplicatesVisible" class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
             {{ nearDuplicate.source }} - {{ nearDuplicate.idConditor }}
