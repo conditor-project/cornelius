@@ -3,7 +3,7 @@ services:
 
   cornelius:
     container_name: cornelius
-    image: conditor/cornelius:0.0.42
+    image: conditor/cornelius:1.0.0
     environment :
       - LOG_PATH=/var/log/nginx
     ports:

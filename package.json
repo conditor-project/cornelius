@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server -d --hot --watch",
     "build": "webpack --mode=production",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "insertversion:docker": "sed -i \"s#\\(image: conditor/cornelius:\\)\\([-\\.a-z0-9]\\+\\)#\\1${npm_package_version}#g\" docker-compose.yml docker-compose.build.yml",
+    "version": "npm run insertversion:docker && git add docker-compose.yml docker-compose.build.yml"
   },
   "keywords": [],
   "author": "",
