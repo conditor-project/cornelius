@@ -120,6 +120,17 @@ export const filter = {
       this.apply();
     };
 
+    this.onChangeAddressForm = debounce(function () {
+      this.isAddressFormActive = Boolean(this.options.address);
+      this.apply();
+    }, 400);
+
+    this.clearAddressForm = function () {
+      this.isAddressFormActive = false;
+      this.options.address = '';
+      this.apply();
+    };
+
     this.onChangeSourceForm = debounce(function () {
       this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
       this.apply();

@@ -4,7 +4,6 @@ import angular from 'angular';
 
 export function conditorApiService ($http, CONFIG) {
   const fieldsToExclude = [
-    // 'authors',
     'creationDate',
     'duplicates',
     'duplicateRules',
@@ -62,6 +61,7 @@ export function conditorApiService ($http, CONFIG) {
     const { field, group, or, and } = luceneQueryStringBuilder;
     const source = Object.keys(filter.source).filter(source => filter.source[source]);
     const fields = [...defaultFields];
+    const nestedLuceneQueryString = [];
 
     // Input title abstract
     if (filter.hasOwnProperty('titleAbstract') && filter.titleAbstract) {
@@ -111,14 +111,20 @@ export function conditorApiService ($http, CONFIG) {
       fields.push(group(luceneQueryForId));
     }
 
+    if (filter.hasOwnProperty('address') && filter.address) {
+      const address = escapeDoubleQuote(filter.address);
+      nestedLuceneQueryString.push(`authors>affiliations>"authors.affiliations.address:${address}"`);
+    }
+
     // Checkbox source
     if (source.length > 0) fields.push(field('source', group(or(...source))));
 
     // Input dropdown type conditor
     if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
+
     const luceneQueryString = and(...fields);
     const output = {
-      q: `"${luceneQueryString}"`
+      q: [`"${luceneQueryString}"`].concat(nestedLuceneQueryString).join(' ')
     };
 
     if (filter.hasOwnProperty('aggregationTerms')) {
