@@ -22,19 +22,26 @@
     <div class="panel-body">
       <div class="details">
         <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.source }}</span>
-        <span class="label"
-          ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
-        <span class="label"
-          ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
+        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
+        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
-      <!-- <div class="authors">{{ record.first3AuthorNames }}</div> -->
-      <div class="authors">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="author in record.authors" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible">
-            {{ author.forename }} {{ author.surname }} <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isAuthorsVisible, 'fa-minus-square-o': record.isAuthorsVisible }"aria-hidden="true"></i>
-            <ul class="list-group" ng-if="record.isAuthorsVisible">
-                <li class="list-group-item" ng-repeat="affiliation in author.affiliations">{{ affiliation.address }}</li>
+      <div class="authors" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <ng-pluralize
+          count="record.authors.length"
+          when="{
+            '0': 'Aucun auteur',
+            'one': '1 auteur',
+            'other': '{} auteurs'
+          }"
+        ></ng-pluralize> : {{ record.authorNames }}
+        <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isAuthorsVisible, 'fa-minus-square-o': record.isAuthorsVisible }" aria-hidden="true"></i>
+        <ul class="list-group" ng-if="record.isAuthorsVisible">
+          <li class="list-group-item" ng-repeat="author in record.authors">
+            {{ author.forename }} {{ author.surname }}
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="affiliation in author.affiliations">{{ affiliation.address }}</li>
             </ul>
           </li>
         </ul>
@@ -43,7 +50,17 @@
     </div>
     <div class="panel-footer" ng-click="record.isNearDuplicatesVisible = !record.isNearDuplicatesVisible">
       <div class="near-duplicates">
-        <i class="fa fa-file-text-o"></i> {{ record.nearDuplicates.length }} notice similaire avec un taux de similarité <span ng-if="record.nearDuplicates.length > 1" >moyen</span> de {{ record.averageScore | percentage }}
+        <i class="fa fa-file-text-o"></i>
+        <ng-pluralize
+          count="record.nearDuplicates.length"
+          when="{
+            '0': 'Aucune notice similaire',
+            'one': '1 notice similaire avec un taux de similarité de',
+            'other': '{} notices similaires avec un taux moyen de similarité de'
+          }"
+        ></ng-pluralize>
+        {{ record.averageScore | percentage }}
+        <i class="fa" ng-class="{ 'fa-plus-square-o': !record.isNearDuplicatesVisible, 'fa-minus-square-o': record.isNearDuplicatesVisible }" aria-hidden="true"></i>
         <ul ng-if="record.isNearDuplicatesVisible" class="list-group">
           <li ng-repeat="nearDuplicate in record.nearDuplicates" class="list-group-item">
             {{ nearDuplicate.source }} - {{ nearDuplicate.idConditor }}
