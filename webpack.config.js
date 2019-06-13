@@ -22,19 +22,39 @@ const config = {
     },
     {
       test: /\.html$/,
-      loader: 'raw-loader'
+      use: [{
+        loader: 'raw-loader'
+      }]
     },
     {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&minetype=application/font-woff'
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          minetype: 'application/font-woff'
+        }
+      }]
     },
     {
       test: /\.woff2$/,
-      loader: 'url-loader?limit=10000&minetype=application/font-woff'
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          minetype: 'application/font-woff'
+        }
+      }]
     },
     {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&minetype=application/octet-stream'
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          minetype: 'application/octet-stream'
+        }
+      }]
     },
     {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -42,7 +62,13 @@ const config = {
     },
     {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&minetype=image/svg+xml'
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          minetype: 'image/svg+xml'
+        }
+      }]
     }]
   },
   plugins: [

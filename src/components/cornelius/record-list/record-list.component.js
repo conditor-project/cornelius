@@ -32,7 +32,7 @@ export const recordList = {
         this.loading = false;
         this.records = [];
         if (response.status === 401) this.openJwtModal({ force: true });
-        // TODO: Manage code error 500
+        console.error(response);
       });
     };
 
@@ -45,7 +45,7 @@ export const recordList = {
       }).catch(response => {
         this.records = [];
         if (response.status === 401) this.openJwtModal({ force: true });
-        // TODO: Manage code error 500
+        console.error(response);
       });
     };
 

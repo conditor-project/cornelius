@@ -1,12 +1,14 @@
 {
   "name": "cornelius",
-  "version": "0.0.42",
+  "version": "1.0.2",
   "description": "Validation application for bibliographic records",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --hot --watch",
     "build": "webpack --mode=production",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "insertversion:docker": "sed -i \"s#\\(image: conditor/cornelius:\\)\\([-\\.a-z0-9]\\+\\)#\\1${npm_package_version}#g\" docker-compose.yml docker-compose.build.yml",
+    "version": "npm run insertversion:docker && git add docker-compose.yml docker-compose.build.yml"
   },
   "keywords": [],
   "author": "",
@@ -14,20 +16,27 @@
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.3",
     "css-hot-loader": "^1.4.4",
-    "css-loader": "^2.1.1",
-    "file-loader": "^3.0.1",
+    "css-loader": "^3.0.0",
+    "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
-    "raw-loader": "^2.0.0",
+    "raw-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.3.0",
     "uglifyjs-webpack-plugin": "^2.1.3",
+<<<<<<< HEAD
     "url-loader": "^1.1.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.1"
+=======
+    "url-loader": "^2.0.0",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+>>>>>>> master
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.22",
@@ -49,7 +58,7 @@
     "lodash.get": "^4.4.2",
     "lucene-query-string-builder": "^1.0.1",
     "parse-link-header": "^1.0.1",
-    "query-string": "^6.5.0",
+    "query-string": "^6.7.0",
     "ui-select": "git+https://github.com/conditor-project/ui-select.git"
   }
 }

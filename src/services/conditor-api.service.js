@@ -65,6 +65,7 @@ export function conditorApiService ($http, CONFIG) {
 
     // Input title abstract
     if (filter.hasOwnProperty('titleAbstract') && filter.titleAbstract) {
+      const titleAbstract = escapeDoubleQuote(filter.titleAbstract);
       const whereToLook = [
         'abstract',
         'title.default',
@@ -73,18 +74,20 @@ export function conditorApiService ($http, CONFIG) {
         'title.journal',
         'title.meeting',
         'title.monography'
-      ].map(item => field(item, group(filter.titleAbstract)));
+      ].map(item => field(item, group(titleAbstract)));
       const luceneQueryForTitleAbstract = or(...whereToLook);
       fields.push(group(luceneQueryForTitleAbstract));
     }
 
     // Input author
     if (filter.hasOwnProperty('author') && filter.author) {
-      fields.push(field('authorNames', group(filter.author)));
+      const author = escapeDoubleQuote(filter.author);
+      fields.push(field('authorNames', group(author)));
     }
 
     // Input id
     if (filter.hasOwnProperty('id') && filter.id) {
+      const id = escapeDoubleQuote(filter.id);
       const whereToLook = [
         'arxiv',
         'doi',
@@ -103,7 +106,7 @@ export function conditorApiService ($http, CONFIG) {
         'researcherId',
         'utKey',
         'viaf'
-      ].map(item => field(item, group(filter.id)));
+      ].map(item => field(item, group(id)));
       const luceneQueryForId = or(...whereToLook);
       fields.push(group(luceneQueryForId));
     }
@@ -129,4 +132,8 @@ export function conditorApiService ($http, CONFIG) {
 
     return queryString.stringify(output);
   }
+}
+
+function escapeDoubleQuote (text) {
+  return text.replace(/"/g, '\\"');
 }

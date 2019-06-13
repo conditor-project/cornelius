@@ -1,6 +1,6 @@
 {
   "apiConditor": {
-    "baseUrl": "https://api.conditor.fr",
+    "baseUrl": "https://api-integ.conditor.fr/v1",
     "routes": {
       "record": "records"
     },

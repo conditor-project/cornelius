@@ -80,9 +80,11 @@ export const filter = {
           const typeConditor = this.typeConditor.filter(typeConditor => typeConditor.key === bucket.key).pop();
           typeConditor.doc_count = bucket.doc_count;
         });
+      }).catch(error => {
+        console.error(error);
       }).then(() => {
         this.onOptionsChange({ newOptions });
-      }).catch(console.error);
+      });
     };
 
     this.onChangeTitleAbstractForm = debounce(function () {
