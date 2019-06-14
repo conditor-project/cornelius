@@ -25,6 +25,10 @@ const xpathsInfoFromTei = [
   {
     name: 'publicationPlace',
     xpath: '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:imprint//TEI:pubPlace'
+  },
+  {
+    name: 'serie',
+    xpath: '//TEI:text/TEI:body//TEI:listBibl//TEI:biblFull//TEI:sourceDesc//TEI:biblStruct//TEI:monogr//TEI:imprint//TEI:biblScope[@unit="serie"]'
   }
 ];
 
@@ -164,7 +168,8 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
     'conferenceStartDate',
     'conferenceEndDate',
     'publisherName',
-    'publicationPlace'
+    'publicationPlace',
+    'serie'
   ]);
   filteredSortedFields.forEach(key => {
     let recordData = get(record, key, '');
