@@ -209,7 +209,7 @@ function getNearDuplicates (record, conditorApiService) {
 
 function getInfosFromTeiBlob (teiBlob, xpathsCollection) {
   const parser = new DOMParser();
-  const tei = window.atob(teiBlob);
+  const tei = b64DecodeUnicode(teiBlob);
   const doc = parser.parseFromString(tei, 'application/xml');
   const nsResolver = function (prefix) {
     const ns = {
@@ -229,4 +229,10 @@ function getInfosFromTeiBlob (teiBlob, xpathsCollection) {
     return item;
   });
   return results;
+}
+
+function b64DecodeUnicode (str) {
+  return decodeURIComponent(window.atob(str).split('').map(function (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
 }
