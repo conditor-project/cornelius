@@ -9591,7 +9591,7 @@ cornelius {
     padding-bottom: 30px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    min-height: 800px; }
+    min-height: 850px; }
   cornelius footer {
     padding: 10px 0;
     background-color: #333;
@@ -9706,12 +9706,13 @@ filter .btn-default span.badge {
 record-list .record-header div[class^="col-"] {
   height: 50px; }
 
-record-list .panel {
+record-list .panel-heading, record-list .panel-footer {
   cursor: pointer; }
 
 record-list .authors {
   font-size: 1.3rem;
-  margin-top: 5px; }
+  margin-top: 5px;
+  cursor: pointer; }
 
 record-list .details {
   margin-bottom: 5px;
