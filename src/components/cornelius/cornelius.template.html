@@ -5,6 +5,10 @@
       <filter on-options-change="$ctrl.filterOptions = newOptions"></filter>
     </div>
     <div class="col-sm-9">
+      <div class="alert alert-warning" ng-if="$ctrl.windowWidth < 1200 || $ctrl.windowHeight < 900">
+        Cornelius n'est pas adapté pour un affichage en dessous de 1200 x 900 (hauteur x largeur).
+        Votre affichage : {{ $ctrl.windowWidth }} x {{ $ctrl.windowHeight }}
+      </div>
       <record-list filter-options="$ctrl.filterOptions"></record-list>
     </div>
   </div>
