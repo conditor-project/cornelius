@@ -21,8 +21,9 @@
           <div class="form-group">
             <ui-select ng-model="$ctrl.options.typeConditor" search-enabled="false"
               ng-change="$ctrl.onChangeTypeConditorForm()">
-              <ui-select-match>{{ $select.selected.key }} <span
-                  class="badge">{{ $select.selected.doc_count | number }}</span></ui-select-match>
+              <ui-select-match>
+                {{ $select.selected.key }} <span class="badge">{{ $select.selected.doc_count | number }}</span>
+              </ui-select-match>
               <ui-select-choices repeat="type.key as type in $ctrl.typeConditor | orderBy:'+'">
                 {{ type.key }}
                 <span class="badge">{{ type.doc_count | number }}</span>
@@ -40,18 +41,20 @@
               <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
-          <small ng-if="filterForm.titleAbstract.$error.minlength" class="text-warning">3 caractères minimum
-            requis</small>
-          <small ng-if="filterForm.titleAbstract.$error.maxlength" class="text-warning">40 caractères maximum
-            requis</small>
+          <small ng-if="filterForm.titleAbstract.$error.minlength" class="text-warning">
+            3 caractères minimum requis
+          </small>
+          <small ng-if="filterForm.titleAbstract.$error.maxlength" class="text-warning">
+            40 caractères maximum requis
+          </small>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isAuthorFormActive }">
           <legend><i class="fa fa-user" aria-hidden="true"></i> Auteur</legend>
           <div class="input-group">
             <input type="text" ng-model="$ctrl.options.author" ng-change="$ctrl.onChangeAuthorForm()" ng-minlength="3"
               ng-maxlength="40" class="form-control" name="author">
-            <span ng-if="filterForm.author.$viewValue" ng-click="$ctrl.clearAuthorForm()"
-              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+            <span ng-if="filterForm.author.$viewValue" ng-click="$ctrl.clearAuthorForm()" class="input-group-addon"
+              style="cursor: pointer; pointer-events: all;">
               <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
@@ -63,8 +66,8 @@
           <div class="input-group">
             <input type="text" ng-model="$ctrl.options.id" ng-change="$ctrl.onChangeIdForm()" ng-minlength="3"
               ng-maxlength="40" class="form-control" name="id">
-            <span ng-if="filterForm.id.$viewValue" ng-click="$ctrl.clearIdForm()"
-              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+            <span ng-if="filterForm.id.$viewValue" ng-click="$ctrl.clearIdForm()" class="input-group-addon"
+              style="cursor: pointer; pointer-events: all;">
               <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
@@ -76,8 +79,8 @@
           <div class="input-group">
             <input type="text" ng-model="$ctrl.options.address" ng-change="$ctrl.onChangeAddressForm()" ng-minlength="3"
               ng-maxlength="40" class="form-control" name="address">
-            <span ng-if="filterForm.address.$viewValue" ng-click="$ctrl.clearAddressForm()"
-              class="input-group-addon" style="cursor: pointer; pointer-events: all;">
+            <span ng-if="filterForm.address.$viewValue" ng-click="$ctrl.clearAddressForm()" class="input-group-addon"
+              style="cursor: pointer; pointer-events: all;">
               <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </div>
