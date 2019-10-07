@@ -12,7 +12,7 @@
   "pubmed": {
     "baseUrl": "https://www.ncbi.nlm.nih.gov/pubmed"
   },
-  "orcid": {
-    "baseUrl": "https://orcid.org"
+  "doi": {
+    "baseUrl": "https://doi.org"
   }
 }

@@ -196,9 +196,10 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
       if (recordData) origin.url = `${CONFIG.pubmed.baseUrl}/${recordData}`;
       if (nearDuplicateRecordData) target.url = `${CONFIG.pubmed.baseUrl}/${nearDuplicateRecordData}`;
     }
-    if (key === 'orcId') {
-      if (recordData) origin.url = `${CONFIG.orcid.baseUrl}/${recordData}`;
-      if (nearDuplicateRecordData) target.url = `${CONFIG.orcid.baseUrl}/${nearDuplicateRecordData}`;
+    if (key === 'doi') {
+      const doiRegex = /^10.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
+      if (recordData && recordData.match(doiRegex)) origin.url = `${CONFIG.doi.baseUrl}/${recordData}`;
+      if (nearDuplicateRecordData && nearDuplicateRecordData.match(doiRegex)) target.url = `${CONFIG.doi.baseUrl}/${nearDuplicateRecordData}`;
     }
     recordsComparison[key] = [isEqual, origin, target];
   });
