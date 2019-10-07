@@ -14,5 +14,8 @@
   },
   "doi": {
     "baseUrl": "https://doi.org"
+  },
+  "sudoc": {
+    "baseUrl": "http://www.sudoc.fr"
   }
 }

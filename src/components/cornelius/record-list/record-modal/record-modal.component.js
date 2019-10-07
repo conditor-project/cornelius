@@ -202,6 +202,10 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
       if (recordData && recordData.match(doiRegex)) origin.url = `${CONFIG.doi.baseUrl}/${recordData}`;
       if (nearDuplicateRecordData && nearDuplicateRecordData.match(doiRegex)) target.url = `${CONFIG.doi.baseUrl}/${nearDuplicateRecordData}`;
     }
+    if (key === 'ppn') {
+      if (recordData) origin.url = `${CONFIG.sudoc.baseUrl}/${recordData}`;
+      if (nearDuplicateRecordData) target.url = `${CONFIG.sudoc.baseUrl}/${nearDuplicateRecordData}`;
+    }
     recordsComparison[key] = [isEqual, origin, target];
   });
   return recordsComparison;
