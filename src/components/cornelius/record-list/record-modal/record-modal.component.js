@@ -142,6 +142,7 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
     'researcherId',
     'viaf',
     'publicationDate',
+    'electronicPublicationDate',
     'title.journal',
     'title.monography',
     'title.meeting',
