@@ -41,6 +41,7 @@
     "angular-sanitize": "^1.7.8",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-notification": "^0.3.6",
+    "angularjs-slider": "^7.0.0",
     "bootstrap": "^3.4.1",
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "diff": "^4.0.1",
