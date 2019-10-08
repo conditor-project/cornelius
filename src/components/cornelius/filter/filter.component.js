@@ -55,6 +55,13 @@ export const filter = {
       }).then(response => {
         const publicationDates = response.data.aggregations.publicationDate.buckets
           .filter(bucket => Boolean(parseInt(bucket.key, 10)))
+          .filter(bucket => {
+            const now = new Date();
+            const minDate = now.setFullYear(now.getFullYear() - 10);
+            const maxDate = now.setFullYear(now.getFullYear() + 10);
+            const bucketDate = new Date(bucket.key);
+            return bucketDate >= minDate && bucketDate <= maxDate;
+          })
           .map(bucket => bucket.key);
         const publicationDateFloor = min(publicationDates);
         const publicationDateCeil = max(publicationDates);
@@ -102,6 +109,13 @@ export const filter = {
       }).then(response => {
         const publicationDates = response.data.aggregations.publicationDate.buckets
           .filter(bucket => Boolean(parseInt(bucket.key, 10)))
+          .filter(bucket => {
+            const now = new Date();
+            const minDate = now.setFullYear(now.getFullYear() - 10);
+            const maxDate = now.setFullYear(now.getFullYear() + 10);
+            const bucketDate = new Date(bucket.key);
+            return bucketDate >= minDate && bucketDate <= maxDate;
+          })
           .map(bucket => bucket.key);
         const publicationDateFloor = min(publicationDates);
         const publicationDateCeil = max(publicationDates);
@@ -109,6 +123,7 @@ export const filter = {
         this.options.publicationDate.options.ceil = publicationDateCeil;
         if (this.options.publicationDate.min < publicationDateFloor) this.options.publicationDate.min = publicationDateFloor;
         if (this.options.publicationDate.max > publicationDateCeil) this.options.publicationDate.max = publicationDateCeil;
+        this.isPublicationDateFormActive = (this.options.publicationDate.min !== this.options.publicationDate.options.floor || this.options.publicationDate.max !== this.options.publicationDate.options.ceil);
       }).catch(error => {
         console.error(error);
       }).then(() => {

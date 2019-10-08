@@ -152,7 +152,7 @@ export function conditorApiService ($http, CONFIG) {
     };
 
     if (filter.hasOwnProperty('aggregationTerms')) {
-      output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name} }`);
+      output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name}, size: 1000 }`);
       output.page_size = 0;
     } else {
       output.excludes = fieldsToExclude.join(',');

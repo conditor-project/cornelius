@@ -19,6 +19,12 @@ filter {
     select.form-control {
       color: #333;
     }
+    .rzslider .rz-pointer {
+      background-color: #337ab7;
+    }
+    .rzslider .rz-bar {
+      background-color: #0db9f0;
+    }
   }
   
   fieldset legend {
@@ -47,6 +53,10 @@ filter {
   }
 
   .rzslider .rz-pointer {    
-    background-color: #337ab7;
+    background-color: #777777;
+  }
+
+  .rzslider .rz-bar {
+    background-color: #777777;
   }
 }
