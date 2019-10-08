@@ -21,7 +21,18 @@ export function conditorApiService ($http, CONFIG) {
   ];
   return {
     getRecords: function (
-      filter = { source: {}, typeConditor: 'Tous les types' },
+      filter = {
+        source: {},
+        typeConditor: 'Tous les types',
+        publicationDate: {
+          min: 0,
+          max: 0,
+          options: {
+            ceil: 0,
+            floor: 0
+          }
+        }
+      },
       sort = { query: 'title.default.normalized:asc' }
     ) {
       const recordsQueryString = getQueryString(filter, sort);
@@ -51,6 +62,14 @@ export function conditorApiService ($http, CONFIG) {
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsTypeConditorQueryString}`;
       return $http.get(requestUrl);
     },
+    getAggregationsPublicationDate: function (filter) {
+      const filterCopy = angular.copy(filter);
+      filterCopy.publicationDate = { min: 0, max: 0, options: { ceil: 0, floor: 0 } };
+      filterCopy.aggregationTerms = { name: 'publicationDate', value: 'xPublicationDate' };
+      const aggregationsPublicationDateQueryString = getQueryString(filterCopy);
+      const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsPublicationDateQueryString}`;
+      return $http.get(requestUrl);
+    },
     postDuplicatesValidation: function (duplicatesValidation) {
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/duplicatesValidations/?debug`;
       return $http.post(requestUrl, duplicatesValidation);
@@ -58,7 +77,7 @@ export function conditorApiService ($http, CONFIG) {
   };
 
   function getQueryString (filter, sort) {
-    const { field, group, or, and } = luceneQueryStringBuilder;
+    const { field, group, or, and, range } = luceneQueryStringBuilder;
     const source = Object.keys(filter.source).filter(source => filter.source[source]);
     const fields = [...defaultFields];
     const nestedLuceneQueryString = [];
@@ -121,6 +140,11 @@ export function conditorApiService ($http, CONFIG) {
 
     // Input dropdown type conditor
     if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
+
+    // Input range publicationDate
+    if (filter.publicationDate.min !== filter.publicationDate.options.floor || filter.publicationDate.max !== filter.publicationDate.options.ceil) {
+      fields.push(field('xPublicationDate', range(filter.publicationDate.min.toString(), filter.publicationDate.max.toString(), true, true)));
+    }
 
     const luceneQueryString = and(...fields);
     const output = {

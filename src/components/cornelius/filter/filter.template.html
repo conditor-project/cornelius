@@ -87,6 +87,13 @@
           <small ng-if="filterForm.address.$error.minlength" class="text-warning">3 caractères minimum requis</small>
           <small ng-if="filterForm.address.$error.maxlength" class="text-warning">200 caractères maximum requis</small>
         </fieldset>
+        <fieldset ng-class="{ active: $ctrl.isPublicationDateFormActive }">
+          <legend><i class="fa fa-calendar" aria-hidden="true"></i> Date de publication</legend>
+          <div>
+            <rzslider rz-slider-model="$ctrl.options.publicationDate.min"
+              rz-slider-high="$ctrl.options.publicationDate.max" rz-slider-options="$ctrl.options.publicationDate.options"></rzslider>
+          </div>
+        </fieldset>
       </form>
     </div>
   </div>

@@ -12,7 +12,16 @@ export const filter = {
     this.$onInit = function () {
       this.optionsOrigin = {
         source: {},
-        typeConditor: 'Tous les types'
+        typeConditor: 'Tous les types',
+        publicationDate: {
+          min: 0,
+          max: 100,
+          options: {
+            floor: 0,
+            ceil: 100,
+            onChange: this.onChangePublicationDateForm
+          }
+        }
       };
       this.options = angular.copy(this.optionsOrigin);
       this.isSourceFormActive = false;
@@ -27,8 +36,7 @@ export const filter = {
       return conditorApiService.getAggregationsTypeConditor(this.options).then(response => {
         const totalCount = response.data.aggregations.typeConditor.buckets
           .map(bucket => bucket.doc_count)
-          .reduce((accumulator, currentValue) => accumulator + currentValue)
-        ;
+          .reduce((accumulator, currentValue) => accumulator + currentValue);
         this.typeConditor = [
           {
             key: this.optionsOrigin.typeConditor,
@@ -43,6 +51,17 @@ export const filter = {
         });
         this.options = angular.copy(this.optionsOrigin);
         this.sources = response.data.aggregations.source.buckets;
+        return conditorApiService.getAggregationsPublicationDate(this.options);
+      }).then(response => {
+        const publicationDates = response.data.aggregations.publicationDate.buckets
+          .filter(bucket => Boolean(parseInt(bucket.key, 10)))
+          .map(bucket => bucket.key);
+        const publicationDateFloor = min(publicationDates);
+        const publicationDateCeil = max(publicationDates);
+        this.options.publicationDate.min = publicationDateFloor;
+        this.options.publicationDate.options.floor = publicationDateFloor;
+        this.options.publicationDate.max = publicationDateCeil;
+        this.options.publicationDate.options.ceil = publicationDateCeil;
       });
     };
 
@@ -73,13 +92,23 @@ export const filter = {
         });
         const totalCount = typeConditorBuckets.length === 0 ? 0 : response.data.aggregations.typeConditor.buckets
           .map(bucket => bucket.doc_count)
-          .reduce((accumulator, currentValue) => accumulator + currentValue)
-        ;
+          .reduce((accumulator, currentValue) => accumulator + currentValue);
         this.typeConditor[0].doc_count = totalCount;
         typeConditorBuckets.map(bucket => {
           const typeConditor = this.typeConditor.filter(typeConditor => typeConditor.key === bucket.key).pop();
           typeConditor.doc_count = bucket.doc_count;
         });
+        return conditorApiService.getAggregationsPublicationDate(this.options);
+      }).then(response => {
+        const publicationDates = response.data.aggregations.publicationDate.buckets
+          .filter(bucket => Boolean(parseInt(bucket.key, 10)))
+          .map(bucket => bucket.key);
+        const publicationDateFloor = min(publicationDates);
+        const publicationDateCeil = max(publicationDates);
+        this.options.publicationDate.options.floor = publicationDateFloor;
+        this.options.publicationDate.options.ceil = publicationDateCeil;
+        if (this.options.publicationDate.min < publicationDateFloor) this.options.publicationDate.min = publicationDateFloor;
+        if (this.options.publicationDate.max > publicationDateCeil) this.options.publicationDate.max = publicationDateCeil;
       }).catch(error => {
         console.error(error);
       }).then(() => {
@@ -140,9 +169,22 @@ export const filter = {
       this.isTypeConditorFormActive = !angular.equals(this.options.typeConditor, this.optionsOrigin.typeConditor);
       this.apply();
     };
+
+    this.onChangePublicationDateForm = () => {
+      this.isPublicationDateFormActive = (this.options.publicationDate.min !== this.options.publicationDate.options.floor || this.options.publicationDate.max !== this.options.publicationDate.options.ceil);
+      this.apply();
+    };
   },
   bindings: {
     onOptionsChange: '&'
   },
   template
 };
+
+function max (arr) {
+  return [...arr].map(i => parseInt(i, 10)).sort((a, b) => b - a).slice(0, 1).pop();
+}
+
+function min (arr) {
+  return [...arr].map(i => parseInt(i, 10)).sort((a, b) => a - b).slice(0, 1).pop();
+}
