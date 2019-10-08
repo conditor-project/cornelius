@@ -3,22 +3,6 @@ $medium: 992px;
 $large: 1200px;
 
 filter {
-  @media (min-width: $small) {
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    position: fixed;
-    width: 187.5px;
-  }
-
-  @media (min-width: $medium) {
-    width: 242.5px;
-  }
-
-  @media (min-width: $large) {
-    width: 292.5px;
-  }
-
   fieldset {
     color: #777;
     border: 1px solid #ddd;
