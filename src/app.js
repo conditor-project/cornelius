@@ -12,6 +12,7 @@ import buttons from 'angular-ui-bootstrap/src/buttons';
 import 'angular-drag-scroll';
 import uiSelect from 'ui-select';
 import 'angular-ui-notification';
+import rzSlider from 'angularjs-slider';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
@@ -20,6 +21,7 @@ import 'ui-select/dist/select.css';
 import 'angular-ui-notification/dist/angular-ui-notification.css';
 import './lib/bootstrap-notifications.css';
 import './app.scss';
+import 'angularjs-slider/dist/rzslider.css';
 
 // Components
 import { cornelius } from './components/cornelius/cornelius.component';
@@ -49,7 +51,7 @@ fetch('./config.json')
   .then(response => response.json())
   .then(config => {
     angular
-      .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification'])
+      .module('app', [ngAnimate, ngSanitize, uiRouter, dropdown, modal, buttons, 'ng-drag-scroll', uiSelect, 'ui-notification', rzSlider])
       .config(function (NotificationProvider) {
         NotificationProvider.setOptions({
           delay: 5000,
