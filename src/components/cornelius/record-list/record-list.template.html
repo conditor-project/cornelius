@@ -23,7 +23,16 @@
       <div class="details">
         <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.source }}</span>
         <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.typeConditor }}</span>
-        <span class="label" ng-class="{ 'label-default': !hover, 'label-primary': hover }">{{ record.publicationDate }}</span>
+        <span
+          class="label"
+          ng-class="{ 'label-default': !hover, 'label-primary': hover }"
+          ng-if="record.publicationDate"
+        >pubDate: {{ record.publicationDate }}</span>
+        <span 
+          class="label"
+          ng-class="{ 'label-default': !hover, 'label-primary': hover }"
+          ng-if="record.electronicPublicationDate"
+        >ePubDate: {{ record.electronicPublicationDate }}</span>
       </div>
       <div class="abstract">{{ record.abstract | limitTo:320 }} ...</div>
       <div class="authors" ng-click="record.isAuthorsVisible = !record.isAuthorsVisible">
