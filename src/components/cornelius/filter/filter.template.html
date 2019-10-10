@@ -29,6 +29,11 @@
                 <span class="badge">{{ type.doc_count | number }}</span>
               </ui-select-choices>
             </ui-select>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="$ctrl.options.sameTypeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">type de publication identique
+              </label>
+            </div>
           </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isPublicationDateFormActive }">

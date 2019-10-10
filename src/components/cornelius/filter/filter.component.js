@@ -13,6 +13,7 @@ export const filter = {
       this.optionsOrigin = {
         source: {},
         typeConditor: 'Tous les types',
+        sameTypeConditor: false,
         publicationDate: {
           min: 0,
           max: 100,
@@ -83,7 +84,27 @@ export const filter = {
     this.apply = function () {
       if (!jwtService.getTokenJwt()) return this.openJwtModal({ force: true });
       const newOptions = angular.copy(this.options);
-      conditorApiService.getAggregationsSource(this.options).then(response => {
+      conditorApiService.getAggregationsPublicationDate(this.options).then(response => {
+        const publicationDates = response.data.aggregations.publicationDate.buckets
+          .filter(bucket => Boolean(parseInt(bucket.key, 10)))
+          .filter(bucket => {
+            const now = new Date();
+            const minDate = now.setFullYear(now.getFullYear() - 10);
+            const maxDate = now.setFullYear(now.getFullYear() + 10);
+            const bucketDate = new Date(bucket.key);
+            return bucketDate >= minDate && bucketDate <= maxDate;
+          })
+          .map(bucket => bucket.key);
+        const publicationDateFloor = min(publicationDates);
+        const publicationDateCeil = max(publicationDates);
+        const publicationDate = this.options.publicationDate;
+        publicationDate.options.floor = publicationDateFloor;
+        publicationDate.options.ceil = publicationDateCeil;
+        if (publicationDate.min < publicationDateFloor) publicationDate.min = publicationDateFloor;
+        if (publicationDate.max > publicationDateCeil) publicationDate.max = publicationDateCeil;
+        this.isPublicationDateFormActive = (publicationDate.min !== publicationDate.options.floor || publicationDate.max !== publicationDate.options.ceil);
+        return conditorApiService.getAggregationsSource(this.options);
+      }).then(response => {
         this.sources.forEach(source => {
           source.doc_count = 0;
         });
@@ -105,25 +126,6 @@ export const filter = {
           const typeConditor = this.typeConditor.filter(typeConditor => typeConditor.key === bucket.key).pop();
           typeConditor.doc_count = bucket.doc_count;
         });
-        return conditorApiService.getAggregationsPublicationDate(this.options);
-      }).then(response => {
-        const publicationDates = response.data.aggregations.publicationDate.buckets
-          .filter(bucket => Boolean(parseInt(bucket.key, 10)))
-          .filter(bucket => {
-            const now = new Date();
-            const minDate = now.setFullYear(now.getFullYear() - 10);
-            const maxDate = now.setFullYear(now.getFullYear() + 10);
-            const bucketDate = new Date(bucket.key);
-            return bucketDate >= minDate && bucketDate <= maxDate;
-          })
-          .map(bucket => bucket.key);
-        const publicationDateFloor = min(publicationDates);
-        const publicationDateCeil = max(publicationDates);
-        this.options.publicationDate.options.floor = publicationDateFloor;
-        this.options.publicationDate.options.ceil = publicationDateCeil;
-        if (this.options.publicationDate.min < publicationDateFloor) this.options.publicationDate.min = publicationDateFloor;
-        if (this.options.publicationDate.max > publicationDateCeil) this.options.publicationDate.max = publicationDateCeil;
-        this.isPublicationDateFormActive = (this.options.publicationDate.min !== this.options.publicationDate.options.floor || this.options.publicationDate.max !== this.options.publicationDate.options.ceil);
       }).catch(error => {
         console.error(error);
       }).then(() => {

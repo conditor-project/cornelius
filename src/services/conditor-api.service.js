@@ -24,6 +24,7 @@ export function conditorApiService ($http, CONFIG) {
       filter = {
         source: {},
         typeConditor: 'Tous les types',
+        sameTypeConditor: false,
         publicationDate: {
           min: 0,
           max: 0,
@@ -139,7 +140,10 @@ export function conditorApiService ($http, CONFIG) {
     if (source.length > 0) fields.push(field('source', group(or(...source))));
 
     // Input dropdown type conditor
-    if (filter.typeConditor !== 'Tous les types') fields.push(field('typeConditor', filter.typeConditor));
+    if (filter.typeConditor !== 'Tous les types') {
+      fields.push(field('typeConditor', filter.typeConditor));
+      if (filter.sameTypeConditor) nestedLuceneQueryString.push(`nearDuplicates>"nearDuplicates.type:${filter.typeConditor}" `);
+    }
 
     // Input range publicationDate
     if (filter.publicationDate.min !== filter.publicationDate.options.floor || filter.publicationDate.max !== filter.publicationDate.options.ceil) {
