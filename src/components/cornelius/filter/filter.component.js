@@ -12,6 +12,7 @@ export const filter = {
     this.$onInit = function () {
       this.optionsOrigin = {
         source: {},
+        nearDuplicatesSource: {},
         typeConditor: 'Tous les types',
         sameTypeConditor: false,
         publicationDate: {
@@ -49,6 +50,7 @@ export const filter = {
       }).then(response => {
         response.data.aggregations.source.buckets.map(bucket => {
           this.optionsOrigin.source[bucket.key] = false;
+          this.optionsOrigin.nearDuplicatesSource[bucket.key] = false;
         });
         this.options = angular.copy(this.optionsOrigin);
         this.sources = response.data.aggregations.source.buckets;
@@ -64,12 +66,16 @@ export const filter = {
             return bucketDate >= minDate && bucketDate <= maxDate;
           })
           .map(bucket => bucket.key);
-        const publicationDateFloor = min(publicationDates);
-        const publicationDateCeil = max(publicationDates);
-        this.options.publicationDate.min = publicationDateFloor;
-        this.options.publicationDate.options.floor = publicationDateFloor;
-        this.options.publicationDate.max = publicationDateCeil;
-        this.options.publicationDate.options.ceil = publicationDateCeil;
+        if (publicationDates.length > 0) {
+          const publicationDateFloor = min(publicationDates);
+          const publicationDateCeil = max(publicationDates);
+          this.options.publicationDate.min = publicationDateFloor;
+          this.options.publicationDate.options.floor = publicationDateFloor;
+          this.options.publicationDate.max = publicationDateCeil;
+          this.options.publicationDate.options.ceil = publicationDateCeil;
+        } else {
+          this.options.publicationDate = angular.copy(this.optionsOrigin.publicationDate);
+        }
       });
     };
 
@@ -95,13 +101,22 @@ export const filter = {
             return bucketDate >= minDate && bucketDate <= maxDate;
           })
           .map(bucket => bucket.key);
-        const publicationDateFloor = min(publicationDates);
-        const publicationDateCeil = max(publicationDates);
+
+        if (publicationDates.length > 0) {
+          const publicationDateFloor = min(publicationDates);
+          const publicationDateCeil = max(publicationDates);
+          const publicationDate = this.options.publicationDate;
+          publicationDate.options.floor = publicationDateFloor;
+          publicationDate.options.ceil = publicationDateCeil;
+          const isDefaultPublicationDateMin = publicationDate.min === this.optionsOrigin.publicationDate.min;
+          const isDefaultPublicationDateMax = publicationDate.max === this.optionsOrigin.publicationDate.max;
+          if (publicationDate.min < publicationDateFloor || isDefaultPublicationDateMin) publicationDate.min = publicationDateFloor;
+          if (publicationDate.max > publicationDateCeil || isDefaultPublicationDateMax) publicationDate.max = publicationDateCeil;
+        } else {
+          this.options.publicationDate = angular.copy(this.optionsOrigin.publicationDate);
+        }
+
         const publicationDate = this.options.publicationDate;
-        publicationDate.options.floor = publicationDateFloor;
-        publicationDate.options.ceil = publicationDateCeil;
-        if (publicationDate.min < publicationDateFloor) publicationDate.min = publicationDateFloor;
-        if (publicationDate.max > publicationDateCeil) publicationDate.max = publicationDateCeil;
         this.isPublicationDateFormActive = (publicationDate.min !== publicationDate.options.floor || publicationDate.max !== publicationDate.options.ceil);
         return conditorApiService.getAggregationsSource(this.options);
       }).then(response => {
@@ -178,12 +193,13 @@ export const filter = {
     };
 
     this.onChangeSourceForm = debounce(function () {
-      this.isSourceFormActive = !angular.equals(this.options.source, this.optionsOrigin.source);
+      this.isSourceFormActive = !(angular.equals(this.options.source, this.optionsOrigin.source) && angular.equals(this.options.nearDuplicatesSource, this.optionsOrigin.nearDuplicatesSource));
       this.apply();
     }, 200);
 
     this.onChangeTypeConditorForm = function () {
       this.isTypeConditorFormActive = !angular.equals(this.options.typeConditor, this.optionsOrigin.typeConditor);
+      if (!this.isTypeConditorFormActive) this.options.sameTypeConditor = false;
       this.apply();
     };
 

@@ -23,6 +23,7 @@ export function conditorApiService ($http, CONFIG) {
     getRecords: function (
       filter = {
         source: {},
+        nearDuplicatesSource: {},
         typeConditor: 'Tous les types',
         sameTypeConditor: false,
         publicationDate: {
@@ -80,6 +81,7 @@ export function conditorApiService ($http, CONFIG) {
   function getQueryString (filter, sort) {
     const { field, group, or, and, range } = luceneQueryStringBuilder;
     const source = Object.keys(filter.source).filter(source => filter.source[source]);
+    const nearDuplicatesSource = Object.keys(filter.nearDuplicatesSource).filter(source => filter.nearDuplicatesSource[source]);
     const fields = [...defaultFields];
     const nestedLuceneQueryString = [];
 
@@ -137,7 +139,14 @@ export function conditorApiService ($http, CONFIG) {
     }
 
     // Checkbox source
-    if (source.length > 0) fields.push(field('source', group(or(...source))));
+    if (source.length > 0) {
+      fields.push(field('source', group(or(...source))));
+    }
+
+    if (nearDuplicatesSource.length > 0) {
+      // console.log(nearDuplicatesSource);
+      nestedLuceneQueryString.push(`nearDuplicates>"${field('nearDuplicates.source', group(or(...nearDuplicatesSource)))}" `);
+    }
 
     // Input dropdown type conditor
     if (filter.typeConditor !== 'Tous les types') {

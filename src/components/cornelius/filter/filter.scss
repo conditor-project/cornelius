@@ -59,4 +59,12 @@ filter {
   .rzslider .rz-bar {
     background-color: #777777;
   }
+
+  hr {
+    margin: 10px 0;
+  }
+
+  .checkbox-inline + .checkbox-inline {
+    margin-left: 0;
+  }
 }

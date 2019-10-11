@@ -12,8 +12,19 @@
               <input type="checkbox" ng-model="$ctrl.options.source[source.key]" ng-change="$ctrl.onChangeSourceForm()"
                 value="{{ source.key }}">
               {{ source.key }}
-              <span class="badge">{{ source.doc_count | number }}</span>
             </label>
+            <span class="badge">{{ source.doc_count | number }}</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Source des notices similaires</label>
+            <div class="checkbox" ng-repeat="source in $ctrl.sources | orderBy:'+'">
+              <label>
+                <input type="checkbox" ng-model="$ctrl.options.nearDuplicatesSource[source.key]" 
+                ng-change="$ctrl.onChangeSourceForm()" value="{{ source.key }}">
+                {{ source.key }}
+              </label>
+            </div>
           </div>
         </fieldset>
         <fieldset ng-class="{ active: $ctrl.isTypeConditorFormActive }">
@@ -31,7 +42,11 @@
             </ui-select>
             <div class="checkbox">
               <label>
-                <input type="checkbox" ng-model="$ctrl.options.sameTypeConditor" ng-change="$ctrl.onChangeTypeConditorForm()">type de publication identique
+                <input type="checkbox" 
+                  ng-model="$ctrl.options.sameTypeConditor" 
+                  ng-change="$ctrl.onChangeTypeConditorForm()"
+                  ng-disabled="!$ctrl.isTypeConditorFormActive"
+                >type de publication identique
               </label>
             </div>
           </div>
