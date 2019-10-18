@@ -4,6 +4,7 @@ import template from './record-modal.template.html';
 import { diffWords } from 'diff';
 import get from 'lodash.get';
 import angular from 'angular';
+import has from 'lodash.has';
 
 const xpathsInfoFromTei = [
   {
@@ -74,7 +75,7 @@ export const recordModal = {
         this.sizeColumnHeaderNearDuplicateRecords = (this.nearDuplicateRecords.length > 2) ? 4 : Math.floor(12 / this.nearDuplicateRecords.length);
         this.nearDuplicateRecordSelected = this.nearDuplicateRecords.length > 0 ? this.nearDuplicateRecords[0] : {};
         this.nearDuplicateRecordSelected.isSelected = true;
-        if (this.nearDuplicateRecordSelected.hasOwnProperty('teiBlob')) {
+        if (has(this.nearDuplicateRecordSelected, 'teiBlob')) {
           const infosFromTeiBlob = getInfosFromTeiBlob(this.nearDuplicateRecordSelected.teiBlob, xpathsInfoFromTei);
           infosFromTeiBlob.map(info => {
             this.nearDuplicateRecordSelected[info.name] = info.value;
@@ -96,7 +97,7 @@ export const recordModal = {
 
     this.checkNearDuplicateRecordsToValidate = function () {
       this.hasNearDuplicateRecordsToValidate = Boolean(this.nearDuplicateRecords.filter(record => {
-        return (record.hasOwnProperty('isDuplicateByUser') && record.isDuplicateByUser !== null);
+        return (has(record, 'isDuplicateByUser') && record.isDuplicateByUser !== null);
       }).length);
     };
 
@@ -131,46 +132,46 @@ function getComparisonInfos (record, nearDuplicateRecordSelected, CONFIG) {
     'title.default',
     'title.en',
     'title.fr',
-    'arxiv',
     'doi',
     'nnt',
-    'reportNumber',
+    'pmId',
+    'arxiv',
     'authorNames',
-    'halAuthorId',
-    'isni',
-    'orcId',
-    'researcherId',
-    'viaf',
     'publicationDate',
     'electronicPublicationDate',
     'title.journal',
     'title.monography',
     'title.meeting',
     'volume',
-    'xissn',
-    'issn',
-    'eissn',
-    'isbn',
-    'eisbn',
     'issue',
-    'specialIssue',
     'pageRange',
-    'articleNumber',
-    'meetAbstrNo',
-    'part',
-    'abstract',
-    'halId',
-    'pmId',
-    'ppn',
-    'utKey',
-    'documentType',
-    'typeConditor',
+    'reportNumber',
     'conferencePlace',
     'conferenceStartDate',
     'conferenceEndDate',
     'publisherName',
     'publicationPlace',
-    'serie'
+    'abstract',
+    'documentType',
+    'typeConditor',
+    'ppn',
+    'halId',
+    'xissn',
+    'issn',
+    'eissn',
+    'isbn',
+    'eisbn',
+    'serie',
+    'specialIssue',
+    'part',
+    'articleNumber',
+    'meetAbstrNo',
+    'halAuthorId',
+    'researcherId',
+    'orcId',
+    'isni',
+    'viaf',
+    'utKey'
   ]);
   filteredSortedFields.forEach(key => {
     let recordData = get(record, key, '');
@@ -224,7 +225,7 @@ function getInfosFromTeiBlob (teiBlob, xpathsCollection) {
   const doc = parser.parseFromString(tei, 'application/xml');
   const nsResolver = function (prefix) {
     const ns = {
-      'TEI': 'http://www.tei-c.org/ns/1.0'
+      TEI: 'http://www.tei-c.org/ns/1.0'
     };
     return ns[prefix] || null;
   };

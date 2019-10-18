@@ -1,6 +1,7 @@
 import luceneQueryStringBuilder from 'lucene-query-string-builder';
 import queryString from 'query-string';
 import angular from 'angular';
+import has from 'lodash.has';
 
 export function conditorApiService ($http, CONFIG) {
   const fieldsToExclude = [
@@ -86,7 +87,7 @@ export function conditorApiService ($http, CONFIG) {
     const nestedLuceneQueryString = [];
 
     // Input title abstract
-    if (filter.hasOwnProperty('titleAbstract') && filter.titleAbstract) {
+    if (has(filter, 'titleAbstract') && filter.titleAbstract) {
       const titleAbstract = escapeDoubleQuote(filter.titleAbstract);
       const whereToLook = [
         'abstract',
@@ -102,13 +103,13 @@ export function conditorApiService ($http, CONFIG) {
     }
 
     // Input author
-    if (filter.hasOwnProperty('author') && filter.author) {
+    if (has(filter, 'author') && filter.author) {
       const author = escapeDoubleQuote(filter.author);
       fields.push(field('authorNames', group(author)));
     }
 
     // Input id
-    if (filter.hasOwnProperty('id') && filter.id) {
+    if (has(filter, 'id') && filter.id) {
       const id = escapeDoubleQuote(filter.id);
       const whereToLook = [
         'arxiv',
@@ -133,7 +134,7 @@ export function conditorApiService ($http, CONFIG) {
       fields.push(group(luceneQueryForId));
     }
 
-    if (filter.hasOwnProperty('address') && filter.address) {
+    if (has(filter, 'address') && filter.address) {
       const address = escapeDoubleQuote(filter.address);
       nestedLuceneQueryString.push(`authors>affiliations>"authors.affiliations.address:${address}"`);
     }
@@ -164,7 +165,7 @@ export function conditorApiService ($http, CONFIG) {
       q: [`"${luceneQueryString}"`].concat(nestedLuceneQueryString).join(' ')
     };
 
-    if (filter.hasOwnProperty('aggregationTerms')) {
+    if (has(filter, 'aggregationTerms')) {
       output.aggs = field(field('terms', filter.aggregationTerms.value), `{ name: ${filter.aggregationTerms.name}, size: 1000 }`);
       output.page_size = 0;
     } else {
