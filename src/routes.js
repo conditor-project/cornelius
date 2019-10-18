@@ -34,7 +34,7 @@ export const recordState = {
         });
     }).catch((response) => {
       if (response.status === 401) jwtModalService.open({ force: true });
-      notificationLogService.add(`La notice demandée est introuvable`, 'error');
+      notificationLogService.add('La notice demandée est introuvable', 'error');
       if (numberModalOpened === 0) $state.go('home');
     });
   }
