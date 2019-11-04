@@ -162,7 +162,8 @@ export function conditorApiService ($http, CONFIG) {
 
     const luceneQueryString = and(...fields);
     const output = {
-      q: [`"${luceneQueryString}"`].concat(nestedLuceneQueryString).join(' ')
+      q: [`"${luceneQueryString}"`].concat(nestedLuceneQueryString).join(' '),
+      sid: 'cornelius'
     };
 
     if (has(filter, 'aggregationTerms')) {
