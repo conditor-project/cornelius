@@ -7,7 +7,7 @@ services:
       args:
         - http_proxy
         - https_proxy
-    image: conditor/cornelius:v1.4.2
+    image: conditor/cornelius:v1.4.3
     environment:
       - LOG_PATH=/var/log/nginx
     ports:
