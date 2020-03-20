@@ -68,7 +68,7 @@ export function conditorApiService ($http, CONFIG) {
     getAggregationsPublicationDate: function (filter) {
       const filterCopy = angular.copy(filter);
       filterCopy.publicationDate = { min: 0, max: 0, options: { ceil: 0, floor: 0 } };
-      filterCopy.aggregationTerms = { name: 'publicationDate', value: 'xPublicationDate' };
+      filterCopy.aggregationTerms = { name: 'publicationDate', value: 'xPublicationDate.normalized' };
       const aggregationsPublicationDateQueryString = getQueryString(filterCopy);
       const requestUrl = `${CONFIG.apiConditor.baseUrl}/${CONFIG.apiConditor.routes.record}/?${aggregationsPublicationDateQueryString}`;
       return $http.get(requestUrl);
